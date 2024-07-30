@@ -1,4 +1,4 @@
-import '../src/stories/global/bootstrap.scss';
+import '../src/scss/bootstrap.scss';
 import { withThemeByDataAttribute } from '@storybook/addon-themes';
 
 // import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';

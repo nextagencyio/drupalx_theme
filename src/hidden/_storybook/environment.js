@@ -5,10 +5,10 @@
 const path = require('path');
 const { TwingEnvironment, TwingFunction, TwingLoaderChain, TwingLoaderFilesystem, TwingFilter } = require('twing');
 
-const srcPath = path.resolve(__dirname, '../src/stories/components');
+const srcPath = path.resolve(__dirname, '../components');
 const loader = new TwingLoaderFilesystem(srcPath);
 const chain = new TwingLoaderChain([loader]);
-const attachLibraryFn = new TwingFunction('attach_library', () => {});
+const attachLibraryFn = new TwingFunction('attach_library', () => { });
 const environment = new TwingEnvironment(chain, { autoescape: false, auto_reload: true });
 
 // In storybook we get this returned as an instance of TwigLoaderNull

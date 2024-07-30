@@ -2,8 +2,8 @@
 #
 
 ignoreFiles:
-  - "src/stories/global/_bootswatch.scss"
-  - "src/stories/global/_variables.scss"
+  - "src/scss/_bootswatch.scss"
+  - "src/scss/_variables.scss"
 
 # Preset all items to warning to prevent breaking themes.
 # Delete line to activate linter build-breaking errors.
