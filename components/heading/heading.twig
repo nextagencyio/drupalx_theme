@@ -1,14 +1,30 @@
-
 {# Defaults to h2 (heading level 2) if no heading level is supplied. #}
 {% if heading.title %}
-  <h{{ heading.heading_level|default('2')}} class="heading {{ heading.modifier ? ' ' ~ heading.modifier }}">
-    {% if heading.icon %}
-      {{ heading.icon }}
-    {% endif %}
-    {% if heading.url %}
-      <a href="{{ heading.url }}" class="text-decoration-none">{{ heading.title }}</a>
-    {% else %}
-      {{ heading.title }}
-    {% endif %}
-  </h{{ heading.heading_level|default('2')}}>
+	{%
+    set heading_level = heading.heading_level|default('2')
+  %}
+	{%
+    set heading_classes = [
+      'scroll-m-20',
+      heading.modifier ? heading.modifier,
+      heading_level == '1' ? 'text-4xl font-semibold tracking-tight lg:text-5xl' : '',
+      heading_level == '2' ? 'text-3xl font-semibold tracking-tight' : '',
+      heading_level == '3' ? 'text-2xl font-semibold tracking-tight' : '',
+      heading_level == '4' ? 'text-xl font-semibold tracking-tight' : '',
+      heading_level == '5' ? 'text-lg font-semibold tracking-tight' : '',
+      heading_level == '6' ? 'text-base font-semibold tracking-tight' : '',
+    ]
+  %}
+	<h{{heading_level}} class="{{ heading_classes|join(' ') }}">
+		{% if heading.icon %}
+			{{ heading.icon }}
+		{% endif %}
+		{% if heading.url %}
+			<a href="{{ heading.url }}" class="hover:underline">
+				{{ heading.title }}
+			</a>
+		{% else %}
+			{{ heading.title }}
+		{% endif %}
+	</h{{heading_level}}>
 {% endif %}

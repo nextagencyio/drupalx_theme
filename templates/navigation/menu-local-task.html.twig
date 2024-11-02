@@ -1,17 +1,30 @@
 {#
 /**
  * @file
- * Theme override for a local task link.
+ * Tailwind CSS version for a local task link with simplified styling.
  *
  * Available variables:
  * - attributes: HTML attributes for the wrapper element.
  * - is_active: Whether the task item is an active tab.
  * - link: A rendered link element.
  *
- * Note: This template renders the content for each task item in
- * menu-local-tasks.html.twig.
- *
  * @see template_preprocess_menu_local_task()
  */
 #}
-<li{{ attributes.addClass('nav-item') }}><a href="{{ link['#url'] }}" class="nav-link text-dark pt-1 pb-1 {{ is_active ? 'active' }}">{{ link['#title'] }}</a></li>
+
+{%
+  set link_classes = [
+    'px-3',
+    'py-2',
+    'text-sm',
+    'font-medium',
+    'rounded',
+    is_active ? 'bg-blue-600 text-white' : 'text-blue-600 hover:bg-gray-100',
+  ]
+%}
+
+<li{{attributes}}>
+	<a href="{{ link['#url'] }}" class="{{ link_classes|join(' ') }}">
+		{{ link['#title'] }}
+	</a>
+</li>

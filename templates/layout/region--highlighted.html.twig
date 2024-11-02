@@ -13,16 +13,4 @@
  */
 #}
 
-{%
-  set classes = [
-    'region',
-    'region--' ~ region|clean_class,
-    'container mb-3',
-  ]
-%}
-
-{% if content is not empty %}
-  <div{{ attributes.addClass(classes) }}>
-    {{ content }}
-  </div>
-{% endif %}
+{{ content }}

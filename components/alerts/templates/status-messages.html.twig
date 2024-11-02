@@ -18,24 +18,21 @@
  */
 #}
 
-{{ attach_library('drupalx_theme/alerts') }}
-
-<div data-drupal-messages class="container mb-2 mb-lg-4">
-  {% for type, messages in message_list %}
-    {%
+<div data-drupal-messages class="container mb-2 lg:mb-4">
+	{% for type, messages in message_list %}
+		{%
       set classes = [
-        'alert',
-        'alert-dismissible',
-        'fade',
-        'show',
-        'col-12',
-        type == 'status' ? 'alert-success',
-        type == 'warning' ? 'alert-warning',
-        type == 'error' ? 'alert-danger',
-        type == 'info' ? 'alert-info',
+        'w-full',
+        'p-4',
+        'rounded',
+        'mb-4',
+        type == 'status' ? 'bg-green-100 text-green-800',
+        type == 'warning' ? 'bg-yellow-100 text-yellow-800',
+        type == 'error' ? 'bg-red-100 text-red-800',
+        type == 'info' ? 'bg-blue-100 text-blue-800',
       ]
     %}
-    {%
+		{%
       set role = {
         'status': 'status',
         'error': 'alert',
@@ -43,22 +40,22 @@
         'info': 'status',
       }
     %}
-    <div aria-label="{{ status_headings[type] }}" {{ attributes|without('role', 'aria-label').addClass(classes).setAttribute('role', role[type]) }}>
-      {% if is_message_with_title or is_message_with_icon %}
-        {% if is_message_with_title %}
-          <h4 id="{{ title_ids[type] }}" class="alert-heading">
-            {{ status_headings[type] }}
-          </h4>
-        {% endif %}
-      {% endif %}
-      {% for message in messages %}
-        {% if loop.last %}
-          {{ message }}
-        {% else %}
-          {{ message }}
-          <hr>
-        {% endif %}
-      {% endfor %}
-    </div>
-  {% endfor %}
+		<div aria-label="{{ status_headings[type] }}" {{ attributes|without('role', 'aria-label').addClass(classes).setAttribute('role', role[type]) }}>
+			{% if is_message_with_title or is_message_with_icon %}
+				{% if is_message_with_title %}
+					<h4 id="{{ title_ids[type] }}" class="font-bold mb-2">
+						{{ status_headings[type] }}
+					</h4>
+				{% endif %}
+			{% endif %}
+			{% for message in messages %}
+				{% if loop.last %}
+					{{ message }}
+				{% else %}
+					{{ message }}
+					<hr class="my-2 border-gray-300">
+				{% endif %}
+			{% endfor %}
+		</div>
+	{% endfor %}
 </div>

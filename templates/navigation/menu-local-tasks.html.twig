@@ -1,14 +1,11 @@
 {#
 /**
  * @file
- * Bootstrap Barrio's Theme override to display primary and secondary local tasks.
+ * Tailwind CSS version to display primary and secondary local tasks with simplified styling.
  *
  * Available variables:
  * - primary: HTML list items representing primary tasks.
- * - secondary: HTML list items representing primary tasks.
- *
- * Each item in these variables (primary and secondary) can be individually
- * themed in menu-local-task.html.twig.
+ * - secondary: HTML list items representing secondary tasks.
  *
  * @see template_preprocess_menu_local_tasks()
  */
@@ -16,21 +13,26 @@
 
 {%
   set classes = [
-    'nav',
-    primary ? 'primary',
-    secondary ? 'secondary',
-    'nav-tabs',
-    'mb-2 mb-lg-4',
+    primary ? 'primary' : '',
+    secondary ? 'secondary' : '',
+    'flex',
+    'space-x-4',
+    'mt-10',
+    'mb-10',
   ]
 %}
 
 <div class="container">
-  {% if primary %}
-    <h2 class="visually-hidden">{{ 'Primary tabs'|t }}</h2>
-    <ul{{ attributes.addClass(classes) }}>{{ primary }}</ul>
-  {% endif %}
-  {% if secondary %}
-    <h2 class="visually-hidden">{{ 'Secondary tabs'|t }}</h2>
-    <ul{{ attributes.addClass(classes) }}>{{ secondary }}</ul>
-  {% endif %}
+	{% if primary %}
+		<h2 class="sr-only">{{ 'Primary tabs'|t }}</h2>
+		<ul{{attributes.addClass(classes)}}>
+			{{ primary }}
+		</ul>
+	{% endif %}
+	{% if secondary %}
+		<h2 class="sr-only">{{ 'Secondary tabs'|t }}</h2>
+		<ul{{attributes.addClass(classes)}}>
+			{{ secondary }}
+		</ul>
+	{% endif %}
 </div>

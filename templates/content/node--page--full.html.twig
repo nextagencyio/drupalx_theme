@@ -4,37 +4,43 @@
  * Theme override to display a node.
  */
 #}
-{%
-  set classes = [
-    'node',
-    'node--type-' ~ node.bundle|clean_class,
-    node.isPromoted() ? 'node--promoted',
-    node.isSticky() ? 'node--sticky',
-    not node.isPublished() ? 'node--unpublished',
-    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-    'mb-6 mb-lg-12',
-  ]
-%}
-<article{{ attributes.addClass(classes) }}>
-  <div{{ content_attributes.addClass('container') }}>
-    <div class="mb-7 rounded shadow">
-      {{ content.field_media }}
-    </div>
+{% set classes = [
+  'node',
+  'node--type-' ~ node.bundle|clean_class,
+  node.isPromoted() ? 'node--promoted',
+  node.isSticky() ? 'node--sticky',
+  not node.isPublished() ? 'node--unpublished',
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  'mb-8',
+] %}
 
-    <div class="col-lg-8 mx-auto">
-      {{ title_prefix }}
-      {%
-        include 'drupalx_theme:heading' with {
-          "heading": {
-            "title": label,
-            "heading_level": 1,
-            "modifier": "display-3 mb-6 text-center"
-          }
-        } only
-      %}
-      {{ title_suffix }}
+<article{{attributes.addClass(classes)}}>
+	<div class="mx-auto max-w-7xl p-4 sm:px-6 lg:px-8">
+		{% if content.field_media %}
+			<div class="mb-7">
+				{{ content.field_media }}
+			</div>
+		{% endif %}
 
-      {{ content|without('field_media') }}
-    </div>
-  </div>
+		<div class="mx-auto max-w-2xl">
+			{{ title_prefix }}
+			{% include 'drupalx_theme:heading' with {
+        "heading": {
+          "title": label,
+          "heading_level": 1,
+          "modifier": "mb-6 text-center"
+        }
+      } only %}
+			{{ title_suffix }}
+
+			{% if content.body %}
+				<div class="prose prose-lg">
+					{{ content.body }}
+				</div>
+			{% endif %}
+
+			{# Render other content fields besides field_media and body #}
+			{{ content|without('field_media', 'body') }}
+		</div>
+	</div>
 </article>
