@@ -12,8 +12,7 @@
 #}
 
 <div>
-
-  <header role="banner" class="{{ logged_in ? '' : ' sticky-top' }}">
+  <header role="banner" classname="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 mb-8">
     {{ page.primary_menu }}
   </header>
 
@@ -25,7 +24,7 @@
     </div>
   </main>
 
-  <footer role="contentinfo">
+  <footer role="contentinfo" class="container mx-auto px-4">
     {{ page.footer }}
   </footer>
 

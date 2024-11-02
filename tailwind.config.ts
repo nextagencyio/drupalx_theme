@@ -9,6 +9,9 @@ const config: Config = {
 	],
 	theme: {
 		extend: {
+			fontFamily: {
+				sans: ['"Open Sans"', ...defaultTheme.fontFamily.sans],
+			},
 			typography: (theme: any) => ({
 				DEFAULT: {
 					css: {

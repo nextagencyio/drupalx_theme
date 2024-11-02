@@ -61,6 +61,7 @@
 
 @layer base {
   html {
+    font-family: 'Open Sans', sans-serif;
     font-size: 18px;
   }
 
@@ -69,6 +70,6 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
   }
 }

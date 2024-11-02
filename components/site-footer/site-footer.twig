@@ -1,26 +1,26 @@
-
-<div class="bg-black px-2 py-4 {{ modifier }}">
-  <div class="container">
-    <div class="row d-lg-flex flex-wrap justify-content-lg-between align-items-center">
-      <div class="col-lg-3 footer-logo mb-2">
-        {%
-          include '@drupalx_theme/logo/logo.twig' with { site_logo: site_logo } only
-        %}
-      </div>
-      <div class="col-lg-8 text-right justify-lg-content-end">
-        <div class="mb-2">
-          {% block content %}
-            {%
-              include '@drupalx_theme/menu/menu.twig' with {
-                modifier: "d-lg-flex justify-content-lg-end",
-                menu_items: links,
-                item_modifier: link_item_modifier,
-                attributes: attributes
-              } only
-            %}
-          {% endblock %}
-        </div>
-      </div>
-    </div>
+<hr class="my-4"/>
+<div
+  class="flex flex-col items-center space-y-4 pt-3 pb-10 md:flex-row md:justify-between md:space-y-0">
+  <!-- Left Section -->
+  <div class="text-center md:text-left md:w-1/3">
+    <p class="text-muted-foreground">© 2024 DrupalX</p>
   </div>
+
+  <!-- Center Section -->
+  <div class="flex justify-center md:w-1/3">
+    <a href="/" class="flex items-center justify-center">
+      <img src="{{ site_logo }}" width="200" alt="{{ site_name }}"/>
+    </a>
+  </div>
+
+  <!-- Right Section -->
+  <nav class="md:w-1/3">
+    {% block content %}
+      {% include '@drupalx_theme/menu/menu.twig' with {
+        modifier: "",
+        menu_items: links,
+        item_modifier: ""
+      } only %}
+    {% endblock %}
+  </nav>
 </div>

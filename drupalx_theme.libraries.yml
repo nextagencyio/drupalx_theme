@@ -1,13 +1,7 @@
 fonts:
   css:
     component:
-      //fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap:
-        { type: external, minified: true }
-
-fonts-secondary:
-  css:
-    component:
-      //fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap:
+      //fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap:
         { type: external, minified: true }
 
 global:

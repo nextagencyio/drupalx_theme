@@ -1,12 +1,13 @@
-
 <div class="{{ modifier }}">
-  <ul class="nav flex-column flex-lg-row">
-    {% for item in menu_items %}
-      <li class="nav-item"></li>
-        <a href="{{ item.url }}" class="nav-link text-decoration-none {{ item_modifier }}">
-          {{ item.title }}
-        </a>
-      </li>
-    {% endfor %}
-  </ul>
+	<ul class="flex flex-wrap justify-center space-x-4 md:justify-end">
+		{% for link in menu_items %}
+			{% if link.url %}
+				<li>
+					<a href="{{ link.url }}" class="text-muted-foreground hover:text-foreground {{ item_modifier }}">
+						{{ link.title }}
+					</a>
+				</li>
+			{% endif %}
+		{% endfor %}
+	</ul>
 </div>
