@@ -1,21 +1,7 @@
-{#
-/**
- * @file
- * Default theme implementation to display a block content.
- *
- * @see template_preprocess_block_content_template()
- *
- * @ingroup themeable
- */
-#}
 {%
   set classes = [
-    'block-content',
-    'block-content--type-' ~ bundle|clean_class,
-    'block-content--' ~ id,
-    'block-content--view-mode-' ~ view_mode|clean_class,
     'container',
-    'mb-2 mb-lg-11 mt-6 mt-lg-15',
+    'mx-auto my-12 lg:my-25',
   ]
 %}
 

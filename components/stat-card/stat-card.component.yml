@@ -1,5 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
-name: Stat
+name: Stat Card
 description: 'Stat component with customizable heading, body, media, and modifier.'
 props:
   type: object
