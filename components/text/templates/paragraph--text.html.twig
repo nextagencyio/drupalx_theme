@@ -19,7 +19,7 @@
 
   {% block content %}
     {%
-      include 'drupalx_theme:text-block' with {
+      include 'drupalx_theme:text' with {
         text_layout: content.field_text_layout|field_value|render|trim|striptags,
         title: content.field_title|render,
         eyebrow: content.field_eyebrow|render,

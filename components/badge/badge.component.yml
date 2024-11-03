@@ -14,3 +14,7 @@ props:
       title: Modifier
       description: Define the badge modifier.
       default: 'text-bg-primary'
+    variant:
+      type: string
+      title: Variant
+      default: 'default'

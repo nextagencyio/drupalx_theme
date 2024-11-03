@@ -1,14 +1,37 @@
-<div class="accordion-item">
-  <h2 class="accordion-header" id="heading{{ item.accordion_instance }}">
-    <button class="accordion-button collapsed p-3 pt-4 pb-4 fs-5 fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ item.accordion_instance }}" aria-expanded="false" aria-controls="collapse{{ item.accordion_instance }}">
-      {{ item.heading }}
-    </button>
-  </h2>
-  <div id="collapse{{ item.accordion_instance }}" class="accordion-collapse collapse" aria-labelledby="heading{{ item.accordion_instance }}">
-    <div class="accordion-body">
-      {% block accordion_content %}
-        {{ item.content }}
-      {% endblock %}
-    </div>
-  </div>
+<div class="border-b">
+	<h3 class="flex">
+		<button type="button" class="
+			                flex items-center justify-between flex-1
+			                text-lg font-semibold py-4 px-6
+			                transition-all
+			                hover:underline
+			                hover:bg-blue-50
+			                bg-white
+			                rounded-t-lg
+			                focus:outline-none focus:ring-2 focus:ring-blue-500
+			            " aria-expanded="{{ item.is_expanded ? 'true' : 'false' }}" aria-controls="accordion-content-{{ item.accordion_instance }}" id="accordion-trigger-{{ item.accordion_instance }}" data-accordion-trigger>
+			{{ item.heading }}
+			<svg width="15" height="15" viewbox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="
+					                    h-4 w-4 shrink-0 text-muted-foreground
+					                    transition-transform duration-200
+					                ">
+				<path d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path>
+			</svg>
+		</button>
+	</h3>
+	<div id="accordion-content-{{ item.accordion_instance }}" role="region" aria-labelledby="accordion-trigger-{{ item.accordion_instance }}" class="
+		            max-h-0 overflow-hidden transition-max-height duration-300 ease-in-out
+		            {{ item.is_expanded ? 'max-h-screen' : '' }}
+		        " data-accordion-content>
+		<div class="accordion-content px-6 py-4">
+			{% block accordion_content %}
+				{{ item.body }}
+			{% endblock %}
+			{% if item.link %}
+				<a href="{{ item.link.url }}" class="mt-4 inline-block text-blue-600 hover:underline">
+					{{ item.link.title }}
+				</a>
+			{% endif %}
+		</div>
+	</div>
 </div>

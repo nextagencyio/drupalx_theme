@@ -1,2 +1,22 @@
+{% set base_classes = 'inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2' %}
 
-<span class="badge rounded-pill d-block fs-7 px-2 py-1 fw-semibold{{ modifier ? ' ' ~ modifier }}">{{ tag }}</span>
+{# Define the variant parameter with a default value #}
+{% set variant = variant|default('default') %}
+
+{# Map each variant to its corresponding classes #}
+{% set variant_classes = {
+  'default': 'border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80',
+  'secondary': 'border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80',
+  'destructive': 'border-transparent bg-destructive text-destructive-foreground shadow hover:bg-destructive/80',
+  'outline': 'border-current bg-transparent text-foreground hover:bg-gray-100'
+} %}
+
+{# Determine the classes to apply based on the variant #}
+{% set applied_variant_classes = variant_classes[variant] ?? variant_classes['default'] %}
+
+{# Optionally add any additional classes passed to the template #}
+{% set additional_classes = modifier|default('') %}
+
+<span class="{{ base_classes }} {{ applied_variant_classes }} {{ additional_classes }}">
+	{{ tag }}
+</span>

@@ -7,7 +7,8 @@
 			<div class="flex">
 				{% include '@drupalx_theme/badge/badge.twig' with {
           tag: eyebrow,
-          modifier: 'sidebyside-badge uppercase inline-flex'
+          modifier: 'sidebyside-badge uppercase inline-flex',
+					variant: 'secondary'
         } only %}
 			</div>
 		{% endif %}
@@ -30,14 +31,11 @@
               body: feature.body,
               icon: feature.icon,
               media: feature.media,
-              border: false,
-              modifier: 'w-full',
-              layout: 'left'
             } only %}
 					{% else %}
 						<div class="flex items-start gap-4">
 							<span class="material-symbols-outlined !text-3xl mt-[-5px]">{{ feature.icon }}</span>
-							<span class="flex-1">{{ feature.summary }}</span>
+							<span class="flex-1">{{ feature.summary|raw }}</span>
 						</div>
 					{% endif %}
 				{% endfor %}

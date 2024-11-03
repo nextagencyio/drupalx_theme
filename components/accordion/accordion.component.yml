@@ -31,6 +31,13 @@ props:
             default: ''
 
 libraryOverrides:
+  js:
+    accordion.behavior.js: {
+      attributes: {
+        async: false,
+        defer: true
+      }
+    }
   dependencies:
-    - drupalx_theme/bootstrap-js
+    - core/drupal
     - drupalx_theme/heading

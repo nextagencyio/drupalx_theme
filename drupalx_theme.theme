@@ -57,13 +57,24 @@ function drupalx_theme_preprocess_paragraph__sidebyside(&$variables) {
   if ($paragraph->hasField('field_features') && !$paragraph->field_features->isEmpty()) {
     foreach ($paragraph->field_features as $feature_item) {
       if ($feature_entity = $feature_item->entity) {
-        $feature = [
-          'type' => $feature_entity->bundle(),
-          'heading' => $feature_entity->hasField('field_title') ? $feature_entity->field_title->value : '',
-          'body' => $feature_entity->hasField('field_summary') ? $feature_entity->field_summary->value : '',
-          'icon' => $feature_entity->hasField('field_icon') ? $feature_entity->field_icon->value : '',
-          'media' => $feature_entity->hasField('field_custom_icon') ? $feature_entity->field_custom_icon->view('default') : NULL,
-        ];
+        $feature = NULL;
+
+        if ($feature_entity->bundle() == 'stats_item') {
+          $feature = [
+            'type' => $feature_entity->bundle(),
+            'heading' => $feature_entity->hasField('field_title') ? $feature_entity->field_title->value : '',
+            'body' => $feature_entity->hasField('field_summary') ? $feature_entity->field_summary->value : '',
+            'icon' => $feature_entity->hasField('field_icon') ? $feature_entity->field_icon->value : '',
+            'media' => $feature_entity->hasField('field_custom_icon') && !$feature_entity->field_custom_icon->isEmpty() ? $feature_entity->field_custom_icon->view('default') : NULL,
+          ];
+        }
+        else {
+          $feature = [
+            'type' => $feature_entity->bundle(),
+            'summary' => $feature_entity->hasField('field_summary') ? $feature_entity->field_summary->value : '',
+            'icon' => $feature_entity->hasField('field_icon') ? $feature_entity->field_icon->value : '',
+          ];
+        }
 
         $features[] = $feature;
       }
