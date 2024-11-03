@@ -13,8 +13,8 @@ use Drupal\Component\Utility\Html;
 function drupalx_theme_preprocess_page_title(&$variables) {
   $node = \Drupal::request()->attributes->get('node');
 
-  // Override page title for layout content type.
-  if ($node && $node->bundle() == 'layout') {
+  // Override page title for landing content type.
+  if ($node && $node->bundle() == 'landing') {
 
     // If the page title is hidden, set it to empty.
     if ($node->hasField('field_hide_page_title') && !empty($node->get('field_hide_page_title')->value)) {
@@ -45,6 +45,32 @@ function drupalx_theme_preprocess_paragraph(&$variables) {
   if (function_exists($paragraph_preprocess_function)) {
     $paragraph_preprocess_function($variables);
   }
+}
+
+/**
+ * Implements hook_preprocess_paragraph__sidebyside().
+ */
+function drupalx_theme_preprocess_paragraph__sidebyside(&$variables) {
+  $paragraph = $variables['paragraph'];
+
+  $features = [];
+  if ($paragraph->hasField('field_features') && !$paragraph->field_features->isEmpty()) {
+    foreach ($paragraph->field_features as $feature_item) {
+      if ($feature_entity = $feature_item->entity) {
+        $feature = [
+          'type' => $feature_entity->bundle(),
+          'heading' => $feature_entity->hasField('field_title') ? $feature_entity->field_title->value : '',
+          'body' => $feature_entity->hasField('field_summary') ? $feature_entity->field_summary->value : '',
+          'icon' => $feature_entity->hasField('field_icon') ? $feature_entity->field_icon->value : '',
+          'media' => $feature_entity->hasField('field_custom_icon') ? $feature_entity->field_custom_icon->view('default') : NULL,
+        ];
+
+        $features[] = $feature;
+      }
+    }
+  }
+
+  $variables['features'] = $features;
 }
 
 /**
@@ -156,7 +182,7 @@ function drupalx_theme_preprocess_image(&$variables) {
   if (!empty($variables['attributes']['class']) && is_string($variables['attributes']['class'])) {
     $variables['attributes']['class'] = [$variables['attributes']['class']];
   }
-  $variables['attributes']['class'][] = 'img-fluid rounded';
+  $variables['attributes']['class'][] = 'w-full h-auto rounded-lg';
 }
 
 /**

@@ -1,71 +1,87 @@
+{# hero.html.twig #}
+{% import _self as hero_macros %}
 
-{% import _self as hero %}
+{% if hero_layout == 'image_bottom_split' %}
+	<div class="hero mt-6 lg:mt-12 mx-auto {{ modifier }}">
+		<div class="container mx-auto px-4">
+			<div class="flex flex-col lg:flex-row justify-between">
+				<div class="lg:w-1/2 mb-2 lg:mb-0">
+					{% if heading %}
+						<h1 class="text-4xl lg:text-5xl font-semibold mb-4 lg:mb-4">
+							{{ heading }}
+						</h1>
+					{% endif %}
+				</div>
+				<div class="lg:w-1/2">
+					{% if summary %}
+						<div class="text-xl mb-4">
+							{{ summary }}
+						</div>
+					{% endif %}
+					{% if link.url %}
+						<div class="flex items-center space-x-4 mt-6">
+							<a href="{{ link.url }}" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+								{{ link.title }}
+							</a>
+							{% if link2.url %}
+								<a href="{{ link2.url }}" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+									{{ link2.title }}
+								</a>
+							{% endif %}
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		{% if media %}
+			<div class="mt-6 lg:mt-12 flex justify-center items-center">
+				{{ media }}
+			</div>
+		{% endif %}
+	</div>
+{% else %}
+	<div class="hero mx-auto {{ modifier }}">
+		<div class="mb-6 lg:mb-12 text-center">
+			{% if hero_layout == 'image_top' and media %}
+				<div class="mb-4 lg:mb-8 flex justify-center items-center">
+					{{ media }}
+				</div>
+			{% endif %}
 
-<div class="mb-6 mb-lg-12 text-center">
+			{% if heading %}
+				<div class="max-w-3xl mx-auto">
+					<h1 class="text-4xl lg:text-5xl font-semibold mb-4 lg:mb-4">
+						{{ heading }}
+					</h1>
+				</div>
+			{% endif %}
 
-  {% if media and layout == 'image_top' %}
-    {{ hero.render_media(media, layout) }}
-  {% endif %}
+			<div class="max-w-3xl mx-auto">
+				{% if summary %}
+					<div class="text-xl mb-2 lg:mb-4">
+						{{ summary }}
+					</div>
+				{% endif %}
 
-  {% if title %}
-    {{
-      include('@drupalx_theme/heading/heading.twig', {
-        heading: {
-          title: title,
-          heading_level: 1,
-          modifier: 'display-5 fw-semibold mb-4 mb-lg-4'
-        }
-      },
-      with_context = false
-    )}}
-  {% endif %}
+				{% if link.url %}
+					<div class="flex justify-center items-center space-x-4 mt-6">
+						<a href="{{ link.url }}" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+							{{ link.title }}
+						</a>
+						{% if link2.url %}
+							<a href="{{ link2.url }}" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+								{{ link2.title }}
+							</a>
+						{% endif %}
+					</div>
+				{% endif %}
+			</div>
 
-  <div class="col-lg-6 mx-auto">
-    {% if body_text %}
-      <div class="lead mb-2 mb-lg-4">
-        {{ body_text }}
-      </div>
-    {% endif %}
-
-    {% if button.url %}
-      <div class="d-grid gap-2 d-flex justify-content-center">
-        {% if button.url %}
-          {{
-            include('@drupalx_theme/button/button.twig', {
-              button: {
-                text: button.text,
-                url: button.url,
-                modifier: 'btn-primary',
-                icon: button.icon
-              }
-            }
-          )}}
-        {% endif %}
-        {% if button2.url %}
-          {{
-            include('@drupalx_theme/button/button.twig', {
-              button: {
-                text: button2.text,
-                url: button2.url,
-                modifier: 'btn-outline-primary',
-                icon: button2.icon
-              }
-            }
-          )}}
-        {% endif %}
-      </div>
-    {% endif %}
-  </div>
-
-  {% if media and layout == 'image_bottom' %}
-    {{ hero.render_media(media, layout) }}
-  {% endif %}
-</div>
-
-{% macro render_media(media, layout) %}
-  <div class="row">
-    <div class="{{ layout == 'image_top' ? 'mb-4 mb-lg-8' : '' }} d-flex justify-content-center align-items-center">
-      <div class="shadow rounded">{{ media }}</div>
-    </div>
-  </div>
-{% endmacro %}
+			{% if hero_layout == 'image_bottom' and media %}
+				<div class="mt-6 lg:mt-12 flex justify-center items-center">
+					{{ media }}
+				</div>
+			{% endif %}
+		</div>
+	</div>
+{% endif %}

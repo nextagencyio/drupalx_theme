@@ -18,8 +18,8 @@ core_version_requirement: ^9 || ^10
 base theme: stable9
 version: '1.0'
 starterkit: true
-ckeditor5-stylesheets:
-  - dist/css/ckeditor.css
+# ckeditor5-stylesheets:
+#  - dist/css/ckeditor.css
 
 # This section controls the libraries for your theme. For full documentation,
 # see https://www.drupal.org/node/2216195
