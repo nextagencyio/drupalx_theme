@@ -1,9 +1,5 @@
 {%
-  set classes = [
-    'container',
-    'mx-auto',
-    'px-4'
-  ]
+  set classes = []
 %}
 
 <div{{attributes.addClass(classes)}}>
@@ -23,7 +19,6 @@
         url: content.field_link2[0]['#url']|render,
         title: content.field_link2[0]['#title']|render,
       } : null,
-      modifier: ''
     } only %}
 	{% endblock %}
 </div>

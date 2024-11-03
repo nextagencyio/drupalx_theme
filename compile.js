@@ -43,11 +43,6 @@ console.log(`Compiling ${file}`);
 
 if (file) {
   compileSass(file);
-
-  // We need to update bootstrap again.
-  if (!file.endsWith('bootstrap.scss')) {
-    compileSass('src/scss/bootstrap.scss');
-  }
 }
 else {
   // Compile all .scss files in the components and src/scss directories
