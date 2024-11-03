@@ -7,13 +7,7 @@
  */
 #}
 {%
-  set classes = [
-    'block-content',
-    'block-content--type-' ~ bundle|clean_class,
-    'block-content--' ~ id,
-    'block-content--view-mode-' ~ view_mode|clean_class,
-    'bg-light',
-  ]
+  set classes = []
 %}
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
@@ -21,7 +15,8 @@
 
   {% block content %}
     {% include 'drupalx_theme:newsletter-form' with {
-      "modifier": "container",
+      title: content.field_title|render,
+      summary: content.field_summary|render,
     } only %}
   {% endblock %}
 </div>

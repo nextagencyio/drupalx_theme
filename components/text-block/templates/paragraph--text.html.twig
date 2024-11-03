@@ -1,3 +1,4 @@
+
 {#
 /**
  * @file
@@ -9,14 +10,7 @@
  */
 #}
 {%
-  set classes = [
-    'block-content',
-    'block-content--type-' ~ bundle|clean_class,
-    'block-content--' ~ id,
-    'block-content--view-mode-' ~ view_mode|clean_class,
-    'container',
-    'my-6 my-lg-15',
-  ]
+  set classes = []
 %}
 
 <div{{ attributes.addClass(classes) }}>
@@ -26,15 +20,17 @@
   {% block content %}
     {%
       include 'drupalx_theme:text-block' with {
-        heading: {
-          "title": content.field_title|render,
-          "heading_level": "2",
-          "modifier": "mb-2",
-        },
-        body_text: content.body,
+        text_layout: content.field_text_layout|field_value|render|trim|striptags,
+        title: content.field_title|render,
+        eyebrow: content.field_eyebrow|render,
+        body: content.field_body|render,
         link: {
           url: content.field_link[0]['#url'],
           text: content.field_link[0]['#title'],
+        },
+        link2: {
+          url: content.field_link2[0]['#url'],
+          text: content.field_link2[0]['#title'],
         },
       } only
     %}

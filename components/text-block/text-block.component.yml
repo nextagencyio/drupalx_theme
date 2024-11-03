@@ -3,40 +3,17 @@ name: Text Block
 description: 'Text Block component used in editorial theming.'
 props:
   type: object
-  required:
-    - body_text
   properties:
-    body_text:
+    body:
       type: string
       title: Body Text
       description: Define the Text Block copy.
       default: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><p>Nulla velit purus, varius quis velit aliquet, lobortis venenatis mauris.</p>'
-    heading:
-      type: object
-      title: Heading
-      properties:
-        title:
-          type: string
-          title: Title
-          description: Define the Text Block heading title.
-          default: 'Title Lorem Ipsum Dolor'
-        level:
-          type: string
-          title: Level
-          description: Define the HTML tag level for the heading.
-          enum:
-            - '1'
-            - '2'
-            - '3'
-            - '4'
-            - '5'
-            - '6'
-          default: '2'
-        modifier:
-          type: string
-          title: Modifier
-          description: Define the Text Block heading modifier class.
-          default: 'mb-2 display-3'
+    title:
+      type: string
+      title: Title
+      description: Define the Text Block heading title.
+      default: 'Title Lorem Ipsum Dolor'
     modifier:
       type: string
       title: Modifier

@@ -1,31 +1,111 @@
+<div class="container mx-auto my-6 lg:my-25 {{ className }}">
+	{% if text_layout == 'buttons-right' %}
+		<div class="lg:flex lg:items-start lg:justify-between">
+			<div class="max-w-4xl lg:flex-grow">
+				{% if eyebrow %}
+					<h6 class="text-sm font-semibold uppercase tracking-wide text-gray-500">{{ eyebrow }}</h6>
+				{% endif %}
 
-{% if body_text %}
-  <div class="row">
-    <div class="col-lg-10 mx-auto">
-      {% if heading %}
-        {%
-          include '@drupalx_theme/heading/heading.twig' with {
-            "heading": heading
-          } only
-        %}
-      {% endif %}
-      {%
-        include '@drupalx_theme/rich-text/rich-text.twig' with {
-          body_text: body_text,
-        } only
-      %}
-      {% if link.url %}
-        <div class="mt-3">
-          {% include '@drupalx_theme/button/button.twig' with {
-            "button": {
-              "url": link.url,
-              "text": link.text ? link.text : 'Read more'|t,
-              "icon": '',
-              "modifier": 'btn-primary',
-            }
-          } only %}
-        </div>
-      {% endif %}
-    </div>
-  </div>
-{% endif %}
+				{% if title %}
+          <h2 class="mt-2 text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">{{ title }}</h2>
+				{% endif %}
+
+				{% if body %}
+					<div class="mt-4 text-xl text-gray-500">
+						{{ body|raw }}
+					</div>
+				{% endif %}
+			</div>
+
+			{% if link.url or link2.url %}
+				<div class="lg:ml-8 lg:flex-shrink-0 lg:self-start">
+					{% set buttonContainerClasses = 'mt-6 flex' %}
+
+					{% if text_layout == 'centered' %}
+						{% set buttonContainerClasses = buttonContainerClasses ~ ' justify-center' %}
+					{% elseif text_layout == 'buttons-right' %}
+						{% set buttonContainerClasses = buttonContainerClasses ~ ' justify-start lg:justify-end' %}
+					{% else %}
+						{% set buttonContainerClasses = buttonContainerClasses ~ ' justify-start' %}
+					{% endif %}
+
+					<div class="{{ buttonContainerClasses }}">
+						{% if link.url %}
+							{% include '@drupalx_theme/button/button.twig' with {
+                "button": {
+                  "url": link.url,
+                  "text": link.text ? link.text : 'Read more'|t,
+                  "modifier": "mr-4",
+                  "variant": "default"
+                }
+              } only %}
+						{% endif %}
+
+						{% if link2.url %}
+							{% include '@drupalx_theme/button/button.twig' with {
+                "button": {
+                  "url": link2.url,
+                  "text": link2.text ? link2.text : 'Read more'|t,
+                  "modifier": "",
+                  "variant": "secondary"
+                }
+              } only %}
+						{% endif %}
+					</div>
+				</div>
+			{% endif %}
+		</div>
+	{% else %}
+		<div class="max-w-4xl {{ text_layout == 'centered' ? 'mx-auto text-center' : '' }}">
+			{% if eyebrow %}
+				<h6 class="text-sm font-semibold uppercase tracking-wide text-gray-500">{{ eyebrow }}</h6>
+			{% endif %}
+
+			{% if heading %}
+				{% include '@drupalx_theme/heading/heading.twig' with { "heading": heading } only %}
+			{% endif %}
+
+			{% if body %}
+				<div class="mt-4 text-xl text-gray-500">
+					{{ body|raw }}
+				</div>
+			{% endif %}
+
+			{% if link.url or link2.url %}
+				{% set buttonContainerClasses = 'mt-6 flex' %}
+
+				{% if text_layout == 'centered' %}
+					{% set buttonContainerClasses = buttonContainerClasses ~ ' justify-center' %}
+				{% elseif text_layout == 'buttons-right' %}
+					{% set buttonContainerClasses = buttonContainerClasses ~ ' justify-start lg:justify-end' %}
+				{% else %}
+					{% set buttonContainerClasses = buttonContainerClasses ~ ' justify-start' %}
+				{% endif %}
+
+				<div class="{{ buttonContainerClasses }}">
+					{% if link.url %}
+						{% include '@drupalx_theme/button/button.twig' with {
+              "button": {
+                "url": link.url,
+                "text": link.text ? link.text : 'Read more'|t,
+                "modifier": "mr-4",
+                "variant": "default"
+              }
+            } only %}
+					{% endif %}
+
+					{% if link2.url %}
+						{% include '@drupalx_theme/button/button.twig' with {
+              "button": {
+                "url": link2.url,
+                "text": link2.text ? link2.text : 'Read more'|t,
+                "modifier": "",
+                "variant": "secondary"
+              }
+            } only %}
+					{% endif %}
+				</div>
+			{% endif %}
+		</div>
+	{% endif %}
+</div>

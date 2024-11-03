@@ -1,0 +1,21 @@
+{%
+  set classes = []
+%}
+
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {% block content %}
+    {% embed 'drupalx_theme:logo-collection' with { title: content.field_title|render, content: content } only %}
+      {% block logo_items %}
+        {% for i in content.field_media_item['#items'] %}
+          <div class="flex items-center">
+            <div class="max-w-[120px]">
+              {{ content.field_media_item[loop.index0] }}
+            </div>
+          </div>
+        {% endfor %}
+      {% endblock %}
+    {% endembed %}
+  {% endblock %}
+</div>

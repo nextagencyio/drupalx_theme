@@ -1,6 +1,43 @@
-
 {% if button.url %}
-  <a href="{{ button.url }}" class="btn{{ button.modifier ? ' ' ~ button.modifier }} px-4 py-2" role="button">{{ button.text }} {% if button.icon %}<span class="material-symbols-outlined ms-1">{{ button.icon }}</span>{% endif %}</a>
+	<a href="{{ button.url }}" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2
+		    {% if button.variant == 'secondary' %}
+		      bg-secondary text-secondary-foreground hover:bg-secondary/80
+		    {% elseif button.variant == 'outline' %}
+		      border border-input bg-background hover:bg-accent hover:text-accent-foreground
+		    {% elseif button.variant == 'ghost' %}
+		      hover:bg-accent hover:text-accent-foreground
+		    {% elseif button.variant == 'destructive' %}
+		      bg-destructive text-destructive-foreground hover:bg-destructive/90
+		    {% else %}
+		      bg-primary text-primary-foreground hover:bg-primary/90
+		    {% endif %}
+		    {{ button.modifier ? ' ' ~ button.modifier }}" {% if button.disabled %} disabled {% endif %} role="button">
+		{{ button.text }}
+		{% if button.icon %}
+			<span class="ml-2 h-4 w-4">
+				<span class="material-symbols-outlined">{{ button.icon }}</span>
+			</span>
+		{% endif %}
+	</a>
 {% else %}
-  <button class="btn{{ button.modifier ? ' ' ~ button.modifier }} px-4 py-2">{{ button.text }}</button>
+	<button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2
+		    {% if button.variant == 'secondary' %}
+		      bg-secondary text-secondary-foreground hover:bg-secondary/80
+		    {% elseif button.variant == 'outline' %}
+		      border border-input bg-background hover:bg-accent hover:text-accent-foreground
+		    {% elseif button.variant == 'ghost' %}
+		      hover:bg-accent hover:text-accent-foreground
+		    {% elseif button.variant == 'destructive' %}
+		      bg-destructive text-destructive-foreground hover:bg-destructive/90
+		    {% else %}
+		      bg-primary text-primary-foreground hover:bg-primary/90
+		    {% endif %}
+		    {{ button.modifier ? ' ' ~ button.modifier }}" {% if button.disabled %} disabled {% endif %}>
+		{{ button.text }}
+		{% if button.icon %}
+			<span class="ml-2 h-4 w-4">
+				<span class="material-symbols-outlined">{{ button.icon }}</span>
+			</span>
+		{% endif %}
+	</button>
 {% endif %}
