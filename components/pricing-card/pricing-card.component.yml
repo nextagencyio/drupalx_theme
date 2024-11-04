@@ -1,0 +1,59 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Pricing Card
+description: 'Pricing Card component'
+props:
+  type: object
+  properties:
+    eyebrow:
+      type: string
+      title: Eyebrow
+      description: The small heading above the main title of the card.
+      default: ''
+    title:
+      type: string
+      title: Title
+      description: The main title of the pricing card.
+      default: ''
+    monthly_label:
+      type: string
+      title: Monthly Label
+      description: The label indicating the billing period (e.g., "month").
+      default: ''
+    features:
+      type: array
+      title: Features
+      description: List of features included in the pricing plan.
+      items:
+        type: string
+      default: []
+    cta_text:
+      type: string
+      title: Call to Action Text
+      description: The text displayed on the call-to-action button.
+      default: 'Get Started'
+    cta_link:
+      type: string
+      title: Call to Action Link
+      description: The URL the call-to-action button points to.
+      default: '#'
+    includes_label:
+      type: string
+      title: Includes Label
+      description: The label for the features section.
+      default: 'Includes'
+    modifier:
+      type: string
+      title: Modifier
+      description: Modifier class for the pricing card.
+      default: ''
+    media:
+      type: string
+      title: Media
+      description: Media content HTML (e.g., image or icon).
+      default: ''
+libraryOverrides:
+  dependencies:
+    - drupalx_theme/card
+    - drupalx_theme/heading
+    - drupalx_theme/button
+    - drupalx_theme/icon

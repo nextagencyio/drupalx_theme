@@ -1,0 +1,24 @@
+<section class="px-[5%] my-12 lg:my-25">
+	<div class="container">
+		<div class="mx-auto max-w-lg text-center mb-6 lg:mb-12">
+			<p class="eyebrow mb-3 font-semibold md:mb-4">{{ eyebrow }}</p>
+			<h1 class="mb-5 text-5xl font-semibold md:mb-6 md:text-6xl lg:text-7xl">{{ title }}</h1>
+			<div class="summary md:text-md">{{ summary|raw }}</div>
+		</div>
+		<div class="grid grid-cols-1 gap-8 {{ grid_columns == 2 ? 'md:grid-cols-2' : 'md:grid-cols-3' }}">
+			{% block pricing_cards %}
+				{% for card in cards %}
+					{% include '@drupalx_theme/pricing-card/pricing-card.twig' with {
+            eyebrow: card.eyebrow,
+            title: card.title,
+            monthly_label: card.monthly_label,
+            features: card.features,
+            cta_text: card.cta_text,
+            cta_link: card.cta_link,
+            includes_label: card.includes_label|default('Includes')
+          } %}
+				{% endfor %}
+			{% endblock %}
+		</div>
+	</div>
+</section>
