@@ -1,22 +1,7 @@
-{#
-/**
- * @file
- * Default theme implementation to display a block content.
- *
- * @see template_preprocess_block_content_template()
- *
- * @ingroup themeable
- */
-#}
 {%
   set classes = [
-    'block-content',
-    'block-content--type-' ~ bundle|clean_class,
-    'block-content--' ~ id,
-    'block-content--view-mode-' ~ view_mode|clean_class,
-    'block-views',
     wrapper_class,
-    'my-6 my-lg-15',
+    'my-6 lg:my-25 border-none shadow-none',
   ]
 %}
 
@@ -24,7 +9,7 @@
   {{ title_prefix }}
   {{ title_suffix }}
 
-  <div class="container">
+  <div class="">
     {% block content %}
       {% if content.field_title %}
         {%
@@ -32,7 +17,7 @@
             "heading": {
               "title": content.field_title|render,
               "heading_level": "2",
-              "modifier": "display-4 mb-2 mb-lg-6",
+              "modifier": "text-3xl font-semibold mb-4 lg:mb-6 text-center",
             },
           } only
         %}
@@ -43,7 +28,6 @@
           "button": {
             "url": content.field_link[0]['#url'],
             "text": content.field_link[0]['#title'],
-            "modifier": "btn-primary",
           }
         } only %}
       {% endif %}

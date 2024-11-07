@@ -1,0 +1,23 @@
+<div class="rounded-xl border bg-card text-card-foreground shadow overflow-hidden">
+	<a href="{{ url }}" class="block">
+		<div style="position: relative; width: 100%; padding-bottom: 56.25%;">
+			<div style="position: absolute; inset: 0;">
+				{{ media }}
+			</div>
+		</div>
+	</a>
+
+	<div class="flex flex-col space-y-1.5 p-6">
+		<h3 class="font-semibold tracking-tight text-3xl">
+			<a href="{{ url }}" class="hover:underline">
+				{{ title }}
+			</a>
+		</h3>
+	</div>
+
+	<div class="p-6 pt-0">
+		<p class="text-sm text-gray-600">
+			{{ summary }}
+		</p>
+	</div>
+</div>
