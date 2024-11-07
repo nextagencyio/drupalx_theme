@@ -1716,6 +1716,10 @@ body {
   max-width: 768px;
 }
 
+.max-w-none {
+  max-width: none;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -2850,4 +2854,12 @@ body {
   .xl\:w-5\/12 {
     width: 41.666667%;
   }
+}
+
+.\[\&_iframe\]\:w-full iframe {
+  width: 100%;
+}
+
+.\[\&_iframe\]\:max-w-full iframe {
+  max-width: 100%;
 }
