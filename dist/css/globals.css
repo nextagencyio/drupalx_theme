@@ -1708,6 +1708,14 @@ body {
   max-width: 32rem;
 }
 
+.max-w-screen-lg {
+  max-width: 1024px;
+}
+
+.max-w-screen-md {
+  max-width: 768px;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -2719,6 +2727,10 @@ body {
 
   .lg\:mt-12 {
     margin-top: 3rem;
+  }
+
+  .lg\:mb-10 {
+    margin-bottom: 2.5rem;
   }
 
   .lg\:flex {
