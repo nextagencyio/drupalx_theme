@@ -46,5 +46,3 @@ libraryOverrides:
     }
   dependencies:
     - core/drupal
-    - drupalx_theme/bootstrap-js
-    - drupalx_theme/heading

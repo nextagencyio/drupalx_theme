@@ -1,0 +1,18 @@
+{% set classes = ['container', 'mx-auto', 'my-6', 'lg:my-25'] %}
+
+<div{{attributes.addClass(classes)}}>
+	{{ title_prefix }}
+	{{ title_suffix }}
+	<div class="flex justify-center">
+		{% block content %}
+      {% include 'drupalx_theme:quote' with {
+        "logo": content.field_logo|render,
+        "thumb": content.field_thumb|render,
+        "quote": content.field_quote|field_value,
+        "author": content.field_author|render,
+        "job_title": content.field_job_title|render,
+        "modifier_class": '',
+      } only %}
+    {% endblock %}
+	</div>
+</div>
