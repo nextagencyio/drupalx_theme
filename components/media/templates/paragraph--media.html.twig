@@ -10,12 +10,8 @@
 #}
 {%
   set classes = [
-    'block-content',
-    'block-content--type-' ~ bundle|clean_class,
-    'block-content--' ~ id,
-    'block-content--view-mode-' ~ view_mode|clean_class,
     'container',
-    'my-6 my-lg-15',
+    'my-12 lg:my-25',
   ]
 %}
 
@@ -29,7 +25,7 @@
         "heading": {
           "title": content.field_title|render,
           "heading_level": "2",
-          "modifier": "mb-2 mb-lg-6",
+          "modifier": "mt-2 text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl mb-8 lg:mb-8",
         },
       } only
     %}

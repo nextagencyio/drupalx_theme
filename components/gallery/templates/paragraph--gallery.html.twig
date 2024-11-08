@@ -1,19 +1,5 @@
-{#
-/**
- * @file
- * Default theme implementation to display a block content.
- *
- * @see template_preprocess_block_content_template()
- *
- * @ingroup themeable
- */
-#}
 {%
   set classes = [
-    'block-content',
-    'block-content--type-' ~ bundle|clean_class,
-    'block-content--' ~ id,
-    'block-content--view-mode-' ~ view_mode|clean_class,
     'container',
     'my-6 my-lg-15',
   ]
@@ -23,9 +9,9 @@
   {{ title_prefix }}
   {{ title_suffix }}
   {% block content %}
-    {% embed 'drupalx_theme:gallery-lightbox' with {
+    {% embed 'drupalx_theme:gallery' with {
         section_title: content.field_title|render,
-        intro_text: content.body,
+        intro_text: content.field_body,
         content: content
       } only %}
       {% block gallery_items %}

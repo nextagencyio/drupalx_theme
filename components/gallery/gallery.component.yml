@@ -1,5 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
-name: Gallery Lightbox
+name: Gallery
 description: 'Gallery lightbox component, used to display a collection of images in a lightbox format.'
 props:
   type: object
@@ -49,7 +49,12 @@ props:
       default: 'p-2'
 
 libraryOverrides:
+  js:
+    gallery.behavior.js: {
+      attributes: {
+        async: false,
+        defer: true
+      }
+    }
   dependencies:
-    - drupalx_theme/bootstrap-js
-    - drupalx_theme/heading
-    - drupalx_theme/rich-text
+    - core/drupal

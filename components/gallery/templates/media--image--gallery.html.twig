@@ -1,0 +1,13 @@
+
+{% if content %}
+  {%
+    include '@drupalx_theme/gallery/gallery-item.twig' with {
+      "item": {
+        "media": content.field_image|render,
+        "media_thumb": content.field_image|render,
+        "media_description": "",
+        "id": 'media-' ~ media.id ~ random(),
+      },
+    } only
+  %}
+{% endif %}

@@ -1,0 +1,25 @@
+{% if section_title %}
+	<div class="mb-4 text-center">
+		<h2 class="text-3xl font-bold">{{ section_title }}</h2>
+	</div>
+{% endif %}
+
+{% if intro_text %}
+	<div class="flex justify-center mb-4">
+		<div class="text-center pb-3 md:w-2/3">
+			{{ intro_text | raw }}
+		</div>
+	</div>
+{% endif %}
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+	{% block gallery_items %}
+		{% for item in gallery_items %}
+			{%
+        include '@drupalx_theme/gallery/gallery-item.twig' with {
+          "item": item
+        } only
+      %}
+		{% endfor %}
+	{% endblock %}
+</div>
