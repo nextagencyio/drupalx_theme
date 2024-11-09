@@ -1,13 +1,15 @@
-<div class="rounded-xl bg-card text-card-foreground stat text-center border-0 shadow-none px-4 py-8 h-full">
+{% set alignment_class = layout == 'left' ? 'text-left' : 'text-center' %}
+{% set icon_class = layout == 'left' ? 'mr-auto' : 'mx-auto' %}
 
+<div class="stat {{ alignment_class }} rounded-xl bg-card text-card-foreground border-0 shadow-none px-4 py-8 h-full">
 	<div class="p-0">
 		{% if icon %}
-			<div class="stat-icon mx-auto mb-4 max-w-[200px]">
+			<div class="stat-icon {{ icon_class }} mb-4 max-w-[200px]">
 				<span class="material-symbols-outlined !text-6xl">{{ icon }}</span>
 			</div>
 		{% endif %}
 		{% if media %}
-			<div class="stat-icon mr-auto mb-4 max-w-[200px]">
+			<div class="stat-icon {{ icon_class }} mb-4 max-w-[200px]">
 				{{ media }}
 			</div>
 		{% endif %}

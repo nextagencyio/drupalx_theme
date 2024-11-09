@@ -1,13 +1,3 @@
-{#
-/**
- * @file
- * Default theme implementation to display a paragraph.
- *
- * @see template_preprocess_paragraph()
- *
- * @ingroup themeable
- */
-#}
 
 {% block paragraph %}
   {% block content %}
@@ -16,6 +6,7 @@
         heading: content.field_title|render,
         body: content.field_summary|render,
         icon: content.field_icon|field_value,
+        layout: 'center',
       } only
     %}
   {% endblock %}
