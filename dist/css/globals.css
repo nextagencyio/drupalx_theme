@@ -1453,52 +1453,49 @@ body {
   inset: 0px;
 }
 
-.left-0 {
-  left: 0px;
+.bottom-0 {
+  bottom: 0px;
 }
 
-.top-0 {
-  top: 0px;
+.left-0 {
+  left: 0px;
 }
 
 .left-2 {
   left: 0.5rem;
 }
 
-.right-2 {
-  right: 0.5rem;
-}
-
-.bottom-0 {
-  bottom: 0px;
-}
-
 .right-0 {
   right: 0px;
 }
 
-.left-4 {
-  left: 1rem;
+.right-2 {
+  right: 0.5rem;
 }
 
-.right-4 {
-  right: 1rem;
+.top-0 {
+  top: 0px;
 }
 
 .top-1\/2 {
   top: 50%;
 }
 
-.z-50 {
-  z-index: 50;
-}
-
 .z-20 {
   z-index: 20;
 }
 
+.z-50 {
+  z-index: 50;
+}
+
 .m-2 {
   margin: 0.5rem;
+}
+
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .mx-auto {
@@ -1516,6 +1513,11 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.my-25 {
+  margin-top: 6.25rem;
+  margin-bottom: 6.25rem;
+}
+
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -1529,16 +1531,6 @@ body {
 .my-8 {
   margin-top: 2rem;
   margin-bottom: 2rem;
-}
-
-.mx-4 {
-  margin-left: 1rem;
-  margin-right: 1rem;
-}
-
-.my-25 {
-  margin-top: 6.25rem;
-  margin-bottom: 6.25rem;
 }
 
 .mb-0 {
@@ -1575,10 +1567,6 @@ body {
 
 .me-2 {
   margin-inline-end: 0.5rem;
-}
-
-.me-3 {
-  margin-inline-end: 0.75rem;
 }
 
 .ml-1 {
@@ -1690,6 +1678,10 @@ body {
   height: 1rem;
 }
 
+.h-8 {
+  height: 2rem;
+}
+
 .h-9 {
   height: 2.25rem;
 }
@@ -1700,18 +1692,6 @@ body {
 
 .h-px {
   height: 1px;
-}
-
-.h-8 {
-  height: 2rem;
-}
-
-.h-7 {
-  height: 1.75rem;
-}
-
-.h-auto {
-  height: auto;
 }
 
 .max-h-0 {
@@ -1726,6 +1706,14 @@ body {
   max-height: 100vh;
 }
 
+.w-1\/3 {
+  width: 33.333333%;
+}
+
+.w-16 {
+  width: 4rem;
+}
+
 .w-3\/5 {
   width: 60%;
 }
@@ -1738,36 +1726,12 @@ body {
   width: 12rem;
 }
 
-.w-full {
-  width: 100%;
-}
-
-.w-10 {
-  width: 2.5rem;
-}
-
 .w-8 {
   width: 2rem;
 }
 
-.w-9 {
-  width: 2.25rem;
-}
-
-.w-7 {
-  width: 1.75rem;
-}
-
-.w-16 {
-  width: 4rem;
-}
-
-.w-1\/3 {
-  width: 33.333333%;
-}
-
-.min-w-full {
-  min-width: 100%;
+.w-full {
+  width: 100%;
 }
 
 .max-w-2xl {
@@ -1998,6 +1962,10 @@ body {
   border-radius: 0.25rem;
 }
 
+.rounded-full {
+  border-radius: 9999px;
+}
+
 .rounded-lg {
   border-radius: var(--radius);
 }
@@ -2008,10 +1976,6 @@ body {
 
 .rounded-xl {
   border-radius: 0.75rem;
-}
-
-.rounded-full {
-  border-radius: 9999px;
 }
 
 .rounded-t-lg {
@@ -2058,6 +2022,11 @@ body {
 
 .bg-background\/95 {
   background-color: hsl(var(--background) / 0.95);
+}
+
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
 .bg-blue-100 {
@@ -2122,16 +2091,6 @@ body {
 .bg-yellow-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 249 195 / var(--tw-bg-opacity));
-}
-
-.bg-gray-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(107 114 128 / var(--tw-bg-opacity));
-}
-
-.bg-black {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-50 {
@@ -2337,12 +2296,12 @@ body {
   font-weight: 500;
 }
 
-.font-semibold {
-  font-weight: 600;
-}
-
 .font-normal {
   font-weight: 400;
+}
+
+.font-semibold {
+  font-weight: 600;
 }
 
 .uppercase {
@@ -2718,14 +2677,6 @@ body {
 }
 
 @media (min-width: 640px) {
-  .sm\:max-h-\[90vh\] {
-    max-height: 90vh;
-  }
-
-  .sm\:max-w-\[50vw\] {
-    max-width: 50vw;
-  }
-
   .sm\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2840,12 +2791,12 @@ body {
     margin-bottom: calc(0px * var(--tw-space-y-reverse));
   }
 
-  .md\:p-8 {
-    padding: 2rem;
-  }
-
   .md\:p-6 {
     padding: 1.5rem;
+  }
+
+  .md\:p-8 {
+    padding: 2rem;
   }
 
   .md\:py-12 {
@@ -2861,23 +2812,23 @@ body {
     text-align: left;
   }
 
-  .md\:text-6xl {
-    font-size: 3.75rem;
-    line-height: 1;
-  }
-
-  .md\:text-xl {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-  }
-
   .md\:text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem;
   }
 
+  .md\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
+
   .md\:text-lg {
     font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
+  .md\:text-xl {
+    font-size: 1.25rem;
     line-height: 1.75rem;
   }
 
@@ -3050,12 +3001,12 @@ body {
     width: 50%;
   }
 
-  .xl\:w-5\/12 {
-    width: 41.666667%;
-  }
-
   .xl\:w-2\/3 {
     width: 66.666667%;
+  }
+
+  .xl\:w-5\/12 {
+    width: 41.666667%;
   }
 }
 
