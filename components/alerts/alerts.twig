@@ -1,24 +1,23 @@
-<div class="alert alert-primary" role="alert">
-  A simple primary alert—check it out!
-</div>
-<div class="alert alert-secondary" role="alert">
-  A simple secondary alert—check it out!
-</div>
-<div class="alert alert-success" role="alert">
-  A simple success alert—check it out!
-</div>
-<div class="alert alert-danger" role="alert">
-  A simple danger alert—check it out!
-</div>
-<div class="alert alert-warning" role="alert">
-  A simple warning alert—check it out!
-</div>
-<div class="alert alert-info" role="alert">
-  A simple info alert—check it out!
-</div>
-<div class="alert alert-light" role="alert">
-  A simple light alert—check it out!
-</div>
-<div class="alert alert-dark" role="alert">
-  A simple dark alert—check it out!
+{% set alert_classes = type == 'destructive'
+  ? 'relative w-full rounded-lg border px-4 py-3 text-sm border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg~*]:pl-7 bg-background'
+  : 'relative w-full rounded-lg border px-4 py-3 text-sm [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground [&>svg~*]:pl-7 bg-background text-foreground'
+%}
+
+<div class="alert {{ alert_classes }}">
+	{% if title %}
+		<div class="alert-title">{{ title }}</div>
+	{% endif %}
+
+	<div class="alert-description">
+		{{ children }}
+	</div>
+
+	{% if on_dismiss %}
+		<button onclick="{{ on_dismiss }}" class="absolute top-2 right-2 rounded-full p-1 hover:bg-gray-100 dark:hover:bg-gray-800" aria-label="Dismiss alert">
+			<svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<line x1="18" y1="6" x2="6" y2="18"></line>
+				<line x1="6" y1="6" x2="18" y2="18"></line>
+			</svg>
+		</button>
+	{% endif %}
 </div>
