@@ -13,15 +13,7 @@
    */
   Drupal.behaviors.popover = {
     attach: function () {
-      var bootstrap = window.bootstrap;
-      if (typeof bootstrap !== 'undefined') {
-        const popoverTriggerList = document.querySelectorAll(
-          '[data-bs-toggle="popover"]'
-        );
-        [...popoverTriggerList].map(
-          (popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl)
-        );
-      }
+
     }
   };
 })(Drupal);

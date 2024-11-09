@@ -1,5 +1,4 @@
-import './text-block.scss';
-import TextBlockTemplate from './text-block.twig';
+import TextBlockTemplate from './text.twig';
 
 export default {
   title: 'Editorial/Text Block',

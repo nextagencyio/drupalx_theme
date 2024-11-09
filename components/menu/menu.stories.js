@@ -1,4 +1,3 @@
-import './menu.scss';
 import MenuTemplate from './menu.twig';
 
 export default {

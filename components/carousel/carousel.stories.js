@@ -1,4 +1,3 @@
-import './carousel.scss';
 import CarouselTemplate from './carousel.twig';
 
 export default {

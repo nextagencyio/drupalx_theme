@@ -1,5 +1,4 @@
-import './stat.scss';
-import StatTemplate from './stat.twig';
+import StatTemplate from './stat-card.twig';
 
 export default {
   title: 'General/Stat',

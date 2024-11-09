@@ -1,4 +1,3 @@
-import './quote.scss';
 import QuoteTemplate from './quote.twig';
 
 export default {

@@ -1,4 +1,3 @@
-import './pager.scss';
 import PagerTemplate from './pager.twig';
 
 export default {

@@ -1,4 +1,3 @@
-import './media.scss';
 import MediaTemplate from './media.twig';
 
 export default {

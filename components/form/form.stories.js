@@ -1,4 +1,3 @@
-import './form.scss';
 import FormTemplate from './form.twig';
 
 export default {

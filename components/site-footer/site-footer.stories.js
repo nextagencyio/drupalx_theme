@@ -1,4 +1,3 @@
-import './site-footer.scss';
 import SiteFooterTemplate from './site-footer.twig';
 
 export default {

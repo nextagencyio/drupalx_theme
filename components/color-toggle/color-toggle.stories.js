@@ -1,4 +1,3 @@
-import './color-toggle.scss';
 import ColorToggleTemplate from './color-toggle.twig';
 
 export default {

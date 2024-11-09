@@ -1,4 +1,3 @@
-import './embed.scss';
 import EmbedTemplate from './embed.twig';
 
 export default {

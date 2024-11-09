@@ -1,4 +1,3 @@
-import './heading.scss';
 import HeadingTemplate from './heading.twig';
 
 export default {

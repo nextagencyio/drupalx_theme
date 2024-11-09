@@ -28,9 +28,13 @@
 				{{ item.body }}
 			{% endblock %}
 			{% if item.link %}
-				<a href="{{ item.link.url }}" class="mt-4 inline-block text-blue-600 hover:underline">
-					{{ item.link.title }}
-				</a>
+				{% include '@drupalx_theme/button/button.twig' with {
+          button: {
+            url: item.link.url,
+            text: item.link.title ?? 'Learn more',
+            modifier: 'btn-default mt-4'
+          }
+        } only %}
 			{% endif %}
 		</div>
 	</div>

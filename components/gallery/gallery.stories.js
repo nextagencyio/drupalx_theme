@@ -1,5 +1,4 @@
-import './gallery-lightbox.scss';
-import GalleryLightboxTemplate from './gallery-lightbox.twig';
+import GalleryLightboxTemplate from './gallery.twig';
 
 export default {
   title: 'Editorial/Gallery',

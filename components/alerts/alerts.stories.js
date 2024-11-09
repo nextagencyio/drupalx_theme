@@ -1,4 +1,3 @@
-import './alerts.scss';
 import AlertsTemplate from './alerts.twig';
 
 export default {

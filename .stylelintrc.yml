@@ -1,10 +1,6 @@
 # Custom configuration for Stylelint.
 #
 
-ignoreFiles:
-  - "src/scss/_bootswatch.scss"
-  - "src/scss/_variables.scss"
-
 # Preset all items to warning to prevent breaking themes.
 # Delete line to activate linter build-breaking errors.
 defaultSeverity: warning

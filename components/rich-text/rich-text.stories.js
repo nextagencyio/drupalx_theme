@@ -1,4 +1,3 @@
-import './rich-text.scss';
 import RichTextTemplate from './rich-text.twig';
 
 export default {

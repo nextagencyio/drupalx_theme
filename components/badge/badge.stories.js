@@ -1,4 +1,3 @@
-import './badge.scss';
 import BadgeTemplate from './badge.twig';
 
 export default {

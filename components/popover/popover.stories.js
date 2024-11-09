@@ -1,4 +1,3 @@
-import './popover.scss';
 import PopoverTemplate from './popover.twig';
 import './popover.behavior.js';
 

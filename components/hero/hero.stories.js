@@ -1,4 +1,3 @@
-import './hero.scss';
 import HeroTemplate from './hero.twig';
 
 export default {

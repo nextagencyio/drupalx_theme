@@ -1,4 +1,3 @@
-import './tabs.scss';
 import TabsTemplate from './tabs.twig';
 
 export default {

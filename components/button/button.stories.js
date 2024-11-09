@@ -1,4 +1,3 @@
-import './button.scss';
 import ButtonTemplate from './button.twig';
 
 export default {

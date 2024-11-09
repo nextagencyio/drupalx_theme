@@ -1,4 +1,3 @@
-import './spinner.scss';
 import SpinnerTemplate from './spinner.twig';
 
 export default {

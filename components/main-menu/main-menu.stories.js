@@ -1,4 +1,3 @@
-import './main-menu.scss';
 import MainMenuTemplate from './main-menu.twig';
 
 export default {

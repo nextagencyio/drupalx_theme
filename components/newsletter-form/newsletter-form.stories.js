@@ -1,4 +1,3 @@
-import './newsletter-form.scss';
 import NewsletterFormTemplate from './newsletter-form.twig';
 
 export default {

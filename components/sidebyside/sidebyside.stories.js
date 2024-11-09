@@ -1,5 +1,4 @@
-import './side-by-side.scss';
-import SideBySideTemplate from './side-by-side.twig';
+import SideBySideTemplate from './sidebyside.twig';
 
 export default {
   title: 'Editorial/Side-by-Side',

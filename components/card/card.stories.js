@@ -1,4 +1,3 @@
-import './card.scss';
 import CardTemplate from './card.twig';
 
 export default {

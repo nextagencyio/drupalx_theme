@@ -1,4 +1,3 @@
-import './card-group.scss';
 import CardGroupTemplate from './card-group.twig';
 
 export default {

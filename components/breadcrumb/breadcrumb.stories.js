@@ -1,4 +1,3 @@
-import './breadcrumb.scss';
 import BreadcrumbTemplate from './breadcrumb.twig';
 
 export default {
