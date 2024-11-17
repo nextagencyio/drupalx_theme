@@ -13,7 +13,9 @@ global:
     - "drupalx_theme/fonts"
 
 icons:
-  css:
-    component:
-      //fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap:
-        { type: external, minified: true }
+  version: 1.x
+  js:
+    //unpkg.com/lucide@latest/dist/umd/lucide.min.js: { type: external, minified: true }
+    dist/js/lucide-init.behaviors.js: {}
+  dependencies:
+    - core/drupal

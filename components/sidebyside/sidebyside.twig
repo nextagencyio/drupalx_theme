@@ -35,7 +35,7 @@
             } only %}
 					{% else %}
 						<div class="flex items-start gap-4">
-							<span class="material-symbols-outlined !text-3xl mt-[-5px]">{{ feature.icon }}</span>
+							<i data-lucide="{{ feature.icon }}" width="48" height="48" class="mt-[-5px]"></i>
 							<span class="flex-1">{{ feature.summary|raw }}</span>
 						</div>
 					{% endif %}
