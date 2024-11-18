@@ -2,7 +2,7 @@ import AccordionTemplate from './accordion.twig';
 import './accordion.behavior.js';
 
 export default {
-  title: 'Editorial/Accordion Group',
+  title: 'Editorial/Accordion',
   argTypes: {
     title: {
       control: 'text',
@@ -23,9 +23,9 @@ export default {
   }
 };
 
-export const AccordionGroup = AccordionTemplate.bind({});
+export const Default = AccordionTemplate.bind({});
 
-AccordionGroup.args = {
+Default.args = {
   title: 'Accordion Group Title',
   modifier: '',
   accordion_items: [
@@ -63,6 +63,6 @@ AccordionGroup.args = {
   ]
 };
 
-AccordionGroup.play = async () => {
+Default.play = async () => {
   Drupal.behaviors.accordionBehavior.attach(document);
 };
