@@ -1,24 +1,24 @@
 <div class="rounded-xl border bg-card text-card-foreground shadow card h-full flex flex-col">
 	{% block card_media %}
-		{% if card.media %}
+		{% if media %}
 			<div class="relative">
-				{% if card.media_link %}
-					<a href="{{ card.media_link }}" class="block">
+				{% if media_link %}
+					<a href="{{ media_link }}" class="block">
 					{% endif %}
 					<div class="aspect-w-16 aspect-h-9">
-						{{ card.media }}
+						{{ media }}
 					</div>
-					{% if card.media_link %}
+					{% if media_link %}
 					</a>
 				{% endif %}
 			</div>
 		{% endif %}
 	{% endblock %}
 
-	<div class="flex-grow p-6 {% if card.body_modifier %}{{ card.body_modifier }}{% endif %}">
-		{% if card.tags %}
+	<div class="flex-grow p-6 {% if body_modifier %}{{ body_modifier }}{% endif %}">
+		{% if tags %}
 			<ul class="flex flex-wrap gap-2 mb-4">
-				{% for tag in card.tags %}
+				{% for tag in tags %}
 					<li class="inline-flex">
 						{% include '@drupalx_theme/badge/badge.twig' with {
               "tag": tag,
@@ -33,36 +33,36 @@
 			{%
         include '@drupalx_theme/heading/heading.twig' with {
           "heading": {
-            "title": card.heading.title,
-            "url": card.heading.url,
+            "title": heading.title,
+            "url": heading.url,
             "modifier": "text-xl font-semibold leading-none tracking-tight"
           }
         } only
       %}
-			{% if card.summary_text %}
+			{% if summary_text %}
 				<p class="text-sm text-muted-foreground">
-					{{ card.summary_text }}
+					{{ summary_text }}
 				</p>
 			{% endif %}
 		</div>
 
-		{% if card.link.url or card.link2.url %}
+		{% if link.url or link2.url %}
 			<div class="flex flex-wrap gap-2 mt-6">
-				{% if card.link.url %}
+				{% if link.url %}
 					{% include '@drupalx_theme/button/button.twig' with {
             "button": {
-              "url": card.link.url,
-              "text": card.link.text,
+              "url": link.url,
+              "text": link.text,
               "icon": 'arrow_right_alt',
               "modifier": 'inline-flex items-center justify-center bg-primary text-primary-foreground hover:bg-primary/90'
             }
           } only %}
 				{% endif %}
-				{% if card.link2.url %}
+				{% if link2.url %}
 					{% include '@drupalx_theme/button/button.twig' with {
             "button": {
-              "url": card.link2.url,
-              "text": card.link2.text,
+              "url": link2.url,
+              "text": link2.text,
               "icon": 'arrow_right_alt',
               "modifier": 'inline-flex items-center justify-center border border-input bg-background hover:bg-accent hover:text-accent-foreground'
             }

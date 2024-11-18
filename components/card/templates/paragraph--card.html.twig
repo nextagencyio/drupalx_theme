@@ -8,22 +8,21 @@
 %}
 
 {%
-  set link = {
-    url: content.field_link[0]['#url'],
-    text: content.field_link[0]['#title']
-  }
+  set link = content.field_link ? {
+    "url": content.field_link.0.url,
+    "title": content.field_link.0.title
+  } : null
 %}
 
 {% block paragraph %}
   {% block content %}
     {% include 'drupalx_theme:card' with {
-      card: {
         modifier: '',
         media: content.field_media,
         heading: heading_content,
         summary_text: content.field_summary,
-        link: link,
-      }} only
+      } only
     %}
   {% endblock %}
 {% endblock paragraph %}
+
