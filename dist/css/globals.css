@@ -2074,6 +2074,10 @@ body {
   --tw-bg-opacity: 0.5;
 }
 
+.bg-opacity-80 {
+  --tw-bg-opacity: 0.8;
+}
+
 .p-0 {
   padding: 0px;
 }
