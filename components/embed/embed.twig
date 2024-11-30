@@ -1,7 +1,9 @@
-<div class="rounded-xl border bg-card text-card-foreground my-6 lg:my-25 border-none shadow-none">
-  <div class="flex flex-col space-y-1.5 p-6 text-3xl">
-    <h3 class="font-semibold leading-none tracking-tight">{{ title }}</h3>
-  </div>
+<div class="rounded-xl border bg-card text-card-foreground border-none shadow-none {{ modifier ?? 'my-6 lg:my-25' }}">
+  {% if title %}
+    <div class="flex flex-col space-y-1.5 p-6 text-3xl">
+      <h3 class="font-semibold leading-none tracking-tight">{{ title }}</h3>
+    </div>
+  {% endif %}
 
   <div class="p-6 pt-0">
     <div class="prose max-w-none [&_iframe]:w-full [&_iframe]:max-w-full">
