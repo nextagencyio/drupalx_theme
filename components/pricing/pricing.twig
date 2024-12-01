@@ -8,14 +8,14 @@
 		<div class="grid grid-cols-1 gap-8 {{ grid_columns == 2 ? 'md:grid-cols-2' : 'md:grid-cols-3' }}">
 			{% block pricing_cards %}
 				{% for card in cards %}
-					{% include '@drupalx_theme/pricing-card/pricing-card.twig' with {
+					{% include '@drupalx_theme/pricing/pricing-card.twig' with {
             eyebrow: card.eyebrow,
             title: card.title,
             monthly_label: card.monthly_label,
             features: card.features,
             cta_text: card.cta_text,
             cta_link: card.cta_link,
-            includes_label: card.includes_label|default('Includes')
+						includes_label: card.includes_label,
           } %}
 				{% endfor %}
 			{% endblock %}

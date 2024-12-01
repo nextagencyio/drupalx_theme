@@ -2,13 +2,10 @@
 	<div>
 		<h2 class="mb-2 text-md font-bold leading-[1.4] md:text-xl">{{ eyebrow }}</h2>
 		<h3 class="my-2 text-3xl font-bold lg:text-4xl">
-			{{ title }}
-			{% if monthly_label %}
-				<span class="text-xl font-bold md:leading-[1.3] lg:text-2xl">/{{ monthly_label }}</span>
-			{% endif %}
+			{{ title }}{% if monthly_label %}<span class="text-xl font-bold md:leading-[1.3] lg:text-2xl">/{{ monthly_label }}</span>{% endif %}
 		</h3>
 		<div class="my-8 h-px w-full bg-border"></div>
-		<p>{{ includes_label|default('Includes') }}:</p>
+		<p>{{ includes_label|default('Features') }}:</p>
 		<div class="mb-8 mt-4 grid grid-cols-1 gap-y-4 py-2">
 			{% for feature in features %}
 				<div class="flex self-start">
@@ -24,11 +21,9 @@
 	{% if cta_link %}
 		<div>
 			{% include '@drupalx_theme/button/button.twig' with {
-				button: {
-					url: cta_link.url,
-					text: cta_link.title,
-					modifier: 'btn-default w-full'
-				}
+				url: cta_link.url,
+				text: cta_link.title,
+				modifier: 'btn-default w-full'
 			} only %}
 		</div>
 	{% endif %}
