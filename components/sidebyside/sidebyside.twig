@@ -46,11 +46,9 @@
 		{% if link.url %}
 			<div class="flex">
 				{% include '@drupalx_theme/button/button.twig' with {
-          button: {
-            url: link.url,
-            text: link.title ?? 'Read more',
-            modifier: 'btn-default'
-          }
+					url: link.url,
+					text: link.title ?? 'Read more',
+					modifier: 'btn-default'
         } only %}
 			</div>
 		{% endif %}
