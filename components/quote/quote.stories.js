@@ -3,27 +3,34 @@ import QuoteTemplate from './quote.twig';
 export default {
   title: 'Editorial/Quote',
   argTypes: {
-    quote: {
-      description: 'Define the quote object',
+    author: {
+      description: 'Author of the quote',
+      control: 'text',
+    },
+    jobTitle: {
+      description: 'Job title of the author',
+      control: 'text',
+    },
+    logo: {
+      description: 'Logo component',
       control: 'object',
-      type: {
-        required: true
-      }
-    }
-  }
+    },
+    quote: {
+      description: 'The quote text',
+      control: 'text',
+    },
+    thumb: {
+      description: 'Thumbnail image for the author',
+      control: 'object',
+    },
+  },
 };
 
-export const Quote = QuoteTemplate.bind({});
-Quote.args = {
-  quote: {
-    modifier_class: '',
-    logo: "<img src='https://placehold.co/400x300/333333/FFF?text=Logo' class='img-fluid rounded-circle' alt='Logo' />",
-    quote:
-      'Quisque id odio. Sed a libero. Praesent ut ligula non mi varius sagittis. Curabitur nisi.',
-    image:
-      "<img src='https://placehold.co/400x300/333333/FFF?text=Headshot' class='img-fluid rounded-circle' alt='Headshot' />",
-    name: 'Jane Doe',
-    job: 'Donec interdum metus et hendrerit',
-    layout: 'left'
-  }
+export const Default = QuoteTemplate.bind({});
+Default.args = {
+  author: 'Author Name',
+  job_title: 'Job Title',
+  logo: "<img src='./images/card.webp' class='img-fluid' alt='Logo' />",
+  quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mauris mi, aliquam',
+  thumb: "<img src='./images/card.webp' alt='Thumb' />",
 };

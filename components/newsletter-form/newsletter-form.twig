@@ -1,3 +1,4 @@
+{# Sample newsletter markup #}
 <div class="bg-gray-100 text-gray-900">
 	<div class="py-8 lg:py-24 {{ modifier ?: 'container mx-auto px-8' }}">
 		<div
@@ -19,10 +20,10 @@
 
 						{# Email Input #}
 						<input
-						type="email" class="flex-grow bg-white text-xl h-12 px-4 border border-gray-300 rounded" placeholder="Email Address" aria-label="Email Address" name="newsletter_email" required/>
+						type="email" class="flex w-full rounded-md border border-input px-3 py-1 shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 flex-grow bg-white text-xl h-12" placeholder="Email Address" aria-label="Email Address" name="newsletter_email" required/>
 
 						{# Submit Button #}
-						<button class="bg-gray-900 text-white hover:bg-gray-700 text-xl h-12 px-6 rounded" type="submit">
+						<button class="inline-flex items-center justify-center whitespace-nowrap rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 shadow px-4 py-2 bg-gray-900 text-white hover:bg-gray-700 text-xl h-12" type="submit">
 							Submit
 						</button>
 

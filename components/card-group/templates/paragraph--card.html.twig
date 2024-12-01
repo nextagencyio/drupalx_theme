@@ -16,7 +16,7 @@
 
 {% block paragraph %}
   {% block content %}
-    {% include 'drupalx_theme:card' with {
+    {% include '@drupalx_theme/card-group/card.twig' with {
         modifier: '',
         media: content.field_media,
         heading: heading_content,
@@ -25,4 +25,3 @@
     %}
   {% endblock %}
 {% endblock paragraph %}
-
