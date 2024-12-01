@@ -61,4 +61,3 @@ Default.args = {
 Default.play = async ({ canvasElement }) => {
   Drupal.behaviors.popover.attach(canvasElement);
 };
-
