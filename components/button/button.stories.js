@@ -13,18 +13,17 @@ export default {
     },
     icon: {
       description: 'The icon to display inside the button',
-      control: { type: 'select', options: ['ArrowRight', 'none'] },
+      control: 'text',
     },
     variant: {
       description: 'The button variant',
-      control: {
-        type: 'select',
-        options: ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link'],
-      },
+      control: 'select',
+      options: ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link'],
     },
     size: {
       description: 'The button size',
-      control: { type: 'select', options: ['default', 'sm', 'lg', 'icon'] },
+      control: 'select',
+      options: ['default', 'sm', 'lg', 'icon'],
     },
   },
 };
@@ -118,7 +117,7 @@ export const IconButton = {
   args: {
     url: '#',
     text: '',
-    icon: 'ArrowRight',
+    icon: 'arrow-right',
     size: 'icon',
   },
 };

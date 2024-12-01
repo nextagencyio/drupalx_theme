@@ -1,51 +1,82 @@
 describe('Accordion Component', () => {
   beforeEach(() => {
-    cy.visit('/iframe.html?args=&id=editorial-accordion-group--accordion-group&viewMode=story');
+    cy.visit('/iframe.html?id=editorial-accordion--default&viewMode=story');
+  });
+
+  it('should display the accordion title', () => {
+    cy.get('h2').should('contain', 'Accordion Group Title');
   });
 
   it('should display all accordion items', () => {
-    cy.get('.accordion-item').should('have.length', 3);
+    cy.get('.divide-y > div').should('have.length', 3);
   });
 
-  it('should have collapsed accordion items initially', () => {
-    cy.get('.accordion-button').each(($button) => {
-      cy.wrap($button).should('have.class', 'collapsed');
+  it('should display correct content for each accordion item', () => {
+    // Check first accordion item
+    cy.get('.divide-y > div').first().within(() => {
+      cy.get('button').should('contain', 'Curabitur aliquet quam id dui posuere blandit');
+      cy.get('a').should('have.attr', 'href', 'https://www.google.com')
+        .and('contain', 'Learn more');
     });
-    cy.get('.accordion-collapse').each(($collapse) => {
-      cy.wrap($collapse).should('not.have.class', 'show');
+  });
+
+  it('should handle accordion expansion and collapse', () => {
+    // Get first accordion item
+    cy.get('.divide-y > div').first().within(() => {
+      // Initial state - content should be hidden
+      cy.get('button[aria-expanded="false"]').should('exist');
+
+      // Click to expand
+      cy.get('button').click();
+      cy.get('button[aria-expanded="true"]').should('exist');
+
+      // Click to collapse
+      cy.get('button').click();
+      cy.get('button[aria-expanded="false"]').should('exist');
     });
   });
 
-  it('should expand and collapse an accordion item when clicked', () => {
-    cy.get('.accordion-button').first().click();
-    cy.get('.accordion-collapse').first().should('have.class', 'show');
-    cy.get('.accordion-button').first().should('not.have.class', 'collapsed');
-
-    cy.get('.accordion-button').first().click();
-    cy.get('.accordion-collapse').first().should('not.have.class', 'show');
-    cy.get('.accordion-button').first().should('have.class', 'collapsed');
+  it('should allow multiple items to be expanded simultaneously', () => {
+    // Open all accordion items
+    cy.get('.divide-y > div').each(($item) => {
+      cy.wrap($item).within(() => {
+        cy.get('button').click();
+        cy.get('button[aria-expanded="true"]').should('exist');
+      });
+    });
   });
 
-  it('should allow multiple accordion items to be expanded simultaneously', () => {
-    cy.get('.accordion-button').each(($button, index) => {
-      cy.wrap($button).click();
-      cy.get('.accordion-collapse').eq(index).should('have.class', 'show');
+  it('should render the "Learn more" link correctly', () => {
+    cy.get('.divide-y > div').each(($item) => {
+      cy.wrap($item).within(() => {
+        cy.get('a')
+          .should('have.attr', 'href', 'https://www.google.com')
+          .and('contain', 'Learn more');
+      });
     });
   });
 
   context('Responsive Design', () => {
     const viewports = [
-      { width: 320, height: 568 }, // iPhone 5
-      { width: 768, height: 1024 }, // iPad
-      { width: 1024, height: 768 }, // Laptop
-      { width: 1920, height: 1080 }, // Desktop
+      { width: 320, height: 568, size: 'mobile' },
+      { width: 768, height: 1024, size: 'tablet' },
+      { width: 1024, height: 768, size: 'laptop' },
+      { width: 1920, height: 1080, size: 'desktop' }
     ];
 
-    viewports.forEach(({ width, height }) => {
-      it(`should render correctly on ${width}x${height} resolution`, () => {
+    viewports.forEach(({ width, height, size }) => {
+      it(`should render correctly at ${size} viewport (${width}x${height})`, () => {
         cy.viewport(width, height);
-        cy.get('.accordion').should('be.visible');
-        // Add more assertions for responsive design expectations
+
+        // Basic visibility checks
+        cy.get('.container').should('be.visible');
+        cy.get('.bg-white').should('be.visible');
+
+        // Verify accordion functionality at this viewport
+        cy.get('.divide-y > div').first().within(() => {
+          cy.get('button').click();
+          cy.get('button[aria-expanded="true"]').should('exist');
+        });
       });
     });
   });
