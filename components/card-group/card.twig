@@ -35,12 +35,12 @@
           "heading": {
             "title": heading.title,
             "url": heading.url,
-            "modifier": "text-xl font-semibold leading-none tracking-tight"
+            "modifier": "card-title text-xl font-semibold leading-none tracking-tight"
           }
         } only
       %}
 			{% if summary_text %}
-				<p class="text-sm text-muted-foreground">
+				<p class="card-text text-sm text-muted-foreground">
 					{{ summary_text }}
 				</p>
 			{% endif %}
