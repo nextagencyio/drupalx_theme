@@ -20,8 +20,8 @@ export default {
   }
 };
 
-export const Badge = BadgeTemplate.bind({});
-Badge.args = {
+export const Default = BadgeTemplate.bind({});
+Default.args = {
   tag: 'New feature',
-  modifier: 'text-bg-primary'
+  modifier: ''
 };

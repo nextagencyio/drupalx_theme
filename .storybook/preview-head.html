@@ -1,9 +1,14 @@
 <!-- Icons -->
 <script src="https://unpkg.com/lucide@latest"></script>
 <script>
-  window.onload = () => {
+  document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
-  }
+
+    // Optionally re-run after Storybook updates DOM
+    setTimeout(() => {
+      lucide.createIcons();
+    }, 100);
+  });
 </script>
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -8,8 +8,8 @@ export default {
   }
 };
 
-export const Image = ImageTemplate.bind({});
-Image.args = {
+export const Default = ImageTemplate.bind({});
+Default.args = {
   src: './images/card.webp',
   alt: 'Image alt text'
 };

@@ -50,22 +50,18 @@
 			<div class="flex flex-wrap gap-2 mt-6">
 				{% if link.url %}
 					{% include '@drupalx_theme/button/button.twig' with {
-            "button": {
-              "url": link.url,
-              "text": link.text,
-              "icon": 'arrow_right_alt',
-              "modifier": 'inline-flex items-center justify-center bg-primary text-primary-foreground hover:bg-primary/90'
-            }
+						"url": link.url,
+						"text": link.text,
+						"icon": 'arrow-right',
+						"modifier": ''
           } only %}
 				{% endif %}
 				{% if link2.url %}
 					{% include '@drupalx_theme/button/button.twig' with {
-            "button": {
-              "url": link2.url,
-              "text": link2.text,
-              "icon": 'arrow_right_alt',
-              "modifier": 'inline-flex items-center justify-center border border-input bg-background hover:bg-accent hover:text-accent-foreground'
-            }
+						"url": link2.url,
+						"text": link2.text,
+						"icon": 'arrow-right',
+						"modifier": ''
           } only %}
 				{% endif %}
 			</div>
