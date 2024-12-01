@@ -8,7 +8,7 @@
     "clean:css": "rimraf dist/*.css components/**/*.css",
     "clean:js": "rimraf dist/*.js",
     "clean": "npm run clean:css && npm run clean:js",
-    "lint:js": "eslint components/**/*.behavior.js",
+    "lint:js": "eslint components/**/*.behavior.js --fix",
     "lint:sass": "stylelint 'src/**/*.css' 'components/**/*.scss'",
     "compile": "node compile.js",
     "compress:assets": "imagemin static/images/* --out-dir=dist/images",
