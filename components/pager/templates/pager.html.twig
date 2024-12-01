@@ -5,10 +5,10 @@
  */
 #}
 {% if items %}
-  <div class="mb-6 mb-lg-12">
+  <div class="container mb-t lg:mt-12">
     {%
       include 'drupalx_theme:pager' with {
-        pager_items: items,
+        items: items,
         current: current
       } only
     %}
