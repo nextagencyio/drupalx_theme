@@ -1,4 +1,28 @@
-<div class="shadow-none p-3 mb-5 bg-light rounded">No shadow</div>
-<div class="shadow-sm p-3 mb-5 bg-body rounded">Small shadow</div>
-<div class="shadow p-3 mb-5 bg-body rounded">Regular shadow</div>
-<div class="shadow-lg p-3 mb-5 bg-body rounded">Larger shadow</div>
+{# shadow.twig #}
+{% set variants = {
+    'none': 'shadow-none',
+    'sm': 'shadow-sm',
+    'regular': 'shadow',
+    'lg': 'shadow-lg'
+} %}
+
+{# Define default values #}
+{% set variant = variant|default('regular') %}
+{% set background = background|default('bg-background') %}
+{% set additional_classes = additional_classes|default('') %}
+
+{# Combine classes similar to cn() utility #}
+{% set combined_classes = [
+    'p-3 mb-5 rounded',
+    background,
+    variants[variant],
+    additional_classes
+]|join(' ')|trim %}
+
+<div class="{{ combined_classes }}">
+  {%- if block('content') is defined -%}
+    {{ block('content') }}
+  {%- else -%}
+    {{ variant|title }} shadow
+  {%- endif -%}
+</div>

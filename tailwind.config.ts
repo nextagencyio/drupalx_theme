@@ -5,7 +5,10 @@ const config: Config = {
 	darkMode: ["class"],
 	content: [
 		'./templates/**/*.html.twig',
-    './components/**/*.twig',
+		'./components/**/*.twig',
+		'./components/**/*.{js,jsx,ts,tsx,mdx}',
+		'./.storybook/**/*.{js,jsx,ts,tsx,mdx}',
+		'./stories/**/*.{js,jsx,ts,tsx,mdx}'
 	],
 	theme: {
 		extend: {
@@ -80,8 +83,15 @@ const config: Config = {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			colors: {
-				background: 'hsl(var(--background))',
-				foreground: 'hsl(var(--foreground))',
+				border: {
+					DEFAULT: 'hsl(var(--border))'
+				},
+				background: {
+					DEFAULT: 'hsl(var(--background))'
+				},
+				foreground: {
+					DEFAULT: 'hsl(var(--foreground))'
+				},
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
@@ -110,9 +120,12 @@ const config: Config = {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))'
 				},
-				border: 'hsl(var(--border))',
-				input: 'hsl(var(--input))',
-				ring: 'hsl(var(--ring))',
+				input: {
+					DEFAULT: 'hsl(var(--input))'
+				},
+				ring: {
+					DEFAULT: 'hsl(var(--ring))'
+				},
 				chart: {
 					'1': 'hsl(var(--chart-1))',
 					'2': 'hsl(var(--chart-2))',
@@ -144,9 +157,7 @@ const config: Config = {
 				'accordion-up': 'accordion-up 0.2s ease-out'
 			},
 			spacing: {
-				// Tailwind's default spacing scale
 				...defaultTheme.spacing,
-				// Extending with additional values
 				'13': '3.25rem',
 				'14': '3.5rem',
 				'15': '3.75rem',
@@ -165,4 +176,5 @@ const config: Config = {
 	},
 	plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 };
+
 export default config;

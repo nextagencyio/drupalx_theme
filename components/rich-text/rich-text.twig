@@ -1,9 +1,11 @@
 {% if body_text %}
-  <div class="rich-text{{ modifier ? ' ' ~ modifier }}">
-    {% if body_text.value %}
-      {{ body_text }}
-    {% else %}
-      {{ body_text|raw }}
-    {% endif %}
+  <div class="rich-text prose prose-lg border-none shadow-none">
+    <div class="px-6 py-6">
+      {% if body_text.value %}
+        {{ body_text }}
+      {% else %}
+        {{ body_text|raw }}
+      {% endif %}
+    </div>
   </div>
 {% endif %}

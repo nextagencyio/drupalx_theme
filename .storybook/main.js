@@ -1,8 +1,4 @@
-/* .storybook/main.js */
-
-/* global require, __dirname, module */
-/* eslint no-undef: "error" */
-
+// .storybook/main.js
 const path = require('path');
 const webpack = require('webpack');
 
@@ -22,32 +18,15 @@ module.exports = {
   },
   staticDirs: ['../static'],
   webpackFinal: async (config) => {
-    // Add support for .twig files
+    // Remove any existing CSS rules
+    config.module.rules = config.module.rules.filter(
+      (rule) => !rule.test || !rule.test.toString().includes('css')
+    );
+
+    // Add our custom CSS rule
     config.module.rules.push({
-      test: /\.twig$/,
-      use: {
-        loader: 'twing-loader',
-        options: {
-          environmentModulePath: path.resolve(`${__dirname}/environment.js`),
-        },
-      },
-    });
-
-    // Add ProvidePlugin if needed
-    config.plugins.push(
-      new webpack.ProvidePlugin({
-        Buffer: ['buffer', 'Buffer'],
-      })
-    );
-
-    // Locate the existing CSS rule
-    const cssRule = config.module.rules.find((rule) =>
-      rule.test && rule.test.toString().includes('css')
-    );
-
-    if (cssRule) {
-      // Replace existing loaders with style-loader, css-loader, and postcss-loader
-      cssRule.use = [
+      test: /\.css$/,
+      use: [
         'style-loader',
         {
           loader: 'css-loader',
@@ -63,10 +42,27 @@ module.exports = {
             },
           },
         },
-      ];
-    }
+      ],
+      include: path.resolve(__dirname, '../'),
+    });
+
+    // Rest of your webpack config...
+    config.module.rules.push({
+      test: /\.twig$/,
+      use: {
+        loader: 'twing-loader',
+        options: {
+          environmentModulePath: path.resolve(`${__dirname}/environment.js`),
+        },
+      },
+    });
+
+    config.plugins.push(
+      new webpack.ProvidePlugin({
+        Buffer: ['buffer', 'Buffer'],
+      })
+    );
 
     return config;
   },
-  docs: {},
 };

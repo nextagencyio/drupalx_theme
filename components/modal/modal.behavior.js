@@ -38,7 +38,9 @@
           modal.setAttribute('aria-hidden', 'false');
           // Focus first focusable element
           const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-          if (focusable.length) focusable[0].focus();
+          if (focusable.length) {
+            focusable[0].focus();
+          }
         };
 
         const hideModal = () => {
@@ -83,7 +85,9 @@
         });
 
         modal.addEventListener('keydown', (e) => {
-          if (!isOpen) return;
+          if (!isOpen) {
+            return;
+          }
 
           if (e.key === 'Escape') {
             hideModal();
@@ -100,7 +104,8 @@
                 lastFocusable.focus();
                 e.preventDefault();
               }
-            } else {
+            }
+            else {
               if (document.activeElement === lastFocusable) {
                 firstFocusable.focus();
                 e.preventDefault();
