@@ -1,34 +1,57 @@
 describe('Newsletter Form Component', () => {
   beforeEach(() => {
-    cy.visit('iframe.html?args=&id=editorial-newsletter-form--newsletter-form&viewMode=story');
+    cy.visit('/iframe.html?id=editorial-newsletter--newsletter-form');
   });
 
-  it('should render the newsletter form component', () => {
-    cy.get('.newsletter-form').should('be.visible');
+  it('should have correct container classes', () => {
+    cy.get('.bg-gray-100')
+      .should('exist')
+      .and('have.class', 'text-gray-900')
+      .within(() => {
+        cy.get('.container')
+          .should('have.class', 'mx-auto')
+          .and('have.class', 'px-8')
+          .and('have.class', 'py-8')
+          .and('have.class', 'lg:py-24');
+      });
   });
 
-  it('should display the correct content in the newsletter form', () => {
-    cy.get('.newsletter-form h3').should('contain.text', 'Sign up for our newsletter');
-    cy.get('.newsletter-form p').should('contain.text', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.');
+  it('should have correct header classes', () => {
+    cy.get('h2')
+      .should('have.class', 'text-3xl')
+      .and('have.class', 'font-semibold')
+      .and('have.class', 'mb-4')
+      .and('have.class', 'sm:text-4xl');
   });
 
-  it('should have an input field and a submit button', () => {
-    cy.get('.newsletter-form .input-group input').should('have.attr', 'placeholder', 'Email Address');
-    cy.get('.newsletter-form .btn-newsletter').should('contain.text', 'Submit');
+  it('should have correct form layout classes', () => {
+    cy.get('.md\\:w-3\\/4')
+      .should('exist')
+      .and('have.class', 'xl:w-1/2')
+      .within(() => {
+        cy.get('.flex')
+          .should('have.class', 'flex-col')
+          .and('have.class', 'sm:flex-row')
+          .and('have.class', 'space-y-2')
+          .and('have.class', 'sm:space-y-0')
+          .and('have.class', 'sm:space-x-2');
+      });
   });
 
-  it('should apply the correct modifier classes', () => {
-    cy.get('.newsletter-form').should('have.class', 'border').and('have.class', 'p-4').and('have.class', 'rounded');
-  });
+  it('should have correct input and button styles', () => {
+    cy.get('input[type="email"]')
+      .should('have.class', 'flex')
+      .and('have.class', 'w-full')
+      .and('have.class', 'rounded-md')
+      .and('have.class', 'bg-white')
+      .and('have.class', 'text-xl')
+      .and('have.class', 'h-12');
 
-  it('should be responsive and display correctly on various screen sizes', () => {
-    cy.viewport('iphone-6');
-    cy.get('.newsletter-form').should('be.visible');
-
-    cy.viewport('ipad-2');
-    cy.get('.newsletter-form').should('be.visible');
-
-    cy.viewport(1280, 800);
-    cy.get('.newsletter-form').should('be.visible');
+    cy.get('button')
+      .should('have.class', 'bg-gray-900')
+      .and('have.class', 'text-white')
+      .and('have.class', 'hover:bg-gray-700')
+      .and('have.class', 'text-xl')
+      .and('have.class', 'h-12');
   });
 });

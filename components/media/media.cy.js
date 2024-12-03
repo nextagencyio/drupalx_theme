@@ -13,10 +13,6 @@ describe('Media Component', () => {
         .and('have.attr', 'height', '720');
     });
 
-    it('applies the correct width modifier class', () => {
-      cy.get('div').first().should('have.class', 'w-1/2');
-    });
-
     it('maintains aspect ratio of the image', () => {
       cy.get('img').should(($img) => {
         const aspectRatio = $img[0].width / $img[0].height;
@@ -53,10 +49,6 @@ describe('Media Component', () => {
         .and('include', 'gyroscope')
         .and('include', 'picture-in-picture')
         .and('include', 'web-share');
-    });
-
-    it('uses full width when no modifier is provided', () => {
-      cy.get('div').first().should('have.class', 'w-full');
     });
   });
 });

@@ -1,29 +1,71 @@
 describe('Quote Component', () => {
   beforeEach(() => {
-    cy.visit('/iframe.html?args=&id=editorial-quote--quote&viewMode=story');
+    // Visit the Storybook story for the Quote component
+    cy.visit('/iframe.html?id=editorial-quote--default');
   });
 
-  it('should render the quote component with correct structure', () => {
-    cy.get('.text-center').should('exist');
-    cy.get('.quote-logo img').should('have.attr', 'src').and('include', 'https://placehold.co/400x300/333333/FFF?text=Logo');
-    cy.get('blockquote.blockquote').should('exist');
-    cy.get('blockquote.blockquote .material-symbols-outlined').should('contain.text', 'format_quote');
-    cy.get('.quote-image img').should('have.attr', 'src').and('include', 'https://placehold.co/400x300/333333/FFF?text=Headshot');
-    cy.get('.quote-text .fw-semibold').should('contain.text', 'Jane Doe');
-    cy.get('.quote-text p').should('contain.text', 'Donec interdum metus et hendrerit');
+  it('should render the default quote component correctly', () => {
+    // Check if the main container exists with correct classes
+    cy.get('.quote-card')
+      .should('exist')
+      .and('have.class', 'rounded-xl')
+      .and('have.class', 'bg-card');
+
+    // Verify quote content container
+    cy.get('.quote-content').should('exist');
+
+    // Check if logo is rendered
+    cy.get('.quote-content img[alt="Logo"]')
+      .should('exist')
+      .and('have.class', 'img-fluid');
+
+    // Verify quote text
+    cy.get('blockquote p')
+      .should('exist')
+      .and('have.class', 'text-3xl')
+      .and('have.text', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mauris mi, aliquam');
+
+    // Check author thumbnail
+    cy.get('.rounded-full img[alt="Thumb"]')
+      .should('exist');
+
+    // Verify author name
+    cy.get('.font-bold')
+      .should('exist')
+      .and('have.text', 'Author Name');
+
+    // Check job title
+    cy.get('.text-muted-foreground')
+      .should('exist')
+      .and('have.text', 'Job Title');
   });
 
-  it('should display correctly on a mobile screen', () => {
+  it('should handle missing optional properties', () => {
+    // Visit the story with modified args to remove optional properties
+    cy.visit('/iframe.html?id=editorial-quote--default&args=logo:;thumb:;job_title:');
+
+    // Verify the component still renders without logo
+    cy.get('.quote-content img[alt="Logo"]').should('not.exist');
+
+    // Verify the component still renders without thumbnail
+    cy.get('.rounded-full img[alt="Thumb"]').should('not.exist');
+
+    // Verify the component still renders without job title
+    cy.get('.text-muted-foreground').should('not.exist');
+
+    // Core elements should still exist
+    cy.get('blockquote').should('exist');
+    cy.get('.font-bold').should('exist');
+  });
+
+  it('should maintain responsive layout', () => {
+    // Test different viewport sizes
     cy.viewport('iphone-6');
-    cy.get('.text-center').should('have.class', 'd-flex').and('have.class', 'justify-content-center');
-    cy.get('.quote-logo').should('have.class', 'mx-auto').and('have.class', 'mb-2');
-    cy.get('blockquote.blockquote').should('have.class', 'fs-4').and('have.class', 'mb-3');
-  });
+    cy.get('.quote-card').should('have.class', 'w-full');
 
-  it('should display correctly on a desktop screen', () => {
-    cy.viewport(1280, 800);
-    cy.get('.text-center').should('have.class', 'd-flex').and('have.class', 'justify-content-center');
-    cy.get('.quote-logo').should('have.class', 'col-lg-3').and('have.class', 'mx-auto').and('have.class', 'mb-2');
-    cy.get('blockquote.blockquote').should('have.class', 'fs-4').and('have.class', 'mb-3');
+    cy.viewport('macbook-13');
+    cy.get('.quote-card')
+      .should('have.class', 'lg:w-4/5')
+      .and('have.class', 'xl:w-2/3');
   });
 });

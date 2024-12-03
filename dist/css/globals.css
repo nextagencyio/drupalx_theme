@@ -1744,6 +1744,10 @@ body {
   width: 100%;
 }
 
+.w-3 {
+  width: 0.75rem;
+}
+
 .max-w-2xl {
   max-width: 42rem;
 }
@@ -1794,6 +1798,10 @@ body {
 
 .flex-none {
   flex: none;
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0;
 }
 
 .shrink-0 {
