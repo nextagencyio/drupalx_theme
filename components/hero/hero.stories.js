@@ -8,7 +8,7 @@ export default {
   component: heroTemplate,
   argTypes: {
     modifier: { control: 'text' },
-    media: { control: 'object' },
+    media: { control: 'text' },
     heading: { control: 'text' },
     summary: { control: 'text' },
     hero_layout: {

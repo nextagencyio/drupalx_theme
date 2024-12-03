@@ -1,28 +1,21 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Logo Collection
-description: 'A component to display a collection of logos with a title.'
+description: Editorial/Logo Collection component
 props:
   type: object
   properties:
     title:
       type: string
-      title: Title
-      description: 'The title of the logo collection section.'
-      default: 'Our Partners'
+      title: title
+      description: Title for the logo collection section
     logos:
-      type: array
-      title: Logos
-      description: 'An array of logos to display in the collection.'
-      items:
-        type: object
-        properties:
-          name:
-            type: string
-            title: Name
-            description: 'The name of the logo.'
-            default: 'Company Name'
-          media:
-            type: string
-            title: Media
-            description: 'The media for the logo. This can be an image URL or raw HTML content (e.g., SVG).'
-            default: ''
+      type: object
+      title: logos
+      description: Array of logo objects
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string

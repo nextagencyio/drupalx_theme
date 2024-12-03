@@ -1,52 +1,41 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Site Footer
-description: 'Site Footer component for the DrupalX theme.'
+description: General/Site Footer component
 props:
   type: object
   properties:
     links:
-      type: array
-      title: Links
-      description: An array of link objects each containing a title and url.
-      items:
-        type: object
-        properties:
-          title:
-            type: string
-            title: Link Title
-            description: The text for the link.
-          url:
-            type: string
-            title: Link URL
-            description: The URL the link points to.
-      default:
-        - title: 'Privacy Policy'
-          url: '#'
-        - title: 'Terms of Use'
-          url: '#'
-        - title: 'Contact Us'
-          url: '#'
+      type: object
+      title: links
+      description: Define the footer navigation links
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
     site_logo:
       type: string
-      title: Site Logo
-      description: The URL of the site logo.
-      default: './images/logo.svg'
-    modifier:
+      title: site_logo
+      description: URL path to the site logo
+    site_logo_width:
+      type: number
+      title: site_logo_width
+      description: Width of the site logo in pixels
+    site_logo_height:
+      type: number
+      title: site_logo_height
+      description: Height of the site logo in pixels
+    site_name:
       type: string
-      title: Modifier
-      description: CSS class modifier for the Site Footer.
-      default: ''
-    menu_modifier:
-      type: string
-      title: Menu Modifier
-      description: CSS class modifier for the menu.
-      default: ''
-    link_item_modifier:
-      type: string
-      title: Link Item Modifier
-      description: CSS class modifier for the link items.
-      default: 'fs-5 text-white'
-
-libraryOverrides:
-  dependencies:
-    - drupalx_theme/menu
+      title: site_name
+      description: Name of the site
+    show_logo:
+      type: boolean
+      title: show_logo
+      description: Whether to display the site logo
+    current_year:
+      type: number
+      title: current_year
+      description: Current year to display in copyright

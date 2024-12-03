@@ -37,7 +37,7 @@ export default {
     layout: {
       description: 'Layout variation',
       control: 'select',
-      options: ['default', 'left']
+      options: ['center', 'left']
     }
   }
 };

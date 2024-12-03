@@ -1,16 +1,14 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Image
-description: 'Image component used to display an image with alt text.'
+description: General/Image component
 props:
   type: object
   properties:
     src:
       type: string
-      title: Source
-      description: Path to the image file.
-      default: ''
+      title: src
+      description: ''
     alt:
       type: string
-      title: Alt Text
-      description: Alternative text for the image.
-      default: ''
+      title: alt
+      description: ''

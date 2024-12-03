@@ -1,42 +1,26 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Quote
-description: 'Quote component with various fields such as logo, quote text, image, name, job title, and layout.'
+description: Editorial/Quote component
 props:
   type: object
   properties:
+    author:
+      type: string
+      title: author
+      description: Author of the quote
+    jobTitle:
+      type: string
+      title: jobTitle
+      description: Job title of the author
+    logo:
+      type: string
+      title: logo
+      description: Logo component
     quote:
-      type: object
-      properties:
-        modifier_class:
-          type: string
-          title: Modifier Class
-          description: Additional CSS classes for the component.
-          default: ''
-        logo:
-          type: string
-          title: Logo
-          description: HTML string for the logo image.
-        quote:
-          type: string
-          title: Quote Text
-          description: The quote text to be displayed.
-        image:
-          type: string
-          title: Image
-          description: HTML string for the headshot image.
-        name:
-          type: string
-          title: Name
-          description: The name of the person being quoted.
-        job:
-          type: string
-          title: Job Title
-          description: The job title of the person being quoted.
-        layout:
-          type: string
-          title: Layout
-          description: The layout style of the quote component.
-          enum:
-            - left
-            - right
-          default: left
+      type: string
+      title: quote
+      description: The quote text
+    thumb:
+      type: string
+      title: thumb
+      description: Thumbnail image for the author

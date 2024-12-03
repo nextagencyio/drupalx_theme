@@ -13,7 +13,7 @@ export default {
     },
     logo: {
       description: 'Logo component',
-      control: 'object',
+      control: 'text',
     },
     quote: {
       description: 'The quote text',
@@ -21,7 +21,7 @@ export default {
     },
     thumb: {
       description: 'Thumbnail image for the author',
-      control: 'object',
+      control: 'text',
     },
   },
 };

@@ -1,53 +1,29 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Pager
-description: 'Pager component for navigation, based on Storybook definition'
+description: Navigation/Pager component
 props:
   type: object
   properties:
     heading_id:
       type: string
-      title: 'Heading ID'
-      description: 'Define the heading id attribute'
-      default: 'styleguide_instance--1'
-    pager_items:
+      title: heading_id
+      description: Define the heading id attribute
+    current:
+      type: number
+      title: current
+      description: Current page number (1-based index)
+    items:
       type: object
-      title: 'Items'
-      description: 'Define the pager items'
+      title: items
+      description: Define the pager items
       properties:
-        previous:
-          type: object
-          title: 'Previous'
-          properties:
-            href:
-              type: string
-              title: 'Previous Page URL'
-              description: 'URL for the previous page'
-            text:
-              type: string
-              title: 'Previous Text'
-              description: 'Text for the previous link'
-              default: 'Previous'
-        pages:
-          type: array
-          title: 'Pages'
-          description: 'Array of page links'
-          items:
-            type: object
-            properties:
-              href:
-                type: string
-                title: 'Page URL'
-                description: 'URL for the page'
-        next:
-          type: object
-          title: 'Next'
-          properties:
-            href:
-              type: string
-              title: 'Next Page URL'
-              description: 'URL for the next page'
-            text:
-              type: string
-              title: 'Next Text'
-              description: 'Text for the next link'
-              default: 'Next'
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
+    parameters:
+      type: string
+      title: parameters
+      description: ''

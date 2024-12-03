@@ -1,46 +1,45 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Modal
-description: 'Modal component, see Bootstrap Documentation: https://getbootstrap.com/docs/5.3/components/modal/'
+description: General/Modal component
 props:
   type: object
   properties:
-    body:
-      type: string
-      title: Body
-      description: Define the modal body text.
-      default: '<p>Modal body text goes here.</p>'
-    close_text:
-      type: string
-      title: Close Text
-      description: Define the modal close button text.
-      default: 'Close'
     button_text:
       type: string
-      title: Button Text
-      description: Define the modal button text.
-      default: 'Launch demo modal'
-    id:
+      title: button_text
+      description: Text for the trigger button
+    modal_name:
       type: string
-      title: ID
-      description: Define the modal id.
-      default: 'exampleModal'
-    save_text:
-      type: string
-      title: Save Text
-      description: Define the modal save button text.
-      default: 'Save Changes'
+      title: modal_name
+      description: Unique identifier for the modal
     title:
       type: string
-      title: Title
-      description: Define the modal title.
-      default: 'Modal title'
-    modifier:
+      title: title
+      description: Modal header title
+    body:
       type: string
-      title: Modifier
-      description: Define the modal modifier class for button.
-      default: 'btn-primary'
-
+      title: body
+      description: Modal content body
+    close_button:
+      type: string
+      title: close_button
+      description: Text for the close button
+    save_button:
+      type: object
+      title: save_button
+      description: Configuration for the save button
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
 libraryOverrides:
+  js:
+    modal.behavior.js:
+      attributes:
+        async: false
+        defer: true
   dependencies:
-    - drupalx_theme/bootstrap-js
-    - drupalx_theme/button
+    - core/drupal

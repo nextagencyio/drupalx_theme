@@ -12,7 +12,7 @@
     {% embed 'drupalx_theme:card-group' with {
       section_title: content.field_title|render,
       content: content,
-      columns: content.field_card['#items']|length } only %}
+      columns: content.field_card['#items']|length ~ '' } only %}
       {% block card_items %}
         {% for i in content.field_card['#items'] %}
           <div class="col-sm-6 col-lg-4 mb-4">

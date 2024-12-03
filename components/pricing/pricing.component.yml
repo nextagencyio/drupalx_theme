@@ -1,85 +1,29 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Pricing
-description: 'Pricing section with multiple pricing cards.'
+description: Editorial/Pricing component
 props:
   type: object
   properties:
     eyebrow:
       type: string
-      title: Eyebrow
-      description: The small heading above the main title of the section.
-      default: 'Tagline'
+      title: eyebrow
+      description: Text displayed above the main title
+      default: Choose Your Plan
     title:
       type: string
-      title: Title
-      description: The main title of the pricing section.
-      default: 'Pricing plan'
+      title: title
+      description: Main heading for the pricing section
+      default: Compare Our Options
     summary:
       type: string
-      title: Summary
-      description: A short summary or description of the pricing section.
-      default: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>'
-    cards:
-      type: array
-      title: Cards
-      description: List of pricing cards to be displayed in the section.
-      items:
-        type: object
-        properties:
-          eyebrow:
-            type: string
-            title: Card Eyebrow
-            description: The small heading above the main title of the card.
-            default: ''
-          title:
-            type: string
-            title: Card Title
-            description: The main title of the pricing card.
-            default: ''
-          monthly_label:
-            type: string
-            title: Monthly Label
-            description: The label indicating the billing period (e.g., "month").
-            default: ''
-          features:
-            type: array
-            title: Card Features
-            description: List of features included in the pricing plan.
-            items:
-              type: string
-            default: []
-          cta_text:
-            type: string
-            title: Call to Action Text
-            description: The text displayed on the call-to-action button.
-            default: 'Get Started'
-          cta_link:
-            type: string
-            title: Call to Action Link
-            description: The URL the call-to-action button points to.
-            default: '#'
-          includes_label:
-            type: string
-            title: Includes Label
-            description: The label for the features section on the card.
-            default: 'Includes'
-          modifier:
-            type: string
-            title: Card Modifier
-            description: Modifier class for the pricing card.
-            default: ''
-          media:
-            type: string
-            title: Card Media
-            description: Media content HTML (e.g., image or icon) for the card.
-            default: ''
+      title: summary
+      description: Summary text below the title
+      default: Select the best option for your needs
     grid_columns:
-      type: integer
-      title: Grid Columns
-      description: Number of grid columns.
-libraryOverrides:
-  dependencies:
-    - drupalx_theme/card
-    - drupalx_theme/heading
-    - drupalx_theme/button
-    - drupalx_theme/icon
+      type: string
+      title: grid_columns
+      description: Number of columns in the grid (2 or 3)
+      enum:
+        - '2'
+        - '3'
+      default: 3

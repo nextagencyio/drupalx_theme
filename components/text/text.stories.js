@@ -29,7 +29,7 @@ export default {
     },
     text_layout: {
       control: 'select',
-      options: ['default', 'centered', 'buttons-right'],
+      options: ['left', 'centered', 'buttons-right'],
       description: 'Layout configuration for the text block'
     },
     className: {
@@ -52,7 +52,7 @@ Default.args = {
     url: '#',
     text: 'Learn more'
   },
-  text_layout: 'default',
+  text_layout: 'left',
   className: ''
 };
 

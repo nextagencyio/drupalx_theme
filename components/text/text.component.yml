@@ -1,26 +1,63 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
-name: Text
-description: 'Text Block component used in editorial theming.'
+name: Text Block
+description: Editorial/Text Block component
 props:
   type: object
   properties:
-    body:
+    eyebrow:
       type: string
-      title: Body Text
-      description: Define the Text Block copy.
-      default: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><p>Nulla velit purus, varius quis velit aliquet, lobortis venenatis mauris.</p>'
+      title: eyebrow
+      description: Optional eyebrow text displayed above the title
     title:
       type: string
-      title: Title
-      description: Define the Text Block heading title.
-      default: 'Title Lorem Ipsum Dolor'
-    modifier:
+      title: title
+      description: Main title of the text block
+    heading:
+      type: object
+      title: heading
+      description: Optional heading object that overrides the title
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
+    body:
       type: string
-      title: Modifier
-      description: Define the Text Block modifier class.
-      default: 'col-10 p-4'
-
-libraryOverrides:
-  dependencies:
-    - drupalx_theme/button
-    - drupalx_theme/heading
+      title: body
+      description: Main content of the text block
+    link:
+      type: object
+      title: link
+      description: Primary button/link configuration
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
+    link2:
+      type: object
+      title: link2
+      description: Secondary button/link configuration
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
+    text_layout:
+      type: string
+      title: text_layout
+      description: Layout configuration for the text block
+      enum:
+        - left
+        - centered
+        - buttons-right
+    className:
+      type: string
+      title: className
+      description: Additional CSS classes for the container

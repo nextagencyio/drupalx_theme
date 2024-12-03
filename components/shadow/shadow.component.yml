@@ -1,4 +1,22 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Shadow
-status: experimental
-description: 'Shadow component for general use cases.'
+description: General/Shadow component
+props:
+  type: object
+  properties:
+    variant:
+      type: string
+      title: variant
+      description: ''
+      enum:
+        - sm
+        - regular
+        - lg
+    background:
+      type: string
+      title: background
+      description: ''
+    additional_classes:
+      type: string
+      title: additional_classes
+      description: ''

@@ -2,7 +2,7 @@
   set link = content.field_link[0] ? {
     url: content.field_link[0]['#url']|render,
     title: content.field_link[0]['#title']|render,
-  } : null
+  } : {}
 %}
 
 {% embed 'drupalx_theme:pricing-card' with {
