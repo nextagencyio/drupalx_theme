@@ -6,7 +6,7 @@
 #}
 <div class="{{ modifier }}">
 	<ul class="flex flex-wrap justify-center space-x-4 md:justify-end">
-		{% for link in menu_items %}
+		{% for link in items %}
 			{% if link.url %}
 				<li>
 					<a href="{{ link.url }}" class="text-muted-foreground hover:text-foreground {{ item_modifier }}">

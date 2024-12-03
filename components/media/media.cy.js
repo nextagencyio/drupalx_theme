@@ -1,27 +1,62 @@
 describe('Media Component', () => {
-  beforeEach(() => {
-    cy.visit('/iframe.html?args=&id=editorial-media--media&viewMode=story');
-  });
+  context('Default Image Story', () => {
+    beforeEach(() => {
+      cy.visit('/iframe.html?id=editorial-media--default');
+    });
 
-  it('should render the media component correctly', () => {
-    cy.get('.media img').should('have.attr', 'src', './images/card.webp');
-    cy.get('.media img').should('have.class', 'img-fluid');
-    cy.get('.media img').should('have.class', 'rounded');
-    cy.get('.media img').should('have.attr', 'alt', 'test image');
-  });
+    it('renders the default image story correctly', () => {
+      cy.get('img')
+        .should('exist')
+        .and('have.attr', 'src', './images/card.webp')
+        .and('have.attr', 'alt', 'Example image')
+        .and('have.attr', 'width', '1280')
+        .and('have.attr', 'height', '720');
+    });
 
-  context('Responsive Design Tests', () => {
-    const sizes = ['iphone-6', 'ipad-2'];
+    it('applies the correct width modifier class', () => {
+      cy.get('div').first().should('have.class', 'w-1/2');
+    });
 
-    sizes.forEach((size) => {
-      it(`should display correctly on ${size}`, () => {
-        cy.viewport(size);
-        cy.get('.media img').should('be.visible').and(($img) => {
-          const width = $img.width();
-          const parentWidth = $img.parent().width();
-          expect(width).to.equal(parentWidth);
-        });
+    it('maintains aspect ratio of the image', () => {
+      cy.get('img').should(($img) => {
+        const aspectRatio = $img[0].width / $img[0].height;
+        expect(aspectRatio).to.be.closeTo(1280 / 720, 0.1);
       });
+    });
+  });
+
+  context('Video Story', () => {
+    beforeEach(() => {
+      cy.visit('/iframe.html?id=editorial-media--video');
+    });
+
+    it('renders the iframe for video correctly', () => {
+      cy.get('iframe')
+        .should('exist')
+        .and('have.attr', 'width', '560')
+        .and('have.attr', 'height', '315')
+        .and('have.attr', 'title', 'YouTube video player');
+    });
+
+    it('has correct YouTube embed URL', () => {
+      cy.get('iframe')
+        .should('have.attr', 'src')
+        .and('include', 'youtube.com/embed/')
+        .and('include', 'I95hSyocMlg');
+    });
+
+    it('has necessary iframe attributes for security and functionality', () => {
+      cy.get('iframe').should('have.attr', 'allow').and('include', 'accelerometer')
+        .and('include', 'autoplay')
+        .and('include', 'clipboard-write')
+        .and('include', 'encrypted-media')
+        .and('include', 'gyroscope')
+        .and('include', 'picture-in-picture')
+        .and('include', 'web-share');
+    });
+
+    it('uses full width when no modifier is provided', () => {
+      cy.get('div').first().should('have.class', 'w-full');
     });
   });
 });

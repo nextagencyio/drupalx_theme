@@ -163,8 +163,10 @@ function drupalx_theme_preprocess_block(array &$variables) {
 
   // Add logo to footer.
   if (isset($variables['elements']['#id']) && $variables['elements']['#id'] == 'footer') {
+    $config = \Drupal::config('system.site');
     $theme_path = \Drupal::service('extension.list.theme')->getPath('drupalx_theme');
     $variables['site_logo'] = '/' . $theme_path . '/static/images/logo.svg';
+    $variables['site_name'] = $config->get('name');
   }
 }
 

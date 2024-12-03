@@ -18,7 +18,7 @@
   {{ title_prefix }}
   {{ title_suffix }}
 
-  {% embed 'drupalx_theme:site-footer' with { content: content, site_logo: site_logo, modifier: "", attributes: attributes } only %}
+  {% embed 'drupalx_theme:site-footer' with { content: content, site_name: site_name, site_logo: site_logo, modifier: "", attributes: attributes } only %}
     {% block content %}
       {{ content }}
     {% endblock %}

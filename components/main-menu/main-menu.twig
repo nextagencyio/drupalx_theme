@@ -25,7 +25,7 @@
 	<div class="container mx-auto px-4">
 		<div class="flex items-center justify-between h-16">
 			<a href="/" class="flex items-center text-2xl font-bold">
-				<img src="{{ site_logo }}" alt="{{ site_name }}" class="mr-2" width="{{ site_logo_width|default(200) }}" height="{{ site_logo_height|default(100) }}">
+				<img src="{{ site_logo }}" alt="{{ site_name }}" class="mr-2" width="{{ site_logo_width|default(150) }}" height="{{ site_logo_height|default(100) }}">
 				{% if show_site_name and site_name %}
 					<span class="text-2xl">
 						{% for line in site_name|split('\n') %}
