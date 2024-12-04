@@ -5,7 +5,7 @@
   } : {}
 %}
 
-{% embed 'drupalx_theme:pricing-card' with {
+{% embed '@drupalx_theme/pricing/pricing-card.twig' with {
   "title": content.field_title|render,
   "eyebrow": content.field_eyebrow|render,
   "features": content.field_features_text|render|striptags|trim|split('\n'),

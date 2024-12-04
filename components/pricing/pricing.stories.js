@@ -22,6 +22,10 @@ export default {
       options: [2, 3],
       defaultValue: 3
     },
+    cards: {
+      description: 'Array of pricing cards to display',
+      control: 'object',
+    }
   }
 };
 
