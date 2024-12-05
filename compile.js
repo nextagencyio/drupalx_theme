@@ -1,4 +1,3 @@
-// compile.js
 const sass = require('sass');
 const fs = require('fs');
 const path = require('path');
@@ -37,20 +36,44 @@ const compileSass = (file) => {
   console.log(`Compiled ${file} to ${outputFile}`);
 };
 
+const copyJsFiles = () => {
+  // Create dist/js directory if it doesn't exist
+  const jsOutputDir = path.join('dist', 'js');
+  fs.mkdirSync(jsOutputDir, { recursive: true });
+
+  // Get all JS files from src/js
+  const jsFiles = glob.sync('src/js/**/*.js');
+
+  jsFiles.forEach(file => {
+    const fileName = path.basename(file);
+    const outputFile = path.join(jsOutputDir, fileName);
+
+    // Copy the file to dist/js
+    fs.copyFileSync(file, outputFile);
+    console.log(`Copied ${file} to ${outputFile}`);
+  });
+};
+
 const file = process.argv.slice(2).join(' '); // Get the file path from command line arguments
 
-console.log(`Compiling ${file}`);
+console.log(`Processing files...`);
 
 if (file) {
-  compileSass(file);
-
-  // We need to update bootstrap again.
-  if (!file.endsWith('bootstrap.scss')) {
-    compileSass('src/scss/bootstrap.scss');
+  // If a specific file is provided, process only that file
+  if (file.endsWith('.scss')) {
+    compileSass(file);
+  } else if (file.endsWith('.js')) {
+    const fileName = path.basename(file);
+    const outputFile = path.join('dist', 'js', fileName);
+    fs.mkdirSync(path.join('dist', 'js'), { recursive: true });
+    fs.copyFileSync(file, outputFile);
+    console.log(`Copied ${file} to ${outputFile}`);
   }
-}
-else {
-  // Compile all .scss files in the components and src/scss directories
+} else {
+  // Process all .scss files in the components and src/scss directories
   const sassFiles = glob.sync('{components/**/*.scss,src/scss/**/*.scss}');
   sassFiles.forEach(compileSass);
+
+  // Process all .js files in src/js
+  copyJsFiles();
 }

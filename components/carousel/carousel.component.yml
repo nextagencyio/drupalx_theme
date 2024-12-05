@@ -1,50 +1,33 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
-name: Carousel
-description: 'Carousel component, used for showcasing a slider of images with captions.'
+name: First Slide
+description: First Slide component
 props:
   type: object
   properties:
-    id:
+    items:
+      type: object
+      title: items
+      description: Define the array of carousel items
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
+    class:
       type: string
-      title: ID
-      description: Unique ID for the carousel component.
-      default: single
-    list:
-      type: array
-      title: List
-      description: An array of carousel items. Each item includes an image, title, and caption.
-      items:
-        type: object
-        properties:
-          active:
-            type: boolean
-            title: Active
-            description: Indicates whether the slide is active.
-            default: false
-          image:
-            type: string
-            title: Image
-            description: HTML string containing the image source and attributes for the slide.
-          title:
-            type: string
-            title: Title
-            description: Title or label for the slide.
-            default: ''
-          caption:
-            type: string
-            title: Caption
-            description: Caption text for the slide.
-            default: ''
-
+      title: class
+      description: Additional CSS classes for the carousel container
+    item_class:
+      type: string
+      title: item_class
+      description: Additional CSS classes for each carousel item
 libraryOverrides:
   js:
-    carousel.behavior.js: {
-      attributes: {
-        async: false,
+    carousel.behavior.js:
+      attributes:
+        async: false
         defer: true
-      }
-    }
   dependencies:
     - core/drupal
-    - drupalx_theme/bootstrap-js
-    - drupalx_theme/heading

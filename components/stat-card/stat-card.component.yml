@@ -1,0 +1,37 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Stat
+description: General/Stat component
+props:
+  type: object
+  properties:
+    type:
+      type: string
+      title: type
+      description: Component type
+    heading:
+      type: string
+      title: heading
+      description: Stat heading
+    body:
+      type: string
+      title: body
+      description: Stat text
+    icon:
+      type: string
+      title: icon
+      description: Material icon name
+    modifier:
+      type: string
+      title: modifier
+      description: CSS modifier classes
+    border:
+      type: boolean
+      title: border
+      description: Show border styling
+    layout:
+      type: string
+      title: layout
+      description: Layout variation
+      enum:
+        - center
+        - left

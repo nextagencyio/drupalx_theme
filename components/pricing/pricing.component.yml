@@ -1,0 +1,74 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Pricing
+description: Editorial/Pricing component
+props:
+  type: object
+  properties:
+    eyebrow:
+      type: string
+      title: eyebrow
+      description: Text displayed above the main title
+      default: Choose Your Plan
+    title:
+      type: string
+      title: title
+      description: Main heading for the pricing section
+      default: Compare Our Options
+    summary:
+      type: string
+      title: summary
+      description: Summary text below the title
+      default: Select the best option for your needs
+    grid_columns:
+      type: string
+      title: grid_columns
+      description: Number of columns in the grid (2 or 3)
+      enum:
+        - '2'
+        - '3'
+      default: 3
+    cards:
+      type: object
+      title: cards
+      description: Array of pricing cards to display
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
+      default:
+        - eyebrow: DrupalX CMS
+          title: Free
+          monthly_label: ''
+          features:
+            - Full access to open source features
+            - Community support
+            - Documentation
+          cta_link:
+            url: '#'
+            title: Get Started
+          includes_label: Includes
+        - eyebrow: Technical Discovery
+          title: $5,000
+          monthly_label: ''
+          features:
+            - Comprehensive needs assessment
+            - Custom solution design
+            - Implementation roadmap
+          cta_link:
+            url: '#'
+            title: Book Discovery
+          includes_label: Includes
+        - eyebrow: Full Project Build
+          title: Contact
+          monthly_label: ''
+          features:
+            - End-to-end project management
+            - Custom development
+            - Ongoing support
+          cta_link:
+            url: '#'
+            title: Contact Sales
+          includes_label: Includes

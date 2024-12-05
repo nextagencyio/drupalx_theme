@@ -1,0 +1,79 @@
+{% import _self as macros %}
+
+{% macro render_content(eyebrow, title, body) %}
+  {% if eyebrow %}
+    <h6 class="text-eyebrow text-sm font-semibold uppercase tracking-wide text-gray-500">{{ eyebrow }}</h6>
+  {% endif %}
+
+  {% if title %}
+    <h2 class="text-title mt-2 text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">{{ title }}</h2>
+  {% endif %}
+
+  {% if body %}
+    <div class="text-body mt-4 text-xl text-gray-500">
+      {{ body|raw }}
+    </div>
+  {% endif %}
+{% endmacro %}
+
+{% macro render_buttons(link1, link2, text_layout) %}
+  {% if link1.url or link2.url %}
+    {% set buttonContainerClasses = 'text-buttons mt-6 flex' %}
+
+    {% if text_layout == 'centered' %}
+      {% set buttonContainerClasses = buttonContainerClasses ~ ' justify-center' %}
+    {% elseif text_layout == 'buttons-right' %}
+      {% set buttonContainerClasses = buttonContainerClasses ~ ' justify-start lg:justify-end' %}
+    {% else %}
+      {% set buttonContainerClasses = buttonContainerClasses ~ ' justify-start' %}
+    {% endif %}
+
+    <div class="{{ buttonContainerClasses }}">
+      {% if link1.url %}
+        {% include '@drupalx_theme/button/button.twig' with {
+					"url": link1.url,
+					"text": link1.text ? link1.text : 'Read more'|t,
+					"modifier": "text-primary-link mr-4",
+					"variant": "default"
+        } only %}
+      {% endif %}
+
+      {% if link2.url %}
+        {% include '@drupalx_theme/button/button.twig' with {
+					"url": link2.url,
+					"text": link2.text ? link2.text : 'Read more'|t,
+					"modifier": "text-secondary-link",
+					"variant": "secondary"
+        } only %}
+      {% endif %}
+    </div>
+  {% endif %}
+{% endmacro %}
+
+<div class="text-container container mx-auto my-6 lg:my-25 {{ className }}">
+  {% if text_layout == 'buttons-right' %}
+    <div class="lg:flex lg:items-start lg:justify-between">
+      <div class="max-w-4xl lg:flex-grow">
+        {{ macros.render_content(eyebrow, title, body) }}
+      </div>
+
+      {% if link.url or link2.url %}
+        <div class="lg:ml-8 lg:flex-shrink-0 lg:self-start">
+          {{ macros.render_buttons(link, link2, text_layout) }}
+        </div>
+      {% endif %}
+    </div>
+  {% else %}
+    <div class="max-w-4xl {{ text_layout == 'centered' ? 'mx-auto text-center' : '' }}">
+      {{ macros.render_content(eyebrow, heading ?: title, body) }}
+
+      {% if heading and text_layout != 'buttons-right' %}
+        {% include '@drupalx_theme/heading/heading.twig' with {
+          "heading": heading
+        } only %}
+      {% endif %}
+
+      {{ macros.render_buttons(link, link2, text_layout) }}
+    </div>
+  {% endif %}
+</div>

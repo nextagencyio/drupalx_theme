@@ -1,0 +1,24 @@
+{%
+  set classes = []
+%}
+
+<div{{attributes.addClass(classes)}}>
+	{{ title_prefix }}
+	{{ title_suffix }}
+	{% block content %}
+		{% include 'drupalx_theme:hero' with {
+      hero_layout: content.field_hero_layout['#items'].getString(),
+      media: content.field_media|render,
+      heading: content.field_heading|render,
+      summary: content.field_summary|render,
+      link: content.field_link[0]['#url'] ? {
+        url: content.field_link[0]['#url']|render,
+        title: content.field_link[0]['#title']|render,
+      } : {},
+      link2: content.field_link2[0]['#url'] ? {
+        url: content.field_link2[0]['#url']|render,
+        title: content.field_link2[0]['#title']|render,
+      } : {},
+    } only %}
+	{% endblock %}
+</div>

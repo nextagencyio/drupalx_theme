@@ -1,49 +1,57 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Popover
-status: experimental
-description: 'Popover component, see Bootstrap Documentation: https://getbootstrap.com/docs/5.3/components/popovers/'
+description: Messages/Popover component
 props:
   type: object
   properties:
     title:
       type: string
-      title: Title
-      description: Title text for the popover.
-      default: ''
+      title: title
+      description: Title text for the popover
     content:
       type: string
-      title: Content
-      description: Content for the popover.
-      default: ''
+      title: content
+      description: Content text for the popover
     placement:
       type: string
-      title: Placement
-      description: Positioning of the popover.
+      title: placement
+      description: Position of the popover relative to the trigger
       enum:
         - top
         - bottom
         - left
         - right
-      default: top
     trigger:
       type: string
-      title: Trigger
-      description: How the popover is triggered.
+      title: trigger
+      description: Trigger action for the popover
       enum:
         - click
         - hover
-        - focus
-        - manual
-      default: click
-    boundary:
+    buttonVariant:
       type: string
-      title: Boundary
-      description: Element boundary to constrain the popover.
+      title: buttonVariant
+      description: Visual style of the trigger button
       enum:
-        - scrollParent
-        - window
-        - viewport
-      default: scrollParent
-    popover_attributes:
-      type: Drupal\Core\Template\Attribute
-      title: Attributes
-      description: A list of HTML attributes for the popover.
+        - default
+        - destructive
+        - outline
+        - secondary
+        - ghost
+        - link
+    buttonText:
+      type: string
+      title: buttonText
+      description: Text displayed on the trigger button
+    className:
+      type: string
+      title: className
+      description: Additional classes for the popover content
+libraryOverrides:
+  js:
+    popover.behavior.js:
+      attributes:
+        async: false
+        defer: true
+  dependencies:
+    - core/drupal

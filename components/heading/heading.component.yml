@@ -1,32 +1,6 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Heading
-description: 'Heading component, provides various heading levels and modifiers.'
+description: General/Heading component
 props:
   type: object
-  properties:
-    title:
-      type: string
-      title: Title
-      description: The text to display as the heading.
-      default: 'Title Lorem Ipsum Dolor'
-    level:
-      type: string
-      title: Heading Level
-      description: The HTML tag level for the heading.
-      enum:
-        - h1
-        - h2
-        - h3
-        - h4
-        - h5
-        - h6
-      default: 'h2'
-    modifier:
-      type: string
-      title: Modifier Class
-      description: Additional modifier class for styling the heading.
-      default: 'display-3'
-    attributes:
-      type: Drupal\Core\Template\Attribute
-      title: Attributes
-      description: A list of HTML attributes for the heading.
+  properties: {}

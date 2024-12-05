@@ -1,0 +1,29 @@
+{%
+  set classes = []
+%}
+
+{%
+  set link = content.field_link[0] ? {
+    url: content.field_link[0]['#url']|render,
+    title: content.field_link[0]['#title']|render,
+  } : {}
+%}
+
+<div{{attributes.addClass(classes)}}>
+	{{ title_prefix }}
+	{{ title_suffix }}
+
+	{% block content %}
+		{%
+      include 'drupalx_theme:sidebyside' with {
+        title: content.field_title|render,
+        eyebrow: content.field_eyebrow|render,
+        summary: content.field_summary|render,
+        link: link,
+        media: content.field_media,
+        layout: content.field_sidebyside_layout['#items'].getString() ?? 'left',
+        features: features
+      } only
+    %}
+	{% endblock %}
+</div>

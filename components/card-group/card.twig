@@ -1,0 +1,70 @@
+<div class="rounded-xl border bg-card text-card-foreground shadow card h-full flex flex-col">
+	{% block card_media %}
+		{% if media %}
+			<div class="relative">
+				{% if media_link %}
+					<a href="{{ media_link }}" class="block">
+					{% endif %}
+					<div class="aspect-w-16 aspect-h-9">
+						{{ media }}
+					</div>
+					{% if media_link %}
+					</a>
+				{% endif %}
+			</div>
+		{% endif %}
+	{% endblock %}
+
+	<div class="flex-grow p-6 {% if body_modifier %}{{ body_modifier }}{% endif %}">
+		{% if tags %}
+			<ul class="flex flex-wrap gap-2 mb-4">
+				{% for tag in tags %}
+					<li class="inline-flex">
+						{% include '@drupalx_theme/badge/badge.twig' with {
+              "tag": tag,
+              "modifier": 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+            } only %}
+					</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+
+		<div class="space-y-1.5">
+			{%
+        include '@drupalx_theme/heading/heading.twig' with {
+          "heading": {
+            "title": heading.title,
+            "url": heading.url,
+            "modifier": "card-title text-xl font-semibold leading-none tracking-tight"
+          }
+        } only
+      %}
+			{% if summary_text %}
+				<p class="card-text text-sm text-muted-foreground">
+					{{ summary_text }}
+				</p>
+			{% endif %}
+		</div>
+
+		{% if link.url or link2.url %}
+			<div class="flex flex-wrap gap-2 mt-6">
+				{% if link.url %}
+					{% include '@drupalx_theme/button/button.twig' with {
+						"url": link.url,
+						"text": link.text,
+						"icon": 'arrow-right',
+						"modifier": ''
+          } only %}
+				{% endif %}
+				{% if link2.url %}
+					{% include '@drupalx_theme/button/button.twig' with {
+						"url": link2.url,
+						"text": link2.text,
+						"icon": 'arrow-right',
+						"modifier": ''
+          } only %}
+				{% endif %}
+			</div>
+		{% endif %}
+	</div>
+</div>

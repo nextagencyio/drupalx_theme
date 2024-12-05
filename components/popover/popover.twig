@@ -1,4 +1,51 @@
+{# popover.html.twig #}
+{% set defaults = {
+    title: 'Popover title',
+    content: 'And here\'s some amazing content. It\'s very engaging. Right?',
+    placement: 'bottom',
+    trigger: 'click',
+    buttonVariant: 'destructive',
+    buttonText: 'Click to toggle popover',
+    buttonAttributes: {},
+    className: 'w-80'
+} %}
 
-<div class="popover-example">
-  <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" data-bs-title="Popover title" data-bs-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
+{% set props = defaults|merge(props|default({})) %}
+
+{% set variantClasses = {
+    'default': 'bg-primary text-primary-foreground hover:bg-primary/90',
+    'destructive': 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
+    'outline': 'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
+    'secondary': 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+    'ghost': 'hover:bg-accent hover:text-accent-foreground',
+    'link': 'text-primary underline-offset-4 hover:underline'
+} %}
+
+{% set buttonClass = variantClasses[props.buttonVariant] ?? variantClasses.default %}
+
+<div class="relative inline-block" data-popover>
+  <button
+    type="button"
+    class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-9 px-4 py-2 {{ buttonClass }}"
+    data-popover-trigger
+    data-placement="{{ props.placement }}"
+    data-trigger="{{ props.trigger }}"
+    {% for attr, value in props.buttonAttributes %}
+        {{ attr }}="{{ value }}"
+    {% endfor %}
+  >
+    {{ props.buttonText }}
+  </button>
+  <div
+    class="hidden absolute z-50 bg-popover text-popover-foreground rounded-md border shadow-md {{ props.className }}"
+    data-popover-content
+    data-placement="{{ props.placement }}"
+  >
+    <div class="grid gap-4 p-4">
+      <div class="space-y-2">
+        <h4 class="font-medium leading-none">{{ props.title }}</h4>
+        <p class="text-sm text-muted-foreground">{{ props.content }}</p>
+      </div>
+    </div>
+  </div>
 </div>

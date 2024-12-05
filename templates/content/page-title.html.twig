@@ -13,15 +13,15 @@
  */
 #}
 {% if title %}
-  <div class="container {{ hide ? 'd-none' : '' }} mb-8">
-    {%
+	<div class="container mx-auto {{ hide ? 'hidden' : '' }} mb-8">
+		{%
       include 'drupalx_theme:heading' with {
         "heading": {
           "title": title,
           "heading_level": 1,
-          "modifier": "display-2"
+          "modifier": "text-4xl font-bold"
         }
       } only
     %}
-  </div>
+	</div>
 {% endif %}

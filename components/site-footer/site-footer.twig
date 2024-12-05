@@ -1,26 +1,63 @@
+{#
+/**
+ * @param {Object} props - Component properties
+ * @param {Array} props.links - Array of link objects with title and url properties
+ * @param {string} props.site_logo - URL of the site logo
+ * @param {number} props.site_logo_width - Width of the site logo in pixels
+ * @param {number} props.site_logo_height - Height of the site logo in pixels
+ * @param {string} props.site_name - Name of the site
+ * @param {boolean} props.show_logo - Whether to show the logo or not
+ * @param {number} props.current_year - Current year, defaults to current year
+ */
+#}
 
-<div class="bg-black px-2 py-4 {{ modifier }}">
-  <div class="container">
-    <div class="row d-lg-flex flex-wrap justify-content-lg-between align-items-center">
-      <div class="col-lg-3 footer-logo mb-2">
-        {%
-          include '@drupalx_theme/logo/logo.twig' with { site_logo: site_logo } only
-        %}
-      </div>
-      <div class="col-lg-8 text-right justify-lg-content-end">
-        <div class="mb-2">
-          {% block content %}
-            {%
-              include '@drupalx_theme/menu/menu.twig' with {
-                modifier: "d-lg-flex justify-content-lg-end",
-                menu_items: links,
-                item_modifier: link_item_modifier,
-                attributes: attributes
-              } only
-            %}
-          {% endblock %}
-        </div>
-      </div>
+{% set props = {
+  links: links|default([]),
+  site_logo: site_logo|default(''),
+  site_logo_width: site_logo_width|default(200),
+  site_logo_height: site_logo_height|default(null),
+  site_name: site_name|default(''),
+  show_logo: show_logo|default(true),
+  current_year: current_year|default("now"|date("Y"))
+} %}
+
+<footer class="container mx-auto px-4">
+  <hr class="my-4"/>
+  <div class="flex flex-col items-center space-y-4 pt-3 pb-10 md:flex-row md:justify-between md:space-y-0">
+    {# Left Section #}
+    <div class="text-center md:text-left md:w-1/3">
+      <p class="text-muted-foreground">© {{ props.current_year }} {{ props.site_name }}</p>
     </div>
+
+    {# Center Section #}
+    <div class="flex justify-center md:w-1/3">
+      <a href="/" class="flex items-center justify-center">
+        {% if props.show_logo and props.site_logo %}
+          <img
+            src="{{ props.site_logo }}"
+            width="{{ props.site_logo_width }}"
+            {% if props.site_logo_height %}height="{{ props.site_logo_height }}"{% endif %}
+            alt="{{ props.site_name }}"
+          />
+        {% endif %}
+      </a>
+    </div>
+
+    {# Right Section #}
+    <nav class="md:w-1/3">
+      {% block content %}
+        <ul class="flex flex-wrap justify-center space-x-4 md:justify-end">
+          {% for link in props.links %}
+            {% if link.url %}
+              <li>
+                <a href="{{ link.url }}" class="text-muted-foreground hover:text-foreground">
+                  {{ link.title }}
+                </a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endblock %}
+    </nav>
   </div>
-</div>
+</footer>

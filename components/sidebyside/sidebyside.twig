@@ -1,0 +1,57 @@
+<div class="flex flex-col lg:flex-row items-center justify-between gap-6 {{ modifier ?? 'container my-6 lg:my-25' }} {{ layout == 'right' ? 'lg:flex-row-reverse' : '' }}">
+	<div class="w-full lg:w-1/2">
+		{{ media }}
+	</div>
+	<div class="w-full lg:w-1/2 xl:w-5/12 flex flex-col gap-4">
+		{% if eyebrow %}
+			<div class="flex">
+				{% include '@drupalx_theme/badge/badge.twig' with {
+          tag: eyebrow,
+          modifier: 'sidebyside-badge uppercase inline-flex',
+					variant: 'secondary'
+        } only %}
+			</div>
+		{% endif %}
+
+		<h2 class="text-3xl font-bold">{{ title }}</h2>
+
+		{% if summary %}
+			<div class="mb-2 lg:mb-4">
+				{{ summary }}
+			</div>
+		{% endif %}
+
+		{% if features and features|length > 0 %}
+			{% set isStatType = features[0].type == 'stats_item' %}
+			<div class="{{ isStatType ? 'flex flex-col sm:flex-row gap-4 mb-6' : 'mb-6 space-y-4' }}">
+				{% for feature in features %}
+					{% if feature.type == 'stats_item' %}
+						{% include '@drupalx_theme/stat-card/stat-card.twig' with {
+              heading: feature.heading,
+              body: feature.body,
+              icon: feature.icon,
+              media: feature.media,
+							layout: 'left',
+							border: false,
+            } only %}
+					{% else %}
+						<div class="flex items-start gap-4">
+							<i data-lucide="{{ feature.icon }}" width="24" height="24" class="mt-[-2px]"></i>
+							<span class="flex-1">{{ feature.summary|raw }}</span>
+						</div>
+					{% endif %}
+				{% endfor %}
+			</div>
+		{% endif %}
+
+		{% if link.url %}
+			<div class="flex">
+				{% include '@drupalx_theme/button/button.twig' with {
+					url: link.url,
+					text: link.title ?? 'Read more',
+					modifier: 'btn-default'
+        } only %}
+			</div>
+		{% endif %}
+	</div>
+</div>

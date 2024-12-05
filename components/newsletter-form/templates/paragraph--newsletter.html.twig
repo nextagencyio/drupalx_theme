@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Theme override to display a block.
+ *
+ * @see template_preprocess_block()
+ */
+#}
+{%
+  set classes = []
+%}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  {% block content %}
+    {% include 'drupalx_theme:newsletter-form' with {
+      title: content.field_title|render,
+      summary: content.field_summary|render,
+    } only %}
+  {% endblock %}
+</div>

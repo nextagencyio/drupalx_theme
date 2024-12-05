@@ -1,4 +1,3 @@
-import './logo.scss';
 import LogoTemplate from './logo.twig';
 
 export default {

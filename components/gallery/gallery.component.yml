@@ -1,0 +1,37 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Gallery
+description: Editorial/Gallery component
+props:
+  type: object
+  properties:
+    section_title:
+      type: string
+      title: section_title
+      description: The title of the gallery lightbox component
+    intro_text:
+      type: string
+      title: intro_text
+      description: Optional intro text for the gallery lightbox component
+    gallery_items:
+      type: object
+      title: gallery_items
+      description: Define the array of gallery lightbox items
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
+    modifier:
+      type: string
+      title: modifier
+      description: The modifier class to apply to the gallery lightbox component
+libraryOverrides:
+  js:
+    gallery.behavior.js:
+      attributes:
+        async: false
+        defer: true
+  dependencies:
+    - core/drupal

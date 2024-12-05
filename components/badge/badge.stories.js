@@ -1,4 +1,3 @@
-import './badge.scss';
 import BadgeTemplate from './badge.twig';
 
 export default {
@@ -21,8 +20,8 @@ export default {
   }
 };
 
-export const Badge = BadgeTemplate.bind({});
-Badge.args = {
+export const Default = BadgeTemplate.bind({});
+Default.args = {
   tag: 'New feature',
-  modifier: 'text-bg-primary'
+  modifier: ''
 };

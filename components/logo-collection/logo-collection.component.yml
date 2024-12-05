@@ -1,0 +1,21 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Logo Collection
+description: Editorial/Logo Collection component
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: title
+      description: Title for the logo collection section
+    logos:
+      type: object
+      title: logos
+      description: Array of logo objects
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string

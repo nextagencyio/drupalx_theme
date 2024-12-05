@@ -1,13 +1,25 @@
-
-<div class="mb-4 {{ modifier }}">
-
-  <div class="accordion">
-    {% block accordion_items %}
-      {% for item in accordion_items %}
-        {%
-          include '@drupalx_theme/accordion/accordion-item.twig' with { item: item } only
-        %}
-      {% endfor %}
-    {% endblock %}
-  </div>
+<div class="bg-gray-100 py-6 lg:py-15">
+	<div class="container">
+		{% if title %}
+			<h2 class="scroll-m-20 text-3xl font-semibold tracking-tight text-gray-900 mb-8">
+				{{ title }}
+			</h2>
+		{% endif %}
+		<div class="mb-4">
+			<div class="bg-white rounded-lg shadow-md">
+				<div class="divide-y">
+					{% block accordion_items %}
+						{% for item in accordion_items %}
+							{%
+								include '@drupalx_theme/accordion/accordion-item.twig' with {
+									item: item,
+									is_expanded: loop.first
+								} only
+							%}
+						{% endfor %}
+					{% endblock %}
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

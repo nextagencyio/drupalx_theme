@@ -1,0 +1,8 @@
+{%
+  include '@drupalx_theme/recent-cards/recent-card-item.twig' with {
+    "media": content.field_thumbnail|render,
+    "title": label,
+    "summary": content.field_summary|render,
+    "url": url,
+  } only
+%}

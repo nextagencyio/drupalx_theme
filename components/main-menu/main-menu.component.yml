@@ -1,69 +1,53 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
-name: Main Menu
-description: 'Main menu component for site navigation.'
+name: Main Navigation
+description: Navigation/Main Navigation component
 props:
   type: object
   properties:
     modifier:
       type: string
-      title: Modifier
-      description: 'CSS modifier for the main menu.'
-      default: ''
+      title: modifier
+      description: Define the modifier class for the main menu
     link_modifier:
       type: string
-      title: Link Modifier
-      description: 'CSS modifier for the link elements.'
-      default: 'text-dark'
+      title: link_modifier
+      description: Define the modifier class for the main menu links
+    show_logo:
+      type: boolean
+      title: show_logo
+      description: Show the site logo
     site_logo:
       type: string
-      title: Site Logo
-      description: 'URL for the site logo.'
-      default: './images/logo.svg'
-    menu_items:
-      type: array
-      title: Items
-      description: 'Define the array of main menu items.'
-      items:
-        type: object
-        properties:
-          title:
-            type: string
-            title: Title
-            description: 'The text of the menu item.'
-            default: ''
-          url:
-            type: string
-            title: URL
-            description: 'The link URL for the menu item.'
-            default: '#'
-          in_active_trail:
-            type: boolean
-            title: In Active Trail
-            description: 'Indicates if the menu item is part of the active trail.'
-            default: false
-          is_expanded:
-            type: boolean
-            title: Is Expanded
-            description: 'Indicates if the menu item is expanded to show sub-items.'
-            default: false
-          below:
-            type: array
-            title: Sub-Items
-            description: 'An array of sub-items for the menu item.'
-            items:
-              type: object
-              properties:
-                title:
-                  type: string
-                  title: Title
-                  description: 'The text of the sub-menu item.'
-                  default: ''
-                url:
-                  type: string
-                  title: URL
-                  description: 'The link URL for the sub-menu item.'
-                  default: '#'
-
-libraryOverrides:
-  dependencies:
-    - drupalx_theme/bootstrap-js
+      title: site_logo
+      description: Define the path to the site logo
+    site_logo_width:
+      type: string
+      title: site_logo_width
+      description: Define the width of the site logo
+    site_logo_height:
+      type: string
+      title: site_logo_height
+      description: Define the height of the site logo
+    site_name:
+      type: string
+      title: site_name
+      description: Define the site name to display
+    show_site_name:
+      type: boolean
+      title: show_site_name
+      description: Show the site name
+    cta_link_count:
+      type: string
+      title: cta_link_count
+      description: Number of links to display as Call To Action (CTA) links
+    items:
+      type: object
+      title: items
+      description: Define the array of main menu items
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string

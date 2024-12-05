@@ -1,0 +1,38 @@
+
+{#
+/**
+ * @file
+ * Default theme implementation to display a block content.
+ *
+ * @see template_preprocess_block_content_template()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = []
+%}
+
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  {% block content %}
+    {%
+      include 'drupalx_theme:text' with {
+        text_layout: content.field_text_layout['#items'].getString() ?? 'left',
+        title: content.field_title|render,
+        eyebrow: content.field_eyebrow|render,
+        body: content.field_body|render,
+        link: content.field_link[0]['#url'] ? {
+          url: content.field_link[0]['#url']|render,
+          title: content.field_link[0]['#title']|render,
+        } : {},
+        link2: content.field_link2[0]['#url'] ? {
+          url: content.field_link2[0]['#url']|render,
+          title: content.field_link2[0]['#title']|render,
+        } : {},
+      } only
+    %}
+  {% endblock %}
+</div>

@@ -1,0 +1,18 @@
+{%
+  set classes = []
+%}
+
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {% block content %}
+    {% embed 'drupalx_theme:accordion' with {
+      content: content,
+      title: content.field_title|render,
+    } only %}
+      {% block accordion_items %}
+        {{ content.field_accordion_item }}
+      {% endblock accordion_items %}
+    {% endembed %}
+  {% endblock %}
+</div>

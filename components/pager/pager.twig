@@ -1,40 +1,69 @@
-
+{# Wrapper template that includes the pager component #}
 {% if items %}
-  <nav class="pager" role="navigation" aria-labelledby="{{ heading_id }}">
-    <h4 id="{{ heading_id }}" class="visually-hidden">{{ 'Pagination'|t }}</h4>
-    <ul class="pagination">
+  <nav class="flex items-center justify-between" role="navigation" aria-labelledby="{{ heading_id }}">
+    <h4 id="{{ heading_id }}" class="sr-only">{{ 'Pagination'|t }}</h4>
 
+    {# Previous button section #}
+    <div class="flex-1 flex justify-between sm:justify-start">
       {% if items.previous %}
-        <li class="page-item">
-          <a class="page-link" href="{{ items.previous.href }}" title="{{ 'Go to previous page' }}" rel="prev">{{ 'Previous' }}</a>
-        </li>
+        <a href="{{ items.previous.href }}" title="{{ 'Go to previous page'|t }}" rel="prev" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+          <svg class="mr-2 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          {{ 'Previous'|t }}
+        </a>
+      {% else %}
+        <button disabled class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-400 bg-gray-50 cursor-not-allowed">
+          <svg class="mr-2 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          {{ 'Previous'|t }}
+        </button>
       {% endif %}
+    </div>
 
-      {# Now generate the actual pager piece. #}
-      {% block pager_items %}
-        {% for key, item in items.pages %}
-          <li class="page-item{{ current == loop.index ? ' active' : '' }}">
-            {% if current == loop.index %}
-              {% set title = 'Current page'|t %}
-            {% else %}
-              {% set title = 'Go to page ('|t ~ key ~ ')' %}
-            {% endif %}
-            <a href="{{ item.href }}" title="{{ title }}" class="page-link {{ item.attributes.class }}">
-              <span class="visually-hidden">
-                {{ current == loop.index ? 'Current page'|t : 'Page'|t }}
-              </span>
-              {{- key -}}
-            </a>
-          </li>
-        {% endfor %}
-      {% endblock %}
+    {# Page numbers section #}
+    <div class="hidden md:flex">
+      {% for key, page in items.pages %}
+        {% if current == key %}
+          <span class="relative inline-flex items-center px-4 py-2 mx-1 border text-sm font-medium rounded-md z-10 bg-primary text-white border-primary">
+            <span class="sr-only">{{ 'Current page'|t }}</span>
+            {{- key -}}
+          </span>
+        {% else %}
+          <a href="{{ page.href }}" title="{{ 'Go to page @key'|t({'@key': key}) }}" class="relative inline-flex items-center px-4 py-2 mx-1 border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 text-sm font-medium rounded-md">
+            <span class="sr-only">{{ 'Page'|t }}</span>
+            {{- key -}}
+          </a>
+        {% endif %}
 
+        {% if not loop.last %}
+          {% if items.ellipses[key] is defined %}
+            <span class="relative inline-flex items-center px-4 py-2 mx-1 border border-gray-300 bg-white text-gray-700 text-sm font-medium rounded-md">
+              ...
+            </span>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    {# Next button section #}
+    <div class="flex-1 flex justify-end">
       {% if items.next %}
-        <li class="page-item">
-          <a class="page-link" href="{{ items.next.href }}" title="{{ 'Go to next page'|t }}" rel="next">{{ 'Next'|t }}</a>
-        </li>
+        <a href="{{ items.next.href }}" title="{{ 'Go to next page'|t }}" rel="next" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+          {{ 'Next'|t }}
+          <svg class="ml-2 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </a>
+      {% else %}
+        <button disabled class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-400 bg-gray-50 cursor-not-allowed">
+          {{ 'Next'|t }}
+          <svg class="ml-2 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
       {% endif %}
-
-    </ul>
+    </div>
   </nav>
 {% endif %}

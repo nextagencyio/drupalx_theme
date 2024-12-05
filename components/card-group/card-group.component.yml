@@ -1,105 +1,25 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Card Group
-description: 'Card Group component'
+description: Editorial/Card Group component
 props:
   type: object
   properties:
     section_title:
       type: string
-      title: Section Title
-      description: The title of the card list component.
-      default: ''
+      title: section_title
+      description: The title of the card list component
     card_items:
-      type: array
-      title: Items
-      description: Array of the card list item content.
-      items:
-        type: object
-        properties:
-          card:
-            type: object
-            properties:
-              modifier:
-                type: string
-                title: Modifier
-                description: Modifier class for the card.
-                default: ''
-              media:
-                type: string
-                title: Media
-                description: Media content HTML.
-                default: ''
-              heading:
-                type: object
-                properties:
-                  title:
-                    type: string
-                    title: Title
-                    description: The heading title of the card.
-                    default: ''
-                  heading_level:
-                    type: string
-                    title: Heading Level
-                    description: The heading level for the title.
-                    enum:
-                      - 1
-                      - 2
-                      - 3
-                      - 4
-                      - 5
-                      - 6
-                    default: 2
-                  url:
-                    type: string
-                    title: URL
-                    description: The URL for the card heading.
-                    default: '#'
-                  modifier:
-                    type: string
-                    title: Modifier
-                    description: Modifier class for the heading.
-                    default: 'card-title mb-4'
-              tags:
-                type: array
-                title: Tags
-                description: Tags for the card.
-                items:
-                  type: string
-                default: []
-              summary_text:
-                type: string
-                title: Summary Text
-                description: Summary text for the card.
-                default: ''
-              link:
-                type: object
-                properties:
-                  url:
-                    type: string
-                    title: URL
-                    description: The URL for the first link.
-                    default: '#'
-                  text:
-                    type: string
-                    title: Text
-                    description: The text for the first link.
-                    default: 'Link 1'
-              link2:
-                type: object
-                properties:
-                  url:
-                    type: string
-                    title: URL
-                    description: The URL for the second link.
-                    default: '#'
-                  text:
-                    type: string
-                    title: Text
-                    description: The text for the second link.
-                    default: 'Link 2'
-
-libraryOverrides:
-  dependencies:
-    - drupalx_theme/card
-    - drupalx_theme/heading
-    - drupalx_theme/stat
+      type: object
+      title: card_items
+      description: Array of card list items (StatCardProps | CustomCardProps)
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
+    columns:
+      type: string
+      title: columns
+      description: Number of columns to render

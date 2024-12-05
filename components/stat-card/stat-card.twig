@@ -1,0 +1,41 @@
+{#
+/**
+ * @param {string} type - Component type ('stat')
+ * @param {string} media - Optional media content
+ * @param {string} heading - Card heading
+ * @param {string} body - Optional body text
+ * @param {string} icon - Optional Lucide icon name
+ * @param {boolean} border - Whether to show border styling (default: true)
+ * @param {string} modifier - Additional CSS classes
+ * @param {string} layout - Layout alignment ('left' or 'center', default: 'center')
+ */
+#}
+
+{% set layout = layout|default('center') %}
+{% set alignment_class = layout == 'left' ? 'text-left' : 'text-center' %}
+{% set icon_class = layout == 'left' ? 'mr-auto' : 'mx-auto' %}
+{% set border = border is defined ? border : true %}
+{% set border_class = not border ? 'border-0 shadow-none px-4 py-8 h-full' : 'border shadow' %}
+{% set content_class = not border ? 'p-0' : 'p-6' %}
+
+<div class="rounded-xl bg-card text-card-foreground stat {{ alignment_class }} {{ border_class }} {{ modifier }}">
+  <div class="{{ content_class }}">
+    {% if icon %}
+      <div class="stat-icon {{ icon_class }} mb-4 max-w-[200px]">
+        <i data-lucide="{{ icon }}" width="68" height="68" class="mx-auto"></i>
+      </div>
+    {% endif %}
+
+    {% if media %}
+      <div class="stat-icon {{ icon_class }} mb-4 max-w-[200px]">
+        {{ media|raw }}
+      </div>
+    {% endif %}
+
+    <h3 class="card-title font-semibold tracking-tight mb-2 text-xl">{{ heading }}</h3>
+
+    {% if body %}
+      <p class="mb-0 text-gray-600">{{ body }}</p>
+    {% endif %}
+  </div>
+</div>

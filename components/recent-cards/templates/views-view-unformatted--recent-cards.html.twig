@@ -1,0 +1,7 @@
+{% embed '@drupalx_theme/recent-cards/recent-cards.twig' with { rows: rows } only %}
+	{% block recent_card_items %}
+    {% for row in rows %}
+      {{- row.content -}}
+    {% endfor %}
+	{% endblock %}
+{% endembed %}

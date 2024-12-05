@@ -1,36 +1,33 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
-name: Accordion Group
-description: 'Accordion group component for displaying collapsible content sections.'
+name: Accordion
+description: Editorial/Accordion component
 props:
   type: object
   properties:
+    title:
+      type: string
+      title: title
+      description: Title for the accordion group
     modifier:
       type: string
-      title: Modifier
-      description: Modifier class for the accordion group.
+      title: modifier
+      description: Modifier class for the accordion group
     accordion_items:
-      type: array
-      title: Items
-      description: List of accordion items.
-      default: [{}]
-      items:
-        type: object
-        properties:
-          heading:
-            type: string
-            title: Title
-            description: Title of the accordion item.
-          content:
-            type: string
-            title: Content
-            description: Content of the accordion item.
-          accordion_instance:
-            type: string
-            title: Accordion Instance
-            description: Unique identifier for the accordion item.
-            default: ''
-
+      type: object
+      title: accordion_items
+      description: Define the list of items containing the title and content of each accordion
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
 libraryOverrides:
+  js:
+    accordion.behavior.js:
+      attributes:
+        async: false
+        defer: true
   dependencies:
-    - drupalx_theme/bootstrap-js
-    - drupalx_theme/heading
+    - core/drupal

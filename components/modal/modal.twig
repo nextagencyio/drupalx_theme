@@ -1,29 +1,69 @@
+{# Modal Component with initial hidden state #}
+{% set modal_id = modal_name|default('example') %}
 
-{% if trigger_button_text %}
-  <!-- Button trigger modal -->
-  <button type="button" class="btn {{ modifier }}" data-bs-toggle="modal" data-bs-target="#{{ id }}">
-    {{ trigger_button_text }}
+{% if button_text %}
+  <button
+    type="button"
+    class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+    data-bs-toggle="modal"
+    data-bs-target="#{{ modal_id }}"
+    data-cy="modal-button"
+  >
+    {{ button_text }}
   </button>
 {% endif %}
 
-<div class="modal modal-lg fade" id="{{ id }}" tabindex="-1" aria-labelledby="{{ id }}Label" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content p-2">
-      <div class="modal-header pb-0 border-0">
-        <h2 class="modal-title fs-4" id="{{ id }}Label">{{ title }}</h2>
-        <button type="button" class="btn-close p-0" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body pb-0 fs-6">
-        {{ body|raw }}
-      </div>
-      <div class="modal-footer border-0">
-        {% if button1.text %}
-          <a type="button" class="btn btn-outline-primary me-2" href="{{ button1.url ?? '#' }}" {{ button1.url is empty ? 'data-bs-dismiss="modal"' : '' }}>{{ button1.text }}</a>
-        {% endif %}
-        {% if button2.text %}
-          <a type="button" class="btn btn-primary" href="{{ button2.url ?? '#' }}" {{ button2.url is empty ? 'data-bs-dismiss="modal"' : '' }}>{{ button2.text }}</a>
-        {% endif %}
-      </div>
+<div
+  class="modal fixed inset-0 z-50 bg-black/80 backdrop-blur-sm p-8 md:p-0 opacity-0 hidden"
+  id="{{ modal_id }}"
+  tabindex="-1"
+  aria-labelledby="{{ modal_id }}Label"
+  aria-hidden="true"
+  data-cy="modal"
+>
+  <div class="fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 sm:rounded-lg md:w-full">
+    {# Rest of the modal content remains the same #}
+    <div class="flex flex-col space-y-1.5 text-center sm:text-left">
+      <h2
+        class="text-lg font-semibold leading-none tracking-tight"
+        id="{{ modal_id }}Label"
+        data-cy="modal-title"
+      >
+        {{ title }}
+      </h2>
+      {% if body %}
+        <div
+          class="text-sm text-muted-foreground"
+          data-cy="modal-body"
+        >
+          {{ body|raw }}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="flex flex-col-reverse sm:flex-row sm:justify-start sm:space-x-2">
+      {% if close_button %}
+        <button
+          type="button"
+          class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
+          data-bs-dismiss="modal"
+          data-cy="modal-close-btn"
+        >
+          {{ close_button }}
+        </button>
+      {% endif %}
+
+      {% if save_button %}
+        <a
+          type="button"
+          class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+          href="{{ save_button.url|default('#') }}"
+          {{ save_button.url is empty ? 'data-bs-dismiss="modal"' : '' }}
+          data-cy="modal-save-btn"
+        >
+          {{ save_button.text }}
+        </a>
+      {% endif %}
     </div>
   </div>
 </div>

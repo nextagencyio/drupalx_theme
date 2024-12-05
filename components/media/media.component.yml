@@ -1,11 +1,14 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Media
-description: 'Media component for displaying media items.'
+description: Editorial/Media component
 props:
   type: object
   properties:
     media:
       type: string
-      title: Media
-      description: 'Define the media item'
-      default: '<img src="./images/card.webp" class="img-fluid rounded" alt="test image" />'
+      title: media
+      description: Define the media content, either an image or a video
+    modifier:
+      type: string
+      title: modifier
+      description: CSS modifier classes for styling the media container

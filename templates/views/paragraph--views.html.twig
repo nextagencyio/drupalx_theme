@@ -1,0 +1,36 @@
+{%
+  set classes = [
+    wrapper_class,
+    'my-6 lg:my-25 border-none shadow-none',
+  ]
+%}
+
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  <div class="">
+    {% block content %}
+      {% if content.field_title %}
+        {%
+          include 'drupalx_theme:heading' with {
+            "heading": {
+              "title": content.field_title|render,
+              "heading_level": "2",
+              "modifier": " mb-4 lg:mb-6 text-center",
+            },
+          } only
+        %}
+      {% endif %}
+      {{ content|without('field_title', 'field_link') }}
+      {% if content.field_link[0]['#url'] %}
+        {% include 'drupalx_theme:button' with {
+          "button": {
+            "url": content.field_link[0]['#url'],
+            "text": content.field_link[0]['#title'],
+          }
+        } only %}
+      {% endif %}
+    {% endblock %}
+  </div>
+</div>

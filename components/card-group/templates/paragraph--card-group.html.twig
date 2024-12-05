@@ -1,0 +1,25 @@
+{%
+  set classes = [
+    'container',
+    'mx-auto my-12 lg:my-25',
+  ]
+%}
+
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {% block content %}
+    {% embed 'drupalx_theme:card-group' with {
+      section_title: content.field_title|render,
+      content: content,
+      columns: content.field_card['#items']|length ~ '' } only %}
+      {% block card_items %}
+        {% for i in content.field_card['#items'] %}
+          <div class="col-sm-6 col-lg-4 mb-4">
+            {{ content.field_card[loop.index0] }}
+          </div>
+        {% endfor %}
+      {% endblock %}
+    {% endembed %}
+  {% endblock %}
+</div>

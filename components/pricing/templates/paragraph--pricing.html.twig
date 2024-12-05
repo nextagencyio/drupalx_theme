@@ -1,0 +1,23 @@
+{%
+  set classes = [
+		'container mx-auto',
+	]
+%}
+
+<div{{attributes.addClass(classes)}}>
+	{{ title_prefix }}
+	{{ title_suffix }}
+	{% block content %}
+		{% embed '@drupalx_theme/pricing/pricing.twig' with {
+			content: content,
+			eyebrow: content.field_eyebrow|render,
+			title: content.field_title|render,
+			summary: content.field_summary|render,
+			grid_columns: content.field_pricing_cards['#items']|length,
+    } only %}
+			{% block pricing_cards %}
+				{{ content.field_pricing_cards }}
+			{% endblock pricing_cards %}
+		{% endembed %}
+	{% endblock %}
+</div>

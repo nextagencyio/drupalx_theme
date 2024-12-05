@@ -1,79 +1,111 @@
 {#
 /**
  * @file
- * Custom Bootstrap main menu implementation.
+ * Simplified mobile menu implementation using Tailwind CSS.
+ */
 #}
 
 {% import _self as menus %}
 
-<nav class="navbar navbar-expand-lg bg-primary py-2 {{ modifier }}" data-bs-theme="dark">
-	<div class="container">
-		<a class="navbar-brand" href="/">
-			<img src="{{ site_logo }}" alt="{{ site_name }}" class="d-inline-block" style="margin-right: 4px;">
-		</a>
+{# Split items into navigation and CTA #}
+{% set cta_link_count = cta_link_count|default(2) %}
+{% set total_items = items|length %}
+{% set nav_items = [] %}
+{% set cta_items = [] %}
+{% for item in items %}
+  {% if loop.index0 < total_items - cta_link_count %}
+    {% set nav_items = nav_items|merge([item]) %}
+  {% else %}
+    {% set cta_items = cta_items|merge([item]) %}
+  {% endif %}
+{% endfor %}
 
-		<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+<nav class="{{ modifier }}">
+  <div class="mx-auto px-4">
+    <div class="flex items-center justify-between h-16">
+      {# Logo section #}
+      <a href="/" class="flex items-center text-2xl font-bold">
+        <img src="{{ site_logo }}" alt="{{ site_name }}" class="mr-2" width="{{ site_logo_width|default(200) }}" height="{{ site_logo_height|default(100) }}">
+        {% if show_site_name and site_name %}
+          <span class="text-2xl">
+            {% for line in site_name|split('\n') %}
+              {{ line }}<br>
+            {% endfor %}
+          </span>
+        {% endif %}
+      </a>
 
-		<div class="offcanvas offcanvas-end d-lg-none" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-			<div class="d-flex justify-content-end p-2 pb-0">
-				<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-			</div>
-			<div class="offcanvas-body">
-				{{ menus.build_menu(items, attributes, 0, false) }}
-			</div>
-		</div>
+      {# Mobile menu button #}
+      <button
+        type="button"
+        class="lg:hidden flex items-center px-3 py-2 border rounded text-gray-500 border-gray-500 hover:text-gray-700 hover:border-gray-700"
+        onclick="toggleMobileMenu()"
+        aria-label="Toggle menu"
+      >
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
 
-		<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      {# Desktop menu #}
+      <div class="hidden lg:flex lg:items-center lg:space-x-6">
+        <div class="flex space-x-8">
+          {% for item in nav_items %}
+            <a href="{{ item.url }}" class="text-lg text-foreground hover:text-primary {{ link_modifier }} {% if item.in_active_trail %}font-bold{% endif %}">
+              {{ item.title }}
+            </a>
+          {% endfor %}
+        </div>
 
-			{{ menus.build_menu(items, attributes, 0, true) }}
+        {# CTA buttons #}
+        <div class="flex items-center space-x-6">
+          {% for item in cta_items %}
+            {% set is_last = loop.last %}
+            {% set common_classes = "inline-flex items-center justify-center whitespace-nowrap rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-9 px-4 py-2 text-lg" %}
+            {% if not is_last %}
+              {% set variant_classes = "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground" %}
+            {% else %}
+              {% set variant_classes = "bg-primary text-primary-foreground shadow hover:bg-primary/90" %}
+            {% endif %}
+            <a href="{{ item.url }}" class="{{ common_classes }} {{ variant_classes }}">
+              {{ item.title }}
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
 
-			{% macro build_menu(items, attributes, menu_level, is_desktop) %}
-				{% import _self as menus %}
-				{% if items %}
-					{% if menu_level == 0 %}
-						<ul class="navbar-nav mr-auto {{ is_desktop ? 'nav-desktop gap-4' : '' }}">
-						{% else %}
-							<ul class="dropdown-menu">
-							{% endif %}
-							{% for item in items %}
-								{{ menus.add_link(item, attributes, menu_level) }}
-							{% endfor %}
-						</ul>
-					{% endif %}
-				{% endmacro %}
+    {# Mobile menu panel #}
+    <div id="mobile-menu" class="hidden lg:hidden">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        {% for item in nav_items %}
+          <a
+            href="{{ item.url }}"
+            class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 {% if item.in_active_trail %}bg-gray-50 text-gray-900{% endif %}"
+          >
+            {{ item.title }}
+          </a>
+        {% endfor %}
 
-				{% macro add_link(item, attributes, menu_level) %}
-					{% import _self as menus %}
-					{%
-          set list_item_classes = [
-          'nav-item',
-          item.is_expanded ? 'dropdown'
-        ]
-        %}
-					{%
-          set link_class = [
-            menu_level == 0 ? 'nav-link fs-5',
-            menu_level == 0 and (item.is_expanded or item.is_collapsed) ? 'dropdown-toggle',
-            menu_level > 0 ? 'dropdown-item',
-						item.in_active_trail ? 'active' : ''
-          ]
-        %}
-					{%
-          set toggle_class = [
-          ]
-        %}
-        <li class="{{ list_item_classes|join(' ') }}">
-          {% if menu_level == 0 and item.below %}
-            <a href="{{ item.url }}" class="{{ link_class|join(' ') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="{{ 'Expand menu'|t }} {{ item.title }}">{{ item.title }}</a>
-            {{ menus.build_menu(item.below, attributes, menu_level + 1) }}
+        {% for item in cta_items %}
+          {% set is_last = loop.last %}
+          {% if not is_last %}
+            {% set mobile_variant = "block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" %}
           {% else %}
-            <a href="{{ item.url }}" class="{{ link_class|join(' ') }}">{{ item.title }}</a>
+            {% set mobile_variant = "block w-full text-left px-3 py-2 rounded-md text-base font-medium bg-primary text-primary-foreground hover:bg-primary/90" %}
           {% endif %}
-        </li>
-      {% endmacro %}
+          <a href="{{ item.url }}" class="{{ mobile_variant }}">
+            {{ item.title }}
+          </a>
+        {% endfor %}
+      </div>
     </div>
   </div>
 </nav>
 
+<script>
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+  }
+</script>

@@ -1,0 +1,19 @@
+{%
+  set classes = [
+    'container mx-auto px-4',
+  ]
+%}
+
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  {% block content %}
+    {%
+      include 'drupalx_theme:embed' with {
+        title: content.field_title|render,
+        embed: content.field_script|render,
+      } only
+    %}
+  {% endblock %}
+</div>

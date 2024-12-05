@@ -1,22 +1,14 @@
-{#
-/**
- * @file
- * Default theme implementation to display a paragraph.
- *
- * @see template_preprocess_paragraph()
- *
- * @ingroup themeable
- */
-#}
+{% set is_expanded = false %}
+
 {% embed '@drupalx_theme/accordion/accordion-item.twig' with {
   "item": {
     "heading": content.field_title|render,
     "accordion_instance": paragraph.id(),
-  },
-  "content": content
-} only %}
-  {% block accordion_content %}
-    {{ content.field_body }}
-    {{ content.field_link }}
-  {% endblock %}
-{% endembed %}
+    "is_expanded": is_expanded,
+    "body": content.field_body|render,
+    "link": content.field_link ? {
+      "url": content.field_link.0.url,
+      "title": content.field_link.0.title
+    } : null
+  }
+} only %}{% endembed %}

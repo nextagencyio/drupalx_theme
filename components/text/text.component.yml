@@ -1,0 +1,63 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Text Block
+description: Editorial/Text Block component
+props:
+  type: object
+  properties:
+    eyebrow:
+      type: string
+      title: eyebrow
+      description: Optional eyebrow text displayed above the title
+    title:
+      type: string
+      title: title
+      description: Main title of the text block
+    heading:
+      type: object
+      title: heading
+      description: Optional heading object that overrides the title
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
+    body:
+      type: string
+      title: body
+      description: Main content of the text block
+    link:
+      type: object
+      title: link
+      description: Primary button/link configuration
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
+    link2:
+      type: object
+      title: link2
+      description: Secondary button/link configuration
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
+    text_layout:
+      type: string
+      title: text_layout
+      description: Layout configuration for the text block
+      enum:
+        - left
+        - centered
+        - buttons-right
+    className:
+      type: string
+      title: className
+      description: Additional CSS classes for the container

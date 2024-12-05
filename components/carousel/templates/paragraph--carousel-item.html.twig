@@ -1,18 +1,7 @@
-{#
-/**
- * @file
- * Default theme implementation to display a paragraph.
- *
- * @see template_preprocess_paragraph()
- *
- * @ingroup themeable
- */
-#}
 {% include '@drupalx_theme/carousel/carousel-item.twig' with {
-  "id": parent.id(),
-  "item": {
-    "image": content.field_media,
-    "title": content.field_title|render,
-    "caption": content.field_summary|render
-  }
+	"item": {
+		"media": content.field_media,
+		"title": content.field_title|render,
+		"summary": content.field_summary|render
+	}
 } only %}

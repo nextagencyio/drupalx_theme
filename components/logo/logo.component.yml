@@ -1,20 +1,14 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Logo
-description: 'Logo component for the site, allowing customization through modifiers and different logo images'
+description: General/Logo component
 props:
   type: object
   properties:
     modifier:
       type: string
-      title: Modifier
-      description: CSS modifier for the logo component.
-      default: 'col-3'
+      title: modifier
+      description: Define the modifier
     site_logo:
       type: string
-      title: Site Logo
-      description: URL for the site logo image.
-      default: './images/logo.svg'
-    logo_attributes:
-      type: Drupal\Core\Template\Attribute
-      title: Attributes
-      description: A list of HTML attributes for the logo element.
+      title: site_logo
+      description: Define the site logo

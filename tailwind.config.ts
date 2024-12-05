@@ -1,0 +1,180 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+import type { Config } from "tailwindcss";
+
+const config: Config = {
+	darkMode: ["class"],
+	content: [
+		'./templates/**/*.html.twig',
+		'./components/**/*.twig',
+		'./components/**/*.{js,jsx,ts,tsx,mdx}',
+		'./.storybook/**/*.{js,jsx,ts,tsx,mdx}',
+		'./stories/**/*.{js,jsx,ts,tsx,mdx}'
+	],
+	theme: {
+		extend: {
+			fontFamily: {
+				sans: ['"Open Sans"', ...defaultTheme.fontFamily.sans],
+			},
+			typography: (theme: any) => ({
+				DEFAULT: {
+					css: {
+						h1: {
+							fontSize: theme('fontSize.4xl'),
+							fontWeight: theme('fontWeight.bold'),
+							lineHeight: theme('lineHeight.tight'),
+							marginTop: theme('spacing.4'),
+							marginBottom: theme('spacing.4'),
+							color: theme('colors.gray.800'),
+						},
+						h2: {
+							fontSize: theme('fontSize.3xl'),
+							fontWeight: theme('fontWeight.semibold'),
+							lineHeight: theme('lineHeight.tight'),
+							marginTop: theme('spacing.3'),
+							marginBottom: theme('spacing.3'),
+							color: theme('colors.gray.800'),
+						},
+						h3: {
+							fontSize: theme('fontSize.2xl'),
+							fontWeight: theme('fontWeight.medium'),
+							lineHeight: theme('lineHeight.tight'),
+							marginTop: theme('spacing.2'),
+							marginBottom: theme('spacing.2'),
+							color: theme('colors.gray.800'),
+						},
+						h4: {
+							fontSize: theme('fontSize.xl'),
+							fontWeight: theme('fontWeight.medium'),
+							marginTop: theme('spacing.2'),
+							marginBottom: theme('spacing.2'),
+							color: theme('colors.gray.800'),
+						},
+						h5: {
+							fontSize: theme('fontSize.lg'),
+							fontWeight: theme('fontWeight.normal'),
+							marginTop: theme('spacing.1'),
+							marginBottom: theme('spacing.1'),
+							color: theme('colors.gray.800'),
+						},
+						h6: {
+							fontSize: theme('fontSize.base'),
+							fontWeight: theme('fontWeight.normal'),
+							marginTop: theme('spacing.1'),
+							marginBottom: theme('spacing.1'),
+							color: theme('colors.gray.800'),
+						},
+					},
+				},
+			}),
+			container: {
+				center: true,
+				padding: '2rem',
+				screens: {
+					'2xl': '1400px'
+				}
+			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
+			},
+			borderRadius: {
+				lg: 'var(--radius)',
+				md: 'calc(var(--radius) - 2px)',
+				sm: 'calc(var(--radius) - 4px)'
+			},
+			colors: {
+				border: {
+					DEFAULT: 'hsl(var(--border))'
+				},
+				background: {
+					DEFAULT: 'hsl(var(--background))'
+				},
+				foreground: {
+					DEFAULT: 'hsl(var(--foreground))'
+				},
+				card: {
+					DEFAULT: 'hsl(var(--card))',
+					foreground: 'hsl(var(--card-foreground))'
+				},
+				popover: {
+					DEFAULT: 'hsl(var(--popover))',
+					foreground: 'hsl(var(--popover-foreground))'
+				},
+				primary: {
+					DEFAULT: 'hsl(var(--primary))',
+					foreground: 'hsl(var(--primary-foreground))'
+				},
+				secondary: {
+					DEFAULT: 'hsl(var(--secondary))',
+					foreground: 'hsl(var(--secondary-foreground))'
+				},
+				muted: {
+					DEFAULT: 'hsl(var(--muted))',
+					foreground: 'hsl(var(--muted-foreground))'
+				},
+				accent: {
+					DEFAULT: 'hsl(var(--accent))',
+					foreground: 'hsl(var(--accent-foreground))'
+				},
+				destructive: {
+					DEFAULT: 'hsl(var(--destructive))',
+					foreground: 'hsl(var(--destructive-foreground))'
+				},
+				input: {
+					DEFAULT: 'hsl(var(--input))'
+				},
+				ring: {
+					DEFAULT: 'hsl(var(--ring))'
+				},
+				chart: {
+					'1': 'hsl(var(--chart-1))',
+					'2': 'hsl(var(--chart-2))',
+					'3': 'hsl(var(--chart-3))',
+					'4': 'hsl(var(--chart-4))',
+					'5': 'hsl(var(--chart-5))'
+				}
+			},
+			keyframes: {
+				'accordion-down': {
+					from: {
+						height: '0'
+					},
+					to: {
+						height: 'var(--radix-accordion-content-height)'
+					}
+				},
+				'accordion-up': {
+					from: {
+						height: 'var(--radix-accordion-content-height)'
+					},
+					to: {
+						height: '0'
+					}
+				}
+			},
+			animation: {
+				'accordion-down': 'accordion-down 0.2s ease-out',
+				'accordion-up': 'accordion-up 0.2s ease-out'
+			},
+			spacing: {
+				...defaultTheme.spacing,
+				'13': '3.25rem',
+				'14': '3.5rem',
+				'15': '3.75rem',
+				'16': '4rem',
+				'17': '4.25rem',
+				'18': '4.5rem',
+				'19': '4.75rem',
+				'20': '5rem',
+				'21': '5.25rem',
+				'22': '5.5rem',
+				'23': '5.75rem',
+				'24': '6rem',
+				'25': '6.25rem',
+			},
+		}
+	},
+	plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+};
+
+export default config;

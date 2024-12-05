@@ -1,0 +1,41 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a block content.
+ *
+ * @see template_preprocess_block_content_template()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'container',
+    'my-12 lg:my-25',
+  ]
+%}
+
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  {% if (content.field_title) %}
+    {%
+      include 'drupalx_theme:heading' with {
+        "heading": {
+          "title": content.field_title|render,
+          "heading_level": "2",
+          "modifier": "mt-2 text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl mb-8 lg:mb-8",
+        },
+      } only
+    %}
+  {% endif %}
+
+  {% block content %}
+    {%
+      include 'drupalx_theme:media' with {
+        media: content.field_media,
+      } only
+    %}
+  {% endblock %}
+</div>

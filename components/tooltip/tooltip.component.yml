@@ -1,5 +1,0 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
-name: tooltip
-description: >
-  Tooltip component that can show additional information on hover or focus.
-  See Bootstrap Documentation: https://getbootstrap.com/docs/5.3/components/tooltips/

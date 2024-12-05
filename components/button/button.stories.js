@@ -1,77 +1,123 @@
-import './button.scss';
-import ButtonTemplate from './button.twig';
+import buttonTemplate from './button.twig';
 
 export default {
   title: 'General/Button',
   argTypes: {
-    button: {
-      name: 'Button object',
-      description: 'Define the button content',
-      control: 'object',
-      type: {
-        required: true
-      }
-    }
-  }
-};
-
-export const Primary = ButtonTemplate.bind({});
-Primary.args = {
-  button: {
-    url: '#',
-    text: 'Primary Button',
-    icon: 'arrow_right_alt',
-    modifier: 'btn-primary'
+    url: {
+      description: 'The URL the button links to',
+      control: 'text',
+    },
+    text: {
+      description: 'The text inside the button',
+      control: 'text',
+    },
+    icon: {
+      description: 'The icon to display inside the button',
+      control: 'text',
+    },
+    variant: {
+      description: 'The button variant',
+      control: 'select',
+      options: ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link'],
+    },
+    size: {
+      description: 'The button size',
+      control: 'select',
+      options: ['default', 'sm', 'lg', 'icon'],
+    },
   },
-  modifier: ''
 };
 
-export const Secondary = ButtonTemplate.bind({});
-Secondary.args = {
-  button: {
+const renderButton = (args) => {
+  return buttonTemplate({
+    url: args.url,
+    text: args.text,
+    icon: args.icon,
+    variant: args.variant,
+    size: args.size,
+  });
+};
+
+export const Default = {
+  render: renderButton,
+  args: {
+    url: '#',
+    text: 'Default Button',
+    icon: 'arrow-right',
+    variant: 'default',
+    size: 'default',
+  },
+};
+
+export const Destructive = {
+  render: renderButton,
+  args: {
+    url: '#',
+    text: 'Destructive Button',
+    variant: 'destructive',
+  },
+};
+
+export const Outline = {
+  render: renderButton,
+  args: {
+    url: '#',
+    text: 'Outline Button',
+    variant: 'outline',
+  },
+};
+
+export const Secondary = {
+  render: renderButton,
+  args: {
     url: '#',
     text: 'Secondary Button',
-    icon: 'arrow_right_alt',
-    modifier: 'btn-secondary'
-  }
+    variant: 'secondary',
+  },
 };
 
-export const PrimaryOutlined = ButtonTemplate.bind({});
-PrimaryOutlined.args = {
-  button: {
+export const Ghost = {
+  render: renderButton,
+  args: {
     url: '#',
-    text: 'Primary Button',
-    icon: '',
-    modifier: 'btn-outline-primary'
-  }
+    text: 'Ghost Button',
+    variant: 'ghost',
+  },
 };
 
-export const SecondaryOutlined = ButtonTemplate.bind({});
-SecondaryOutlined.args = {
-  button: {
+export const Link = {
+  render: renderButton,
+  args: {
     url: '#',
-    text: 'Secondary Button',
-    icon: '',
-    modifier: 'btn-outline-secondary'
-  }
+    text: 'Link Button',
+    variant: 'link',
+  },
 };
 
-export const PrimarySmall = ButtonTemplate.bind({});
-PrimarySmall.args = {
-  button: {
+export const Small = {
+  render: renderButton,
+  args: {
     url: '#',
-    text: 'Primary Button Small',
-    icon: '',
-    modifier: 'btn-primary btn-sm'
-  }
+    text: 'Small Button',
+    size: 'sm',
+  },
 };
 
-export const SecondarySmall = ButtonTemplate.bind({});
-SecondarySmall.args = {
-  button: {
+export const Large = {
+  render: renderButton,
+  args: {
     url: '#',
-    text: 'Secondary Button Small',
-    icon: '',
-    modifier: 'btn-secondary btn-sm'
-  }
+    text: 'Large Button',
+    size: 'lg',
+  },
+};
+
+export const IconButton = {
+  render: renderButton,
+  args: {
+    url: '#',
+    text: '',
+    icon: 'arrow-right',
+    size: 'icon',
+  },
 };

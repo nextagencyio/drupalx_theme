@@ -1,11 +1,18 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
-name: Newsletter Form
-description: 'A Newsletter form component for subscribing to newsletters'
+name: Newsletter
+description: Editorial/Newsletter component
 props:
   type: object
   properties:
+    title:
+      type: string
+      title: title
+      description: Title of the newsletter
+    summary:
+      type: string
+      title: summary
+      description: Summary text of the newsletter
     modifier:
       type: string
-      title: Modifier
-      description: 'The modifier class to apply to the newsletter form component.'
-      default: 'border p-4 rounded'
+      title: modifier
+      description: Modifier class for the newsletter container

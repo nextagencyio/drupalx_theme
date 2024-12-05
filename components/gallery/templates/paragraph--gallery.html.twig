@@ -1,0 +1,24 @@
+{%
+  set classes = [
+    'container',
+    'my-6 my-lg-15',
+  ]
+%}
+
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  {% block content %}
+    {% embed 'drupalx_theme:gallery' with {
+        section_title: content.field_title|render,
+        intro_text: content.field_body,
+        content: content
+      } only %}
+      {% block gallery_items %}
+        {% for i in content.field_media_item['#items'] %}
+          {{ content.field_media_item[loop.index0] }}
+        {% endfor %}
+      {% endblock %}
+    {% endembed %}
+  {% endblock %}
+</div>

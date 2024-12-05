@@ -11,15 +11,15 @@
 
 name: DrupalX Theme
 type: theme
-description: Drupal Bootstrap/Storybook theme starter for DrupalX distribution.
+description: Drupal Tailwind & Storybook theme starter for DrupalX distribution.
 package: Other
 core_version_requirement: ^9 || ^10
 # Classy vs. Stable as a base theme: https://www.lullabot.com/articles/a-tale-of-two-base-themes-in-drupal-8-core
 base theme: stable9
 version: '1.0'
 starterkit: true
-ckeditor5-stylesheets:
-  - dist/css/ckeditor.css
+# ckeditor5-stylesheets:
+#  - dist/css/ckeditor.css
 
 # This section controls the libraries for your theme. For full documentation,
 # see https://www.drupal.org/node/2216195
@@ -27,14 +27,6 @@ ckeditor5-stylesheets:
 # The "libraries-extend:" section will allow you to add your own JS or CSS to
 # existing libraries.
 # libraries-extend:
-
-# Disable core layout builder styles
-libraries-override:
-  layout_builder/drupal.layout_builder:
-    css:
-      theme:
-        css/layout-builder.css: false
-        css/off-canvas.css: false
 
 # The "libraries:" section will add a library to _all_ pages.
 libraries:

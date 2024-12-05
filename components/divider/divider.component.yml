@@ -1,3 +1,6 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Divider
-description: 'Divider component; used to visually separate content sections.'
+description: General/Divider component
+props:
+  type: object
+  properties: {}

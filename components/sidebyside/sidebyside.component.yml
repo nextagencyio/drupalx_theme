@@ -1,0 +1,44 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Side-by-Side
+description: Editorial/Side-by-Side component
+props:
+  type: object
+  properties:
+    eyebrow:
+      type: string
+      title: eyebrow
+      description: Eyebrow displays above main title
+    title:
+      type: string
+      title: title
+      description: Side-by-Side title
+    media:
+      type: string
+      title: media
+      description: Side-by-Side image or video markup
+    summary:
+      type: string
+      title: summary
+      description: Side-by-Side body text
+    link:
+      type: object
+      title: link
+      description: Call to action
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
+    layout:
+      type: string
+      title: layout
+      description: Controls image left/right placement
+      enum:
+        - left
+        - right
+    modifier:
+      type: string
+      title: modifier
+      description: Additional classes for the component

@@ -1,11 +1,10 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Video
-description: 'Video component for embedding videos.'
+description: General/Video component
 props:
   type: object
   properties:
     video:
       type: string
-      title: Video Embed Code
-      description: Embed code for the video.
-      default: "<iframe width='560' height='315' src='https://www.youtube.com/embed/I95hSyocMlg?si=1n8TVSmIkVxSCHxa' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"
+      title: video
+      description: Define the video embed

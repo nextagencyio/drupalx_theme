@@ -1,0 +1,18 @@
+{%
+  set classes = [
+    'container mx-auto px-4 my-25',
+  ]
+%}
+
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  {% block content %}
+    {% embed 'drupalx_theme:carousel' with { content: content } only %}
+      {% block carousel_items %}
+        {{ content.field_carousel_item }}
+      {% endblock carousel_items %}
+    {% endembed %}
+  {% endblock %}
+</div>

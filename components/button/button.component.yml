@@ -1,31 +1,38 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Button
-description: 'Button component'
+description: General/Button component
 props:
   type: object
   properties:
-    button:
-      type: object
-      title: Button object
-      description: Define the button content
-      properties:
-        url:
-          type: string
-          title: URL
-          description: The URL the button links to.
-          default: '#'
-        text:
-          type: string
-          title: Text
-          description: The text inside the button.
-          default: ''
-        icon:
-          type: string
-          title: Icon
-          description: The icon name to be displayed inside the button.
-          default: ''
-        modifier:
-          type: string
-          title: Modifier classes
-          description: The modifier classes for the button.
-          default: ''
+    url:
+      type: string
+      title: url
+      description: The URL the button links to
+    text:
+      type: string
+      title: text
+      description: The text inside the button
+    icon:
+      type: string
+      title: icon
+      description: The icon to display inside the button
+    variant:
+      type: string
+      title: variant
+      description: The button variant
+      enum:
+        - default
+        - destructive
+        - outline
+        - secondary
+        - ghost
+        - link
+    size:
+      type: string
+      title: size
+      description: The button size
+      enum:
+        - default
+        - sm
+        - lg
+        - icon

@@ -1,79 +1,52 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Hero
-description: 'Hero component for Editorial use.'
+description: Editorial/Hero component
 props:
   type: object
   properties:
     modifier:
       type: string
-      title: Modifier
-      description: Modifier classes for the hero component.
-      default: ''
+      title: modifier
+      description: ''
     media:
       type: string
-      title: Media
-      description: Media content, such as an image or video.
-      default: "<img src='./images/hero.png' class='img-fluid rounded' alt='test image' />"
-    title:
+      title: media
+      description: ''
+    heading:
       type: string
-      title: Title
-      description: Title text for the hero section.
-      default: 'Phasellus <strong>auctor</strong>, turpis'
-    body_text:
+      title: heading
+      description: ''
+    summary:
       type: string
-      title: Body Text
-      description: The body text for the hero section.
-      default: 'This copy is optional, if nothing is entered nothing will display. Facit nulla in vulputate vulputate aliquam. Commodo esse habent tation nam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sed orci lacus.'
-    layout:
+      title: summary
+      description: ''
+    hero_layout:
       type: string
-      title: Layout
-      description: Layout setting for the hero component.
+      title: hero_layout
+      description: Select the layout variant for the Hero component.
       enum:
         - image_top
         - image_bottom
-      default: image_top
-    button:
+        - image_bottom_split
+    link:
       type: object
-      title: Button 1
-      description: Configuration for the first button.
+      title: link
+      description: Primary action link
       properties:
         url:
           type: string
-          title: URL
-          description: URL for the button link.
-          default: '#'
-        text:
+        title:
           type: string
-          title: Text
-          description: Text for the button.
-          default: 'Link 1'
         icon:
           type: string
-          title: Icon
-          description: Icon for the button.
-          default: 'arrow_right_alt'
-    button2:
+    link2:
       type: object
-      title: Button 2
-      description: Configuration for the second button.
+      title: link2
+      description: Secondary action link
       properties:
         url:
           type: string
-          title: URL
-          description: URL for the button link.
-          default: '#'
-        text:
+        title:
           type: string
-          title: Text
-          description: Text for the button.
-          default: 'Link 2'
         icon:
           type: string
-          title: Icon
-          description: Icon for the button.
-          default: 'arrow_right_alt'
-
-libraryOverrides:
-  dependencies:
-    - drupalx_theme/button
-    - drupalx_theme/heading

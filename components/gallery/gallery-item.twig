@@ -1,0 +1,21 @@
+<div class="aspect-w-16 aspect-h-9">
+	<button type="button" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground p-0 w-full h-full" data-id="{{ item.id }}" onclick="openModal('{{ item.id }}')">
+		{{ item.media_thumb }}
+	</button>
+
+	<div id="modal-{{ item.id }}" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 hidden z-50" data-id="{{ item.id }}" aria-hidden="true" aria-describedby="description-{{ item.id }}">
+		<div class="bg-white p-6 rounded-lg max-w-screen-sm w-full mx-4">
+			<div class="mb-4">
+				<h2 class="text-xl font-bold">{{ item.media_description }}</h2>
+			</div>
+			<div id="description-{{ item.id }}" class="max-h-[70vh] overflow-auto">
+				{{ item.media }}
+			</div>
+			<div class="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 mt-4">
+				<button type="button" class="modal-close inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 h-9 px-4 py-2 gallery-close" data-id="{{ item.id }}">
+					Close
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

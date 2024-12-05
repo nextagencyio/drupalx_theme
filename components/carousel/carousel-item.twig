@@ -1,27 +1,21 @@
-<div class="carousel-item {{ item.active ? 'active' : ''}}">
-  {% if item.image %}
-    {{ item.image }}
-  {% endif %}
-  <div class="carousel-caption d-none d-md-block">
-    {% if item.title %}
-      {%
-        include '@drupalx_theme/heading/heading.twig' with {
-          "heading": {
-            "title": item.title,
-            "heading_level": 3,
-            "modifier": "",
-          }
-        } only
-      %}
-    {% endif %}
-    <p>{{ item.caption }}</p>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carousel{{ id }}" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carousel{{ id }}" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+<div class="carousel-item snap-start flex-none w-full">
+	<div class="card w-full border-none">
+		<div class="card-content p-0">
+			<div class="carousel-content relative aspect-[16/9] w-full">
+				{% if item.media is defined %}
+					<div class="absolute inset-0">
+						{{ item.media }}
+					</div>
+				{% endif %}
+				<div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-4 md:p-6">
+					{% if item.title is defined %}
+						<h3 class="text-xl md:text-3xl font-semibold mb-2">{{ item.title }}</h3>
+					{% endif %}
+					{% if item.summary is defined %}
+						<p class="text-sm md:text-lg">{{ item.summary }}</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

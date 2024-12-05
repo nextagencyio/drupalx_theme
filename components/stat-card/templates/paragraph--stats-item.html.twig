@@ -1,0 +1,14 @@
+
+{% block paragraph %}
+  {% block content %}
+    {% include 'drupalx_theme:stat-card' with {
+        media: content.field_custom_icon|field_value ? content.field_custom_icon : '',
+        heading: content.field_title|render,
+        body: content.field_summary|render,
+        icon: content.field_icon|field_value,
+        layout: 'center',
+        border: false,
+      } only
+    %}
+  {% endblock %}
+{% endblock paragraph %}

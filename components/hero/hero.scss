@@ -1,8 +1,10 @@
-// Import site utilities.
-@import './src/scss/bootstrap-init';
+.hero {
 
-// Include button styles.
-@import '../button/button';
+  h1 {
 
-// Include heading styles.
-@import '../heading/heading';
+    strong {
+      font-weight: inherit;
+      color: hsl(var(--primary));
+    }
+  }
+}
