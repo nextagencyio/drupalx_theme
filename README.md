@@ -6,7 +6,7 @@
 
 The DrupalX theme starter kit is intended to be used with the [DrupalX distribution](https://github.com/drupalninja/drupalx-project).
 
-This starter kit includes [Bootstrap 5](https://getbootstrap.com/), [Storybook](https://storybook.js.org/) and full template integration with the DrupalX install profile.
+This starter kit includes [Tailwind CSS](https://tailwindcss.com/), [Storybook](https://storybook.js.org/) and full template integration with the DrupalX install profile.
 
 Public Storybook: https://drupalx.netlify.app/
 
@@ -50,25 +50,38 @@ Install npm dependencies:
 npm install
 ```
 
-Build all required theme assets:
-```bash
-npm run build
-```
+## Available Scripts
 
-Compile SASS as files are updated:
-```bash
-npm run watch
-```
+The theme includes several npm scripts for development and building:
 
-Run Storybook:
-```bash
-npm run storybook
-```
+### Development
+- `npm run watch`: Run all watch tasks in parallel (Tailwind, components, and stories)
+  - `watch:tailwind`: Watch and compile Tailwind CSS changes
+  - `watch:components`: Watch and compile component SCSS changes
+  - `watch:stories`: Watch and compile Storybook story changes
+- `npm run storybook`: Start Storybook development server on port 6006
+- `npm run build-storybook`: Build static Storybook site
 
-Run Cypress tests (requires Storybook running):
-```bash
-npm run cypress
-```
+### Building
+- `npm run build`: Run all build tasks (stories, Tailwind CSS, and component compilation)
+  - `build:stories`: Build Storybook stories
+  - `compile`: Compile theme components
+
+### Linting and Cleaning
+- `npm run scss-fix`: Fix SCSS/CSS styling issues
+- `npm run lint:js`: Lint and fix JavaScript files
+- `npm run lint:sass`: Lint SCSS files
+- `npm run clean`: Remove all compiled CSS and JS files
+  - `clean:css`: Remove compiled CSS files
+  - `clean:js`: Remove compiled JS files
+
+### Testing
+- `npm run cypress`: Run Cypress tests
+- `npm run percy-storybook`: Run Percy visual regression tests on Storybook components
+
+### Git Hooks
+- `npm run postinstall`: Install Husky git hooks
+- `npm run prepare`: Install Husky git hooks (alternative command)
 
 ### Managing the 'dist' Folder
 
