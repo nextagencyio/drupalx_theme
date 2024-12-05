@@ -1,5 +1,0 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-npm run lint:js && npm run lint:sass
-npx cypress run --headless

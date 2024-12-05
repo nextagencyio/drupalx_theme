@@ -11,29 +11,21 @@ final class StarterKit implements StarterKitInterface {
    * {@inheritdoc}
    */
   public static function postProcess(string $working_dir, string $machine_name, string $theme_name): void {
-    $readme_file = "$working_dir/README.md";
-    try {
-      file_put_contents($readme_file, "$theme_name theme, generated from drupalx_theme. Additional information on generating themes can be found in the [Starterkit documentation](https://www.drupal.org/docs/core-modules-and-themes/core-themes/starterkit-theme).");
-    }
-    catch (\Throwable $th) {
-    }
+    $filesystem = new Filesystem();
 
-    $hidden_files = [
-      '_husky',
-      '_storybook',
-      '_editorconfig',
-      '_eslintignore',
-      '_eslintrc.json',
-      '_gitignore',
-      '_nvmrc',
-      '_prettierrc.json',
-      '_stylelintrc.yml',
-    ];
+    // Path to the environment.js file
+    $environment_file = $working_dir . '/.storybook/environment.js';
 
-    $fs = new Filesystem();
-    foreach ($hidden_files as $file) {
-      $fs->rename("$working_dir/src/hidden/$file", "$working_dir/." . ltrim($file, '_'));
+    // Check if the file exists
+    if ($filesystem->exists($environment_file)) {
+      // Read the current content
+      $content = file_get_contents($environment_file);
+
+      // Replace all occurrences of 'drupalx_theme' with the new machine name
+      $updated_content = str_replace('drupalx_theme', $machine_name, $content);
+
+      // Write the updated content back to the file
+      file_put_contents($environment_file, $updated_content);
     }
   }
-
 }
