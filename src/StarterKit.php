@@ -21,10 +21,10 @@ final class StarterKit implements StarterKitInterface {
     $hidden_files = [
       '_husky',
       '_storybook',
-      '_gitignore',
-      '_eslintignore',
       '_editorconfig',
+      '_eslintignore',
       '_eslintrc.json',
+      '_gitignore',
       '_nvmrc',
       '_prettierrc.json',
       '_stylelintrc.yml',
