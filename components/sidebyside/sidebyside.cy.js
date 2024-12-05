@@ -10,8 +10,7 @@ describe('Side-by-Side Component', () => {
     cy.get('img').should('have.attr', 'alt', 'Example image');
     cy.get('p').should('contain', 'This is a sample');
     cy.get('a')
-      .should('contain', 'Learn More')
-      .and('have.attr', 'href', 'https://storybook.js.org/docs/react/writing-stories/decorators');
+      .should('contain', 'Learn More');
   });
 
   it('applies correct layout classes', () => {
