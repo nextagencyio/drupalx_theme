@@ -42,7 +42,7 @@
 	<div class="hero mx-auto {{ modifier }}">
 		<div class="mb-6 lg:mb-12 text-center">
 			{% if hero_layout == 'image_top' and media %}
-				<div class="mb-4 lg:mb-8 flex justify-center items-center">
+				<div class="mb-4 lg:mb-8 flex justify-center items-center max-w-[1536px] mx-auto">
 					{{ media }}
 				</div>
 			{% endif %}
@@ -77,7 +77,7 @@
 			</div>
 
 			{% if hero_layout == 'image_bottom' and media %}
-				<div class="mt-6 lg:mt-12 flex justify-center items-center">
+				<div class="mt-6 lg:mt-12 flex justify-center items-center max-w-[1536px] mx-auto">
 					{{ media }}
 				</div>
 			{% endif %}
