@@ -1,24 +1,25 @@
-<section class="px-[5%] my-12 lg:my-25">
-	<div class="container">
-		<div class="mx-auto max-w-lg text-center mb-6 lg:mb-12">
-			<p class="eyebrow mb-3 font-semibold md:mb-4">{{ eyebrow }}</p>
-			<h1 class="mb-5 text-5xl font-semibold md:mb-6 md:text-6xl lg:text-7xl">{{ title }}</h1>
-			<div class="summary md:text-md">{{ summary|raw }}</div>
-		</div>
-		<div class="grid grid-cols-1 gap-8 {{ grid_columns == 2 ? 'md:grid-cols-2' : 'md:grid-cols-3' }}">
-			{% block pricing_cards %}
-				{% for card in cards %}
-					{% include '@drupalx_theme/pricing/pricing-card.twig' with {
+{# pricing.twig #}
+<div class="{{ grid_columns == 2 ? 'max-w-5xl mx-auto' : '' }}">
+  <section class="px-4 sm:px-[5%] my-12 lg:my-25">
+    <div class="mx-auto max-w-lg text-center mb-6 lg:mb-12">
+      <p class="eyebrow mb-2 sm:mb-3 text-sm sm:text-base font-semibold md:mb-4">{{ eyebrow }}</p>
+      <h2 class="mb-4 sm:mb-5 text-3xl sm:text-4xl md:text-5xl font-semibold md:mb-6 lg:text-7xl">{{ title }}</h2>
+      <div class="summary text-sm sm:text-base md:text-md">{{ summary|raw }}</div>
+    </div>
+    <div class="grid grid-cols-1 gap-6 sm:gap-8 {{ grid_columns == 2 ? 'md:grid-cols-2' : 'md:grid-cols-3' }}">
+      {% block pricing_cards %}
+        {% for card in cards %}
+          {% include '@drupalx_theme/pricing/pricing-card.twig' with {
             eyebrow: card.eyebrow,
             title: card.title,
             monthly_label: card.monthly_label,
             features: card.features,
             cta_text: card.cta_text,
             cta_link: card.cta_link,
-						includes_label: card.includes_label,
+            includes_label: card.includes_label,
           } %}
-				{% endfor %}
-			{% endblock %}
-		</div>
-	</div>
-</section>
+        {% endfor %}
+      {% endblock %}
+    </div>
+  </section>
+</div>
