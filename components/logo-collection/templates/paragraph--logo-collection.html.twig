@@ -9,8 +9,8 @@
     {% embed 'drupalx_theme:logo-collection' with { title: content.field_title|render, content: content } only %}
       {% block logo_items %}
         {% for i in content.field_media_item['#items'] %}
-          <div class="flex items-center">
-            <div class="max-w-[120px]">
+          <div class="flex items-center justify-center md:justify-start">
+            <div class="max-w-[100px] md:max-w-[120px] h-auto">
               {{ content.field_media_item[loop.index0] }}
             </div>
           </div>
