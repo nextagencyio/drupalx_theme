@@ -165,7 +165,7 @@ function drupalx_theme_preprocess_block(array &$variables) {
   if (isset($variables['elements']['#id']) && $variables['elements']['#id'] == 'footer') {
     $config = \Drupal::config('system.site');
     $theme_path = \Drupal::service('extension.list.theme')->getPath('drupalx_theme');
-    $variables['site_logo'] = '/' . $theme_path . '/static/images/logo.svg';
+    $variables['site_logo'] = theme_get_setting('logo.url') ? '/' . $theme_path . '/static/images/logo.svg' : '';
     $variables['site_name'] = $config->get('name');
   }
 }
@@ -284,5 +284,5 @@ function drupalx_theme_theme_suggestions_views_view_unformatted_alter(array &$su
 function drupalx_theme_preprocess_menu(&$variables) {
   $config = \Drupal::config('system.site');
   $variables['site_name'] = $config->get('name');
-  $variables['site_logo'] = theme_get_setting('logo.url');
+  $variables['site_logo'] = theme_get_setting('logo.url') ?? '';
 }

@@ -26,14 +26,16 @@
 			<div class="{{ isStatType ? 'flex flex-col sm:flex-row gap-4 mb-6' : 'mb-6 space-y-4' }}">
 				{% for feature in features %}
 					{% if feature.type == 'stats_item' %}
-						{% include '@drupalx_theme/stat-card/stat-card.twig' with {
-              heading: feature.heading,
-              body: feature.body,
-              icon: feature.icon,
-              media: feature.media,
-							layout: 'left',
-							border: false,
-            } only %}
+						<div class="flex-1">
+							{% include '@drupalx_theme/stat-card/stat-card.twig' with {
+								heading: feature.heading,
+								body: feature.body,
+								icon: feature.icon,
+								media: feature.media,
+								layout: 'left',
+								border: false,
+							} only %}
+						</div>
 					{% else %}
 						<div class="flex items-start gap-4">
 							<i data-lucide="{{ feature.icon }}" width="24" height="24" class="mt-[-2px]"></i>
