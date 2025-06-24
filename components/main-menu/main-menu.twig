@@ -26,7 +26,7 @@
       {# Logo section #}
       <a href="/" class="flex items-center text-2xl font-bold">
         {% if site_logo %}
-          <img src="{{ site_logo }}" alt="{{ site_name }}" class="mr-2" width="{{ site_logo_width|default(200) }}" height="{{ site_logo_height|default(100) }}">
+          <img src="{{ site_logo }}" alt="{{ site_name }}" class="mr-2 max-w-[160px] h-auto" width="{{ site_logo_width|default(200) }}" height="{{ site_logo_height|default(100) }}">
         {% endif %}
         {% if not site_logo and site_name %}
           <span class="text-2xl">
