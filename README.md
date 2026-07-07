@@ -1,5 +1,14 @@
 # DrupalX Theme Starter Kit
 
+> [!IMPORTANT]
+> **This theme is now bundled directly into [DrupalX Project](https://github.com/nextagencyio/drupalx-project).**
+> As of the `main` branch of DrupalX Project, the theme code lives in the
+> project template itself (`web/themes/custom/drupalx_theme`) and is no longer
+> installed from this repository. The **`11.x` branch of DrupalX Project is the
+> last branch that uses this standalone `drupalx_theme`** — new development
+> happens in the project repo.
+
+
 [![Cypress](https://github.com/drupalninja/drupalx_theme/actions/workflows/cypress-tests.yml/badge.svg)](https://github.com/drupalninja/drupalx_theme/actions/workflows/cypress-tests.yml)
 
 The DrupalX theme starter kit is intended to be used with the [DrupalX distribution](https://github.com/drupalninja/drupalx-project).
